@@ -15,7 +15,8 @@
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>Yucroq</name>
-	<description>Exercice "Galerie d'Art" en Spring-JPA</description>
+	<description>Projet Yucroq
+</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
