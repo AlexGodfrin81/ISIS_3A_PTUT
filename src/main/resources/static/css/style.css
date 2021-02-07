@@ -1,0 +1,127 @@
+body{
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;	
+}
+
+td, th {
+	border: 1px solid #ddd;
+	padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:hover {background-color: #ddd;}
+
+th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #4CAF50;
+	color: white;
+}
+
+.column{
+	width:50%;
+	float:left;
+	padding: 5px;
+	box-sizing:border-box;
+}
+
+/*clear-fix the parent of column because it collapsed!  */
+form:after{
+	content:'';
+	display:block;
+	clear:both;
+}
+
+/* FORM STUFF BEGINS HERE */
+form{
+	font-size:110%
+}
+
+label{
+	display:block;
+	color:saddlebrown;
+	margin: 5px 0 3px;
+}
+
+fieldset label{
+	display:inline-block;
+	font-size:85%;
+	font-family: Calibri, sans-serif;
+}
+
+
+input[type=text],
+input[type=email],
+input[type=tel],
+textarea,
+select{
+	width:100%;
+	padding:10px;
+	box-sizing:border-box;
+	background-color: #f2f2f2;	
+	border: solid 1px tan;
+}
+
+textarea{
+	resize: vertical;
+	min-height: 70px;
+}
+
+fieldset{
+	border:none;
+	margin:20px 0 ;
+	padding:10px 0;
+	border-bottom: 1px solid tan;
+}
+
+legend{
+	color:white;
+	background-color:tan;
+	display:block;
+	width:100%;
+	padding:3px;
+}
+
+input[type=checkbox]{
+	background-color:red;
+	border: solid 1px red;
+	color:red;
+	outline:red;
+}
+
+/* BUTTONS */
+input[type=submit]{
+	padding-top:12px;
+	padding-bottom:12px;
+	padding-left:12px; 
+	padding-right:12px;
+	border-radius:10px;
+	text-align:left;
+	background-color: #4CAF50;
+	color: white;
+	border:none;
+}
+/* Reset Button: minimize the appearance */
+input[type=reset]{
+	background-color:transparent;
+	border:none;
+	text-decoration:underline;
+	cursor:pointer;
+	margin:20px 0;
+	color:olive;
+}
+
+/* hovers and tabs */
+input[type=text]:hover,
+input[type=email]:hover{
+	background-color:khaki;
+}
+input[type=text]:focus,
+input[type=email]:focus{
+	outline: 2px solid tan;
+}
+input[type=sumbit]:hover,
+input[type=submit]:focus{
+	background-color:limegreen;
+}
