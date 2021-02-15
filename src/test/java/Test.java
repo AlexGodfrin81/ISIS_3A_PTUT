@@ -8,6 +8,6 @@
  *
  * @author ALEX
  */
-public class NewClass {
+public class Test {
     
 }
