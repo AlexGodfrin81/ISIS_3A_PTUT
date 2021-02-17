@@ -1,11 +1,16 @@
-package entity;
+package yucroq.entity;
 
 import java.time.LocalDate;
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -32,5 +37,13 @@ public class SuiviPoids {
     @Column(unique=true)
     @NonNull
     private Integer poids_kg;
+
+    //-== Mapping ==-
+
+    @ManyToOne
+    @NonNull
+    private Animal animalPese; 
+
+    //-=============-
     
 }

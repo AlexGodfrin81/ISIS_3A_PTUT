@@ -1,11 +1,17 @@
-package entity;
+package yucroq.entity;
 
 import java.time.LocalDate;
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -48,6 +54,25 @@ public class Animal {
     @Column(unique=true)
     @NonNull
     private Integer nec;
+
+    //-== Mapping ==-
+
+    @ManyToOne
+    @NonNull
+    private Croquette mesCroqs;
+    
+    @ManyToOne
+    @NonNull
+    private Proprietaire proprio; 
+    
+    @OneToMany(mappedBy = "animalPese")
+    private List<SuiviPoids> mesPoids = new LinkedList<>(); 
+
+    @ManyToOne
+    @NonNull
+    private Race maRace ;
+
+    //-=============-
     
     /* À discuter : Activité et Stade physio dans 2 tables à part
        et Besoin_énergétique/coefficient K à ne pas mettre dans la table
