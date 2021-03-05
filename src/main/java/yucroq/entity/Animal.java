@@ -74,16 +74,5 @@ public class Animal {
 
     //-=============-
     
-    /* À discuter : Activité et Stade physio dans 2 tables à part
-       et Besoin_énergétique/coefficient K à ne pas mettre dans la table
-       car calculable à partir des autres attributs 
-       
-       À faire : - Modifier le MCD du 08/02/21 pour préciser les tables statiques
-                   Activité et Stade_physiologique
-    
-                 - Commencer les mapping "OneToMany", "ManyToOne", etc... 
-       
-                 - Rajouter les attributs de "Composition" dans entité "Animal" (voir MCD du 08/02/21) */
-    
     
 }
