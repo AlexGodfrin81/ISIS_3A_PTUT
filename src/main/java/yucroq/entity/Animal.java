@@ -72,6 +72,18 @@ public class Animal {
     @NonNull
     private Race maRace ;
 
+    @ManyToOne
+    @NonNull
+    private NEC maNEC; 
+    
+    @ManyToOne
+    @NonNull
+    private Activite monActivite; 
+    
+    @ManyToOne
+    @NonNull
+    private StadePhysiologique monStadePhysio; 
+    
     //-=============-
     
     /* À discuter : Activité et Stade physio dans 2 tables à part
