@@ -13,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.swing.Spring;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -30,10 +29,9 @@ public class StadePhysiologique {
     
     @Column(unique=true)
     @NonNull
-    private Spring nom;
+    private String nom;
     
     @Column(unique=true)
-    @NonNull
     private float coeff_k3;
     
     @OneToMany(mappedBy = "monStadePhysio")
