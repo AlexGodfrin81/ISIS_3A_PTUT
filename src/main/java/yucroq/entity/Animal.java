@@ -51,10 +51,6 @@ public class Animal {
     @NonNull
     private Integer taille_cm;
     
-    @Column(unique=true)
-    @NonNull
-    private Integer nec;
-
     //-== Mapping ==-
 
     @ManyToOne
