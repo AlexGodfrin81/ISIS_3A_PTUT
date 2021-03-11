@@ -13,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.swing.Spring;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -30,7 +29,7 @@ public class Activite {
     
     @Column(unique=true)
     @NonNull
-    private Spring nom;
+    private String nom;
     
     @OneToMany(mappedBy = "monActivite")
     private List<Animal> animauxActivite = new LinkedList<>();
