@@ -45,13 +45,37 @@ public class Croquette {
     @Column(unique=true)
     @NonNull
     private Integer humidite_pourcent;
+    
+    @Column(unique=true)
+    @NonNull
+    private String humidite;
+    
+    @Column(unique=true)
+    @NonNull
+    private String proteines_brutes;
+    
+    @Column(unique=true)
+    @NonNull
+    private String matieres_grasses;
+    
+    @Column(unique=true)
+    @NonNull
+    private String cellulose;
+    
+    @Column(unique=true)
+    @NonNull
+    private String matiere_minerales;
+    
+    @Column(unique=true)
+    @NonNull
+    private String calcium;
+    
+    @Column(unique=true)
+    @NonNull
+    private String phosphore;
 
     //-== Mapping ==-
-    
-    @OneToOne(mappedBy = "croq")
-    @NonNull
-    private Composition composant;  
-    
+       
     @OneToMany(mappedBy = "mesCroqs")
     @NonNull
     private List<Animal> animaux = new LinkedList<>();
