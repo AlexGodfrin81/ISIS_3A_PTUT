@@ -2,6 +2,34 @@ body{
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;	
 }
 
+.navbar{
+    background-color:#9370DB;
+    height : 50px;
+}
+
+.navbar>a{
+    color:black;
+    position:relative;
+    text-decoration: none;
+    padding: 10px 15px 0px 25px;
+    top: 15px;
+    right: -200px;
+}
+
+.navbar>a:hover:not(:nth-child(1)){
+    text-decoration: underline;
+}
+
+footer{
+    text-align: center;
+}
+
+.navbar>img{
+    position: absolute;
+    left: 15px;
+    top: 15px;
+}
+
 td, th {
 	border: 1px solid #ddd;
 	padding: 8px;
