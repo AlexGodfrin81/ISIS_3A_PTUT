@@ -51,27 +51,27 @@ public class Croquette {
     
     @Column(unique=true)
     @NonNull
-    private String proteines_brutes;
+    private float proteines_brutes;
     
     @Column(unique=true)
     @NonNull
-    private String matieres_grasses;
+    private float matieres_grasses;
     
     @Column(unique=true)
     @NonNull
-    private String cellulose;
+    private float cellulose;
     
     @Column(unique=true)
     @NonNull
-    private String matieres_minerales;
+    private float matieres_minerales;
     
     @Column(unique=true)
     @NonNull
-    private String calcium;
+    private float calcium;
     
     @Column(unique=true)
     @NonNull
-    private String phosphore;
+    private float phosphore;
 
     //-== Mapping ==-
        
@@ -81,4 +81,8 @@ public class Croquette {
     
     //-=============-
     
+    public float densite_Energetique(){
+        float EB=(float) ((5.7*this.proteines_brutes)+(9.4*this.matieres_grasses)+(4.1*this.cellulose)); // EB --> Energie Brute MANQUE ENA
+        return EB;
+    }
 }
