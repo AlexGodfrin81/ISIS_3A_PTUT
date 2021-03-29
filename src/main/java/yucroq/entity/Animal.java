@@ -93,7 +93,7 @@ public class Animal {
      * Calcule le besoin énergétique BE d'un animal.
      * @return le besoin énergétique, en fonction du coefficient K et du besoin énergétique à l'entretien
      */
-    public double calcul_BE(){
+    public float calcul_BE(){
         // si l'espèce est un chat, alors la puissance sera de 0.67, pour un chien 0.75
         // attention, à changer si on rajoute une espèce (switch case)
         double BE= Math.pow((double)(poids_ideal()), (Espece.CHAT==this.espece)?0.67:0.75); 
@@ -107,6 +107,11 @@ public class Animal {
         // coeff déterminé en fonction de la température de l'environnement
         // peu utilisé et difficile à évaluer --> k5=1
         float k5=1;
-        return BE*k1*k2*k3*k4*k5;
+        return (float)BE*k1*k2*k3*k4*k5;
     }
+    
+    public float qte_aliment_kg(){
+        return calcul_BE()/this.mesCroqs.densite_Energetique();
+    }
+    
 }
