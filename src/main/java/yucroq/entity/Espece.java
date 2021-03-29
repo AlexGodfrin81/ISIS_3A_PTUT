@@ -10,7 +10,6 @@ package yucroq.entity;
  * @author Tina
  */
 public enum Espece {
-    Chat,
-    Chien
-    
+    CHAT,
+    CHIEN
 }
