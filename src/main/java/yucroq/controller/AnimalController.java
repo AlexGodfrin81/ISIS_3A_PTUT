@@ -40,4 +40,20 @@ public class AnimalController {
         return "afficheAnimaux";
     }
     
+    /**
+     * Redirige vers la page d'un animal selon son id
+     *
+     * @param model pour transmettre les informations à la vue
+     * @param id l'id de l'animal
+     * @return le nom de la vue à afficher ('afficheGTableaux.html')
+     */
+    @GetMapping(path = "getAnimal")
+    public String afficheUnAnimal(Model model, Integer id) {
+        model.addAttribute("animal", dao.getOne(id));
+        return "detailAnimaux";
+    }
+    
+    /**
+     * TODO faire page d'erreur
+     */
 }

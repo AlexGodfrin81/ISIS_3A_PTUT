@@ -43,7 +43,6 @@ public class Animal {
     private Espece espece;
     
     @Column(unique=true)
-    @NonNull
     private boolean est_Male;
     
     @Column(unique=true)

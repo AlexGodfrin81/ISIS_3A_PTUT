@@ -7,13 +7,13 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>TODO supply a title</title>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="../css/style.css"/>
     </head>
     <body>
         <div class="navbar">
-            <img src="../images/logo.svg" alt="Yucroq" width="35" height="35">
+            <img src="../images/logo.svg" alt="Yucroq" width="35" height="35"/>
             <a href="../index.html">Accueil</a>
             <a href="../croquette/show">Croquettes</a>
             <a href="../animal/show">Animal</a>
@@ -23,7 +23,8 @@ and open the template in the editor.
         </div>
         <ul>
             <li th:each="a : ${animaux}">
-                [[${a.nom}]]
+                
+                <a th:href="@{./getAnimal(id=${a.id_animal})}" >[[${a.nom}]]</a>
             </li>
         </ul>
         <a th:href="@{/}" href="../static/index.html">Retour au menu</a>
