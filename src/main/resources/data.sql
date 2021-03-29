@@ -4,15 +4,11 @@ INSERT INTO Activite(id_activite, nom, k2) VALUES
     (1, 'Peu actif', 0.8),
     (2, 'Actif', 1);
 
-INSERT INTO Animal(id_animal, nom, espece, est_Male, date_naiss, taille_cm) VALUES
-    (1, 'Hilda', 'Chien', false, '01/01/2012', 100);
+INSERT INTO Animal(id_animal, nom, espece, est_Male, date_naiss, taille_cm, nec) VALUES
+    (1, 'Hilda', 'Chien', false, '01/01/2012', 100, 3);
 
 INSERT INTO Croquette(id_croq, nom, marque, espece, humidite, proteines_brutes, matieres_grasses, cellulose, matieres_minerales, calcium, phosphore) VALUES
     (1, 'ProPlan', 'Purina', 'Chien', 8, 15, 12, 5, 5, 1.2, 1.1);
-
-INSERT INTO NEC(id_nec, valeur) VALUES
-    (1, 1),
-    (2, 2);
 
 INSERT INTO Proprietaire(id_proprio, nom, prenom, tel) VALUES 
     (1, 'Garriga', 'Léandre', '0600000000'),
