@@ -54,6 +54,10 @@ public class Animal {
     @NonNull
     private Integer taille_cm;
     
+    @Column(unique=true)
+    @NonNull
+    private Integer nec; 
+    
     //-== Mapping ==-
 
     @ManyToOne
@@ -70,10 +74,6 @@ public class Animal {
     @ManyToOne
     @NonNull
     private Race maRace ;
-
-    @ManyToOne
-    @NonNull
-    private NEC maNEC; 
     
     @ManyToOne
     @NonNull
