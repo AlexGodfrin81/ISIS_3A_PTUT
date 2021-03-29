@@ -6,20 +6,28 @@ and open the template in the editor.
 -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>TODO supply a title</title>
+        <title>Liste des croquettes</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/style.css"/>
     </head>
     <body>
+        <div class="navbar">
+            <img src="../images/logo.svg" alt="Yucroq" width="35" height="35">
+            <a href="../index.html">Accueil</a>
+            <a href="../croquette/show">Croquettes</a>
+            <a href="../animal/show">Animal</a>
+            <a href="../conseils.html">Conseils</a>
+            <a href="../dosage.html">Dosage</a>
+            <a href="../inscription.html">Connexion ou Inscription</a>
+        </div>
         <table>
             <thead>
                 <tr>
-                    <th>id</th>
                     <th>nom</th>
                     <th>marque</th>
                     <th>espèce</th>
-                    <th>humidite</th>
+                    <th>humidité</th>
                     <th>protéines brutes</th>
                     <th>matières grasses</th>
                     <th>cellulose</th>
@@ -28,7 +36,28 @@ and open the template in the editor.
                     <th>phosphore</th>
                 </tr>
             </thead>
+            <tbody>
+                <tr th:each="c: ${croquettes}">
+                    <th th:text="${c.nom}">Nom de la croquette</th>
+                    <th th:text="${c.marque}">Marque de la croquette</th>
+                    <th th:text="${c.espece}">Espèce visée</th>
+                    <th th:text="${c.humidite}">Humidité</th>
+                    <th th:text="${c.proteines_brutes}">Protéines brutes</th>
+                    <th th:text="${c.matieres_grasses}">Matières grasses</th>
+                    <th th:text="${c.cellulose}">Cellulose</th>
+                    <th th:text="${c.matieres_minerales}">Matières minérales</th>
+                    <th th:text="${c.calcium}">Calcium</th>
+                    <th th:text="${c.phosphore}">Phosphore</th>
+                </tr>
+            </tbody>
         </table>
+        
+        <a th:href="@{/}" href="../static/index.html">Retour au menu</a>
+        
+        <footer>
+            <a>Mentions légales</a>
+            <a>Contacts</a>
+        </footer>
     </body>
 </html>
 
