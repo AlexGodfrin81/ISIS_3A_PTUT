@@ -44,10 +44,6 @@ public class Croquette {
     
     @Column(unique=true)
     @NonNull
-    private Integer humidite_pourcent;
-    
-    @Column(unique=true)
-    @NonNull
     private String humidite;
     
     @Column(unique=true)
@@ -64,7 +60,7 @@ public class Croquette {
     
     @Column(unique=true)
     @NonNull
-    private String matiere_minerales;
+    private String matieres_minerales;
     
     @Column(unique=true)
     @NonNull

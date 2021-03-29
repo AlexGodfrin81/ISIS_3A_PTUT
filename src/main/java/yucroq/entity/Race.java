@@ -35,7 +35,7 @@ public class Race {
     
     @Column(unique=true)
     @NonNull
-    private Integer coeff_k1;
+    private Integer k1;
     
     @Column(unique=true)
     @NonNull
