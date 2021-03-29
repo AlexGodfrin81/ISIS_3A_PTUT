@@ -34,7 +34,6 @@ public class NEC {
     @NonNull
     @Min(value=1,message="La NEC ne peut être inférieur à 1")
     @Max(value=9,message="La NEC ne peut être supérieur à 9")
-    // Peut aller de 1 à 9 --> comment faire en Spring.
     private int valeur;
     
     @OneToMany(mappedBy = "maNEC")

@@ -36,7 +36,7 @@ public class SuiviPoids {
     
     @Column(unique=true)
     @NonNull
-    private Integer poids_kg;
+    private float poids_kg;
 
     //-== Mapping ==-
 
@@ -45,5 +45,5 @@ public class SuiviPoids {
     private Animal animalPese; 
 
     //-=============-
-    
+
 }
