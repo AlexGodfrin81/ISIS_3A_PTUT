@@ -31,6 +31,10 @@ public class Activite {
     @NonNull
     private String nom;
     
+    @Column(unique=true)
+    @NonNull
+    private float k2;
+    
     @OneToMany(mappedBy = "monActivite")
     private List<Animal> animauxActivite = new LinkedList<>();
     

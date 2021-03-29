@@ -32,7 +32,7 @@ public class StadePhysiologique {
     private String nom;
     
     @Column(unique=true)
-    private float coeff_k3;
+    private float k3;
     
     @OneToMany(mappedBy = "monStadePhysio")
     private List<Animal> animauxStadePhysio = new LinkedList<>();
