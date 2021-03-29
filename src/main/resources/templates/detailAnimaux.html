@@ -4,12 +4,12 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="../static/css/style.css" />
     </head>
     <body>
         <div class="navbar">
@@ -28,7 +28,7 @@ and open the template in the editor.
         <figure>
             
         </figure>
-        
+        <a th:href="@{/}" href="../static/index.html">Retour au menu</a>
         <footer>
             <a>Mentions légales</a>
             <a>Contacts</a>
