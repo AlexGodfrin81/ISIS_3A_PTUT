@@ -21,6 +21,11 @@ and open the template in the editor.
             <a href="../dosage.html">Dosage</a>
             <a href="../inscription.html">Connexion ou Inscription</a>
         </div>
+        <ul>
+            <li th:each="a : ${animaux}">
+                [[${a.nom}]]
+            </li>
+        </ul>
         <a th:href="@{/}" href="../static/index.html">Retour au menu</a>
         <footer>
             <a>Mentions légales</a>

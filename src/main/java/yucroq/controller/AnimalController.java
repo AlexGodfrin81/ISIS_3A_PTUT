@@ -36,7 +36,7 @@ public class AnimalController {
      */
     @GetMapping(path = "show")
     public String afficheTousLesAnimaux(Model model) {
-        model.addAttribute("animal", dao.findAll());
+        model.addAttribute("animaux", dao.findAll());
         return "afficheAnimaux";
     }
     
