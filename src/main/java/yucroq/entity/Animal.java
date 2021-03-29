@@ -85,6 +85,8 @@ public class Animal {
     
     //-=============-
     
-    
+    public float poids_ideal(){
+        return this.mesPoids.get(0)
+    }
     
 }
