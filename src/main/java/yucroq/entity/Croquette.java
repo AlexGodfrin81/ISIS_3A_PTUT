@@ -5,6 +5,8 @@ import java.util.LinkedList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,7 +42,8 @@ public class Croquette {
     
     @Column(unique=true)
     @NonNull
-    private String espece;
+    @Enumerated(EnumType.STRING)
+    private Espece espece;
     
     @Column(unique=true)
     @NonNull

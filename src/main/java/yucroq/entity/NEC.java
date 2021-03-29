@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -30,6 +32,8 @@ public class NEC {
     
     @Column(unique=true)
     @NonNull
+    @Min(value=1,message="La NEC ne peut être inférieur à 1")
+    @Max(value=9,message="La NEC ne peut être supérieur à 9")
     // Peut aller de 1 à 9 --> comment faire en Spring.
     private int valeur;
     
