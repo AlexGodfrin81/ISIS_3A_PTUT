@@ -47,7 +47,7 @@ public class Croquette {
     
     @Column(unique=true)
     @NonNull
-    private String humidite;
+    private float humidite;
     
     @Column(unique=true)
     @NonNull
@@ -82,7 +82,25 @@ public class Croquette {
     //-=============-
     
     public float densite_Energetique(){
-        float EB=(float) ((5.7*this.proteines_brutes)+(9.4*this.matieres_grasses)+(4.1*this.cellulose)); // EB --> Energie Brute MANQUE ENA
-        return EB;
+        float ENA=100-(proteines_brutes+matieres_grasses+matieres_minerales+humidite);//fibre ?  Ms–Mn–MAT (matière azotée totale)–MG-CB
+        float EB=(float) ((5.7*this.proteines_brutes)+(9.4*this.matieres_grasses)+(4.1*this.cellulose)+ENA); // EB --> Energie Brute MANQUE ENA
+        float dE;
+        if(this.espece == Espece.CHIEN){
+            dE=(float) (91.2-(1.43*cellulose)); // digestibilité de l'energie Chien
+        }
+        else {//if(this.espece==Espece.CHAT){//
+            dE=(float) (87.9-(0.88*cellulose));// digestibilité de l'energie Chat
+        }
+        
+        float Ed=EB*(dE/100);//Energie digestive
+        float EM;// Energie Metabolisable/Densité Energetique
+        
+        if(this.espece == Espece.CHIEN){
+            EM=(float) (Ed-(1.04*proteines_brutes)); // Densité Energetique Chien
+        }
+        else {//if(this.espece==Espece.CHAT){//
+            EM=(float) (Ed-(0.77*proteines_brutes));// Densité Energetique Chat
+        }
+        return EM;
     }
 }
