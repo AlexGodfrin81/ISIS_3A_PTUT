@@ -86,7 +86,7 @@ public class Animal {
     //-=============-
     
     public float poids_ideal(){
-        return this.mesPoids.get(0)
+        return this.mesPoids.get(0).getPoids_kg()*(100/(100+(this.getNec()-5)));
     }
     
 }
