@@ -5,7 +5,8 @@ INSERT INTO Activite(id_activite, nom, k2) VALUES
     (2, 'Actif', 1);
 
 INSERT INTO Animal(id_animal, nom, espece, est_Male, date_naiss, taille_cm, nec) VALUES
-    (1, 'Hilda', 'CHIEN', false, '2012-03-01', 100, 3);
+    (1, 'Hilda', 'CHIEN', false, '2012-03-01', 100, 3),
+    (2, 'Papouille', 'CHAT', true, '2005-06-05', 45, 7);
 
 INSERT INTO Croquette(id_croq, nom, marque, espece, humidite, proteines_brutes, matieres_grasses, cellulose, matieres_minerales, calcium, phosphore) VALUES
     (1, 'ProPlan', 'Purina', 'CHIEN', 8, 15, 12, 5, 5, 1.2, 1.1);
