@@ -61,7 +61,8 @@ public class AnimalController {
      * @return le nom de la vue à afficher ('formulaireAnimal.html')
      */
     @GetMapping(path = "add")
-    public String montreLeFormulairePourAjout(@ModelAttribute("animal") Animal animal) {
+    public String montreLeFormulairePourAjout(Model model) {
+        model.addAttribute("animal", new Animal());
         return "formulaireAnimal";
     }
     

@@ -19,8 +19,8 @@
                                 <br/>
                                 <label for="espece">Espèce :</label>
 				<select th:field="*{espece}">
-                                    <option th:value="Espece.CHIEN" th:text="Chien"></option>
-                                    <option th:value="Espece.CHAT" th:text="Chat"></option>
+                                    <option th:value="CHIEN" th:text="Chien"></option>
+                                    <option th:value="CHAT" th:text="Chat"></option>
                                 </select>
                                 <br/>
                                 <label for="genre">Genre :</label>
@@ -29,7 +29,9 @@
                                     <option th:value="false" th:text="Femelle"></option>
                                 </select>
                                 <br/>
-                                
+                                <label for="date_naiss">Date de naissance :</label>
+                                <input type="date" th:field="*{date_naiss}" name="date_naiss" th:value="*{date_naiss}"/>
+                                <hr/>
 				<input type="submit" value="Enregistrer" /> <input type="reset" value="Réinitialiser" />
 							
 			</div>
