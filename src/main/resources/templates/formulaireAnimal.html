@@ -37,8 +37,14 @@
                                 <label for="nec">Note d'état corporel (NEC) :</label>
                                 <input type="number" th:field="*{nec}" min="1" max="9"/>
                                 <hr/>
-				<input type="submit" value="Enregistrer" /> <input type="reset" value="Réinitialiser" />
-							
+				<input type="submit" value="Enregistrer" /> <input type="reset" value="Réinitialiser" />		
+			</div>
+                        <div class="column">
+                                <label for="croquette">Croquette :</label>
+                                <select name="croquette">
+                                    <option th:each= "c : ${croquettes}" th:value="${c.id}" th:text="${c.nom}" th:field="*{auteur}"></option>
+                                </select>
+                                    
 			</div>
 		</form>		
 		<hr/>
