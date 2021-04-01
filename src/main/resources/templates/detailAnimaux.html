@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>TODO supply a title</title>
+        <title>Page de [[${animal.nom}]]</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="../static/css/style.css"/>
@@ -22,8 +22,8 @@ and open the template in the editor.
             <a href="../inscription.html">Connexion ou Inscription</a>
         </div>
         <table>
-            <tr><th>Nom</th><th>Espèce</th><th>Sexe(est male ?)</th><th>Date de naissance</th><th>Taille (cm)</th><th>NEC</th></tr>
-            <tr><td>[[${animal.nom}]]</td><td>[[${animal.espece}]]</td><td><span th:text="${animal.est_Male} ? 'male' : 'femelle'"></span></td><td>[[${animal.date_naiss}]]</td><td>[[${animal.taille_cm}]]</td><td>[[${animal.nec}]]</td></tr>
+            <tr><th>Nom</th><th>Espèce</th><th>Sexe</th><th>Date de naissance</th><th>Taille (cm)</th><th>NEC</th></tr>
+            <tr><td>[[${animal.nom}]]</td><td>[[${animal.espece}]]</td><td th:text="${animal.est_Male} ? 'Mâle' : 'Femelle'"></td><td>[[${animal.date_naiss}]]</td><td>[[${animal.taille_cm}]]</td><td>[[${animal.nec}]]</td></tr>
         </table>
         <figure>
             
