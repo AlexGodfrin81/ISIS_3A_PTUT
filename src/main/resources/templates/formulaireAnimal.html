@@ -13,10 +13,22 @@
 		<!--/* th:object définit quel est l'objet édité par ce formulaire */-->
 		<form th:object="${animal}" method="POST" th:action="@{save}">
 			<div class="column">
-				<label for="nom">Nom:</label>
+				<label for="nom">Nom :</label>
 				<!--/* th:field définit quel champ de l'objet est édité par cette zone de saisie */-->
 				<input type="text" th:field="*{nom}" placeholder="Nom de l'animal"/>
-                                <hr/>
+                                <br/>
+                                <label for="espece">Espèce :</label>
+				<select th:field="*{espece}">
+                                    <option th:value="Espece.CHIEN" th:text="Chien"></option>
+                                    <option th:value="Espece.CHAT" th:text="Chat"></option>
+                                </select>
+                                <br/>
+                                <label for="genre">Genre :</label>
+                                <select th:field="*{est_Male}">
+                                    <option th:value="true" th:text="Male"></option>
+                                    <option th:value="false" th:text="Femelle"></option>
+                                </select>
+                                <br/>
                                 
 				<input type="submit" value="Enregistrer" /> <input type="reset" value="Réinitialiser" />
 							
