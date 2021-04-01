@@ -23,7 +23,7 @@ and open the template in the editor.
         </div>
         <table>
             <tr><th>Nom</th><th>Espèce</th><th>Sexe</th><th>Date de naissance</th><th>Taille (cm)</th><th>NEC</th></tr>
-            <tr><td>[[${animal.nom}]]</td><td>[[${animal.espece}]]</td><td th:text="${animal.est_Male} ? 'Mâle' : 'Femelle'"></td><td>[[${animal.date_naiss}]]</td><td>[[${animal.taille_cm}]]</td><td>[[${animal.nec}]]</td></tr>
+            <tr><td>[[${animal.nom}]]</td><td th:text="${#strings.toLowerCase(animal.espece)}"></td><td th:text="${animal.est_Male} ? 'Mâle' : 'Femelle'"></td><td th:text="${#temporals.format(animal.date_naiss, 'dd/MM/yyyy')}"></td><td>[[${animal.taille_cm}]]</td><td>[[${animal.nec}]]</td></tr>
         </table>
         <figure>
             
