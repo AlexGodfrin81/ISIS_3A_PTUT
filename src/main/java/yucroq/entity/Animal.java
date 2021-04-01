@@ -20,6 +20,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -48,6 +49,7 @@ public class Animal {
     
     @Column(unique=true)
     @NonNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date_naiss;
     
     @Column(unique=true)
