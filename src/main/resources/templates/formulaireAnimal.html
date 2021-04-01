@@ -35,8 +35,8 @@
                                 <label for="taille">Taille (en cm) :</label>
                                 <input type="number" th:field="*{taille_cm}"/>
                                 <br/>
-                                <label for="nec"> :</label>
-                                <input type="number" th:field="*{taille_cm}"/>
+                                <label for="nec">Note d'état corporel (NEC) :</label>
+                                <input type="number" th:field="*{nec}" min="1" max="9"/>
                                 <hr/>
 				<input type="submit" value="Enregistrer" /> <input type="reset" value="Réinitialiser" />
 							
