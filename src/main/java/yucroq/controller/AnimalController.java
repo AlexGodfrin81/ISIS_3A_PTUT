@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import yucroq.dao.AnimalRepository;
+import yucroq.dao.CroquetteRepository;
+import yucroq.dao.ProprietaireRepository;
 
 
 /**
@@ -28,6 +30,12 @@ public class AnimalController {
     
     @Autowired
     private AnimalRepository dao;
+    
+    @Autowired
+    private CroquetteRepository dao1;
+    
+    @Autowired
+    private ProprietaireRepository dao2;
     
     /**
      * Affiche toutes les catégories dans la base
@@ -63,6 +71,8 @@ public class AnimalController {
     @GetMapping(path = "add")
     public String montreLeFormulairePourAjout(Model model) {
         model.addAttribute("animal", new Animal());
+        model.addAttribute("croquettes", dao1.findAll());
+        model.addAttribute("proprietaires", dao2.findAll());
         return "formulaireAnimal";
     }
     

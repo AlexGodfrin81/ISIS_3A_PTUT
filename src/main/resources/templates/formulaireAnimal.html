@@ -39,13 +39,13 @@
                                 <hr/>
 				<input type="submit" value="Enregistrer" /> <input type="reset" value="Réinitialiser" />		
 			</div>
-                        <div class="column">
+                        <!--<div class="column">
                                 <label for="croquette">Croquette :</label>
                                 <select name="croquette">
-                                    <option th:each= "c : ${croquettes}" th:value="${c.id}" th:text="${c.nom}" th:field="*{auteur}"></option>
+                                    <option th:each= "c : ${croquettes}" th:value="${c.id_croq}" th:text="${c.nom}" th:field="*{mes_croqs_id_croq}"></option>
                                 </select>
                                     
-			</div>
+			</div>-->
 		</form>		
 		<hr/>
 		<a th:href="@{/}" href="../static/index.html">Retour au menu</a>
