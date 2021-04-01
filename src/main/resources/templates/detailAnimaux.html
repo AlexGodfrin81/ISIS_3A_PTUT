@@ -23,7 +23,7 @@ and open the template in the editor.
         </div>
         <table>
             <tr><th>Nom</th><th>Espèce</th><th>Sexe(est male ?)</th><th>Date de naissance</th><th>Taille (cm)</th><th>NEC</th></tr>
-            <tr><td>[[${animal.nom}]]</td><td>[[${animal.espece}]]</td><td>[[${animal.est_Male}]]</td><td>[[${animal.date_naiss}]]</td><td>[[${animal.taille_cm}]]</td><td>[[${animal.nec}]]</td></tr>
+            <tr><td>[[${animal.nom}]]</td><td>[[${animal.espece}]]</td><td><span th:text="${animal.est_Male} ? 'male' : 'femelle'"></span></td><td>[[${animal.date_naiss}]]</td><td>[[${animal.taille_cm}]]</td><td>[[${animal.nec}]]</td></tr>
         </table>
         <figure>
             
