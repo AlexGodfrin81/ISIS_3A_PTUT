@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Ajouter un Animal</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="../static/css/style.css"/>	
+	</head>
+	<body>
+		<h1>Ajouter un Animal</h1>
+		<!--/* Au revient au contrôleur, avec la méthode POST */-->
+		<!--/* th:object définit quel est l'objet édité par ce formulaire */-->
+		<form th:object="${animal}" method="POST" th:action="@{save}">
+			<div class="column">
+				<label for="nom">Nom:</label>
+				<!--/* th:field définit quel champ de l'objet est édité par cette zone de saisie */-->
+				<input type="text" th:field="*{nom}" placeholder="Nom de l'animal"/>
+                                <hr/>
+                                
+				<input type="submit" value="Enregistrer" /> <input type="reset" value="Réinitialiser" />
+							
+			</div>
+		</form>		
+		<hr/>
+		<a th:href="@{/}" href="../static/index.html">Retour au menu</a>
+		<hr/>
+	</body>
+</html>

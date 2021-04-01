@@ -27,6 +27,10 @@ and open the template in the editor.
                 <a th:href="@{./getAnimal(id=${a.id_animal})}" >[[${a.nom}]]</a>
             </li>
         </ul>
+        <div>
+        <!--/* On appelle l'URL 'add' du contôleur */-->
+		<a th:href="@{add}" href='formulaireAnimal.html'>Ajouter un animal</a>
+                </div>
         <a th:href="@{/}" href="../static/index.html">Retour au menu</a>
         <footer>
             <a>Mentions légales</a>
