@@ -11,10 +11,9 @@
 		<h1>Ajouter un Animal</h1>
 		<!--/* Au revient au contrôleur, avec la méthode POST */-->
 		<!--/* th:object définit quel est l'objet édité par ce formulaire */-->
-		<form th:object="${animal}" method="POST" th:action="@{save}">
+		<form th:object="${animal}" method="POST" th:action="@{/animal/save}">
 			<div class="column">
 				<label for="nom">Nom :</label>
-				<!--/* th:field définit quel champ de l'objet est édité par cette zone de saisie */-->
 				<input type="text" th:field="*{nom}" placeholder="Nom de l'animal"/>
                                 <br/>
                                 <label for="espece">Espèce :</label>
