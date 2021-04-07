@@ -42,10 +42,10 @@
 				<input type="submit" value="Enregistrer" /> <input type="reset" value="Réinitialiser" />		
 			</div>
                         <div class="column">
-                                <label for="croquette">Croquette :</label>
+                                <!--<label for="croquette">Croquette :</label>
                                 <select name="croquette">
                                     <option th:each="c : ${croquettes}" th:value="${c.id_croq}" th:text="${c.nom}" th:field="*{mesCroqs}"></option>
-                                </select>
+                                </select>-->
                                 <br/>
                                 <label for="race">Race :</label>
                                 <select name="race">
@@ -54,7 +54,7 @@
                                 <br/>
                                 <label for="activite">Activité :</label>
                                 <select name="activite">
-                                    <option th:each="a : ${activites}" th:value="${a.id_activite}" th:text="${a.nom}" th:field="*{monActivite}"></option>
+                                    <option th:each="a : ${activites}" th:value="${a.id_activite}" th:text="${a.nom}" th:field="*{maRace}"></option>
                                 </select>
                                 <br/>
                                 <label for="stadephysio">Stade Physiologique :</label>
