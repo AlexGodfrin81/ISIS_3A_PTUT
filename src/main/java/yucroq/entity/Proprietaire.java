@@ -28,17 +28,18 @@ public class Proprietaire {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_proprio;
     
-    @Column(unique=true)
     @NonNull
     private String nom;
     
-    @Column(unique=true)
     @NonNull
     private String prenom;
     
-    @Column(unique=true)
     @NonNull
     private String tel;
+    
+    @Column(unique=true)
+    @NonNull
+    private String mail;
 
     //-== Mapping ==-
 

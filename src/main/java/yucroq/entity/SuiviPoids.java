@@ -30,20 +30,18 @@ public class SuiviPoids {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_suivi;
     
-    @Column(unique=true)
     @NonNull
     private LocalDate date;
     
-    @Column(unique=true)
     @NonNull
     private float poids_kg;
-
+    
     //-== Mapping ==-
-
+    
     @ManyToOne
     @NonNull
     private Animal animalPese; 
-
+    
     //-=============-
 
 }

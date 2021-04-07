@@ -17,7 +17,7 @@
 				<input type="text" th:field="*{nom}" placeholder="Nom de l'animal"/>
                                 <br/>
                                 <label for="espece">Espèce :</label>
-				<select th:field="*{espece}">
+				<select id="select_espece" th:field="*{espece}">
                                     <option th:value="CHIEN" th:text="Chien"></option>
                                     <option th:value="CHAT" th:text="Chat"></option>
                                 </select>
@@ -36,16 +36,23 @@
                                 <br/>
                                 <label for="nec">Note d'état corporel (NEC) :</label>
                                 <input type="number" th:field="*{nec}" min="1" max="9"/>
+                                <br/>
+                                
                                 <hr/>
 				<input type="submit" value="Enregistrer" /> <input type="reset" value="Réinitialiser" />		
 			</div>
-                        <!--<div class="column">
+                        <div class="column">
+                                <label for="race">Race :</label>
+                                <select name="race">
+                                    <option th:each="r : ${races}" th:value="${r.id_race}" th:text="${r.nom}"></option>
+                                </select>
+                                <br/>
                                 <label for="croquette">Croquette :</label>
                                 <select name="croquette">
-                                    <option th:each= "c : ${croquettes}" th:value="${c.id_croq}" th:text="${c.nom}" th:field="*{mes_croqs_id_croq}"></option>
+                                    <option th:each="c : ${croquettes}" th:value="${c.id}" th:text="${c.nom}" th:field="*{mesCroqs}"></option>
                                 </select>
-                                    
-			</div>-->
+                        </div>
+                       
 		</form>		
 		<hr/>
 		<a th:href="@{/}" href="../static/index.html">Retour au menu</a>

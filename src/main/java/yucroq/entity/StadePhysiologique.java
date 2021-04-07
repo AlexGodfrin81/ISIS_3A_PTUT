@@ -27,11 +27,9 @@ public class StadePhysiologique {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_stade;
     
-    @Column(unique=true)
     @NonNull
     private String nom;
     
-    @Column(unique=true)
     private float k3;
     
     @OneToMany(mappedBy = "monStadePhysio")

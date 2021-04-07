@@ -27,11 +27,9 @@ public class Activite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_activite;
     
-    @Column(unique=true)
     @NonNull
     private String nom;
     
-    @Column(unique=true)
     @NonNull
     private float k2;
     

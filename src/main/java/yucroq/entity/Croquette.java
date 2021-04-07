@@ -32,44 +32,34 @@ public class Croquette {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_croq;
     
-    @Column(unique=true)
     @NonNull
     private String nom;
     
-    @Column(unique=true)
     @NonNull
     private String marque;
     
-    @Column(unique=true)
     @NonNull
     @Enumerated(EnumType.STRING)
     private Espece espece;
     
-    @Column(unique=true)
     @NonNull
     private float humidite;
     
-    @Column(unique=true)
     @NonNull
     private float proteines_brutes;
     
-    @Column(unique=true)
     @NonNull
     private float matieres_grasses;
     
-    @Column(unique=true)
     @NonNull
     private float cellulose;
     
-    @Column(unique=true)
     @NonNull
     private float matieres_minerales;
     
-    @Column(unique=true)
     @NonNull
     private float calcium;
     
-    @Column(unique=true)
     @NonNull
     private float phosphore;
 
