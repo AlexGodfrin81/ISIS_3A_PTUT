@@ -5,7 +5,6 @@ INSERT INTO Activite(id_activite, nom, k2) VALUES
     (2, 'Actif', 1);
 
 INSERT INTO Animal(id_animal, nom, espece, est_Male, date_naiss, taille_cm, nec) VALUES
-<<<<<<< HEAD
     (1, 'Hilda', 'CHIEN', false, '2012-03-01', 100, 3),
     (2, 'Papouille', 'CHIEN', true, '2005-06-05', 45, 7);
 
@@ -20,9 +19,9 @@ INSERT INTO Race(id_race, nom, k1, espece) VALUES
     (1, 'Berger Blanc Suisse', 1, 'CHIEN'),
     (2, 'Caniche nain', 1, 'CHIEN');
 
-INSERT INTO Ration(id_ration, quantite, date_debut, date_fin) VALUES
-    (1, 200, '2012-03-01', '2012-03-03'),
-    (2, 180, '2012-03-03', '2012-03-05');
+INSERT INTO Ration(id_ration, quantite, date_debut, date_fin, consommateur, mescroqs) VALUES
+    (1, 200, '2012-03-01', '2012-03-03', 1, 1),
+    (2, 180, '2012-03-03', '2012-03-05', 2, 1);
 
 INSERT INTO Stade_Physiologique(id_stade, nom, k3) VALUES
     (1, 'Entier', 1),
