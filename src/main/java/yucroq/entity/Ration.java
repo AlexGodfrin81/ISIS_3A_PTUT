@@ -40,10 +40,6 @@ public class Ration {
     private float quantite;
     
     @Column
-    @NonNull
-    private float quantite_ideale;
-    
-    @Column
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date_debut;
     

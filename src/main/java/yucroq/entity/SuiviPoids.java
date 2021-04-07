@@ -32,7 +32,7 @@ public class SuiviPoids {
     
     @Column
     @NonNull
-    private LocalDate date_suivis;
+    private LocalDate date_suivi;
     
     @Column
     @NonNull
