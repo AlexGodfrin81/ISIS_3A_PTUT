@@ -59,7 +59,8 @@ public class Ration {
     private Croquette mesCroqs;
     
     
-    public float qte_aliment_kg(){
+    public float qte_aliment(){
+    // La quantité d'aliment recommandé (en kg par kg d'animal)
         return consommateur.calcul_BE()/this.mesCroqs.densite_Energetique();
     }
 }
