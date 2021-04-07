@@ -35,11 +35,9 @@ public class Race {
     @NonNull
     private String nom;
     
-    @Column(unique=true)
     @NonNull
     private Integer k1;
     
-    @Column(unique=true)
     @NonNull
     @Enumerated(EnumType.STRING)
     private Espece espece;
