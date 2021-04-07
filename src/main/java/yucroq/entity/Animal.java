@@ -11,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -61,6 +62,7 @@ public class Animal {
     private List<Ration> mesRations = new LinkedList<>();
     
     @ManyToOne
+    @JoinColumn(name="proprio")
     @NonNull
     private Proprietaire proprio; 
     
@@ -68,14 +70,17 @@ public class Animal {
     private List<SuiviPoids> mesPoids = new LinkedList<>(); 
 
     @ManyToOne
+    @JoinColumn(name="marace")
     @NonNull
     private Race maRace ;
     
     @ManyToOne
+    @JoinColumn(name="monactivite")
     @NonNull
     private Activite monActivite; 
     
     @ManyToOne
+    @JoinColumn(name="monstadephysio")
     @NonNull
     private StadePhysiologique monStadePhysio; 
     
