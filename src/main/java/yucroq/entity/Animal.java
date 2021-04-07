@@ -56,9 +56,9 @@ public class Animal {
     
     //-== Mapping ==-
 
-    @ManyToOne
+    @OneToMany(mappedBy = "consommateur")
     @NonNull
-    private Croquette mesCroqs;
+    private List<Ration> mesRations = new LinkedList<>();
     
     @ManyToOne
     @NonNull
@@ -80,6 +80,10 @@ public class Animal {
     private StadePhysiologique monStadePhysio; 
     
     //-=============-
+    
+    public List<Ration> getRations() {
+        return mesRations;
+    }
     
     public float poids_ideal(){
         return this.mesPoids.get(0).getPoids_kg()*(100/(100+(this.getNec()-5)));
@@ -104,10 +108,6 @@ public class Animal {
         // peu utilisé et difficile à évaluer --> k5=1
         float k5=1;
         return (float)BE*k1*k2*k3*k4*k5;
-    }
-    
-    public float qte_aliment_kg(){
-        return calcul_BE()/this.mesCroqs.densite_Energetique();
     }
     
 }

@@ -42,15 +42,31 @@
 				<input type="submit" value="Enregistrer" /> <input type="reset" value="Réinitialiser" />		
 			</div>
                         <div class="column">
+                                <!--<label for="croquette">Croquette :</label>
+                                <select name="croquette">
+                                    <option th:each="c : ${croquettes}" th:value="${c.id_croq}" th:text="${c.nom}" th:field="*{mesCroqs}"></option>
+                                </select>-->
+                                <br/>
                                 <label for="race">Race :</label>
                                 <select name="race">
-                                    <option th:each="r : ${races}" th:value="${r.id_race}" th:text="${r.nom}"></option>
+                                    <option th:each="r : ${races}" th:value="${r.id_race}" th:text="${r.nom}" th:field="*{maRace}"></option>
                                 </select>
                                 <br/>
-                                <label for="croquette">Croquette :</label>
-                                <select name="croquette">
-                                    <option th:each="c : ${croquettes}" th:value="${c.id}" th:text="${c.nom}" th:field="*{mesCroqs}"></option>
+                                <label for="activite">Activité :</label>
+                                <select name="activite">
+                                    <option th:each="a : ${activites}" th:value="${a.id_activite}" th:text="${a.nom}" th:field="*{maRace}"></option>
                                 </select>
+                                <br/>
+                                <label for="stadephysio">Stade Physiologique :</label>
+                                <select name="stadephysio">
+                                    <option th:each="s : ${stadephysios}" th:value="${s.id_stade}" th:text="${s.nom}" th:field="*{monStadePhysio}"></option>
+                                </select>
+                                <br/>
+                                <label for="proprio">Propriétaire :</label>
+                                <select name="proprio">
+                                    <option th:each="p : ${proprietaires}" th:value="${p.id_proprio}" th:text="${p.prenom} +' '+ ${p.nom}" th:field="*{proprio}"></option>
+                                </select>
+                                <br/>
                         </div>
                        
 		</form>		
