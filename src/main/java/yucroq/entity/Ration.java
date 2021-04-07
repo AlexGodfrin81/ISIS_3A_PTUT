@@ -51,11 +51,11 @@ public class Ration {
      //-== Mapping ==-
     
     @ManyToOne(optional = false)
-    @JoinColumn(name="consommateur")
+    @JoinColumn(name="id_animal")
     private Animal consommateur;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name="mescroqs")
+    @JoinColumn(name="id_croq")
     private Croquette mesCroqs;
     
     

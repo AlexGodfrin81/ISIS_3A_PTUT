@@ -61,27 +61,23 @@ public class Animal {
     @NonNull
     private List<Ration> mesRations = new LinkedList<>();
     
-    @ManyToOne
-    @JoinColumn(name="proprio")
-    @NonNull
+    @ManyToOne(optional = false)
+    @JoinColumn(name="id_proprio")
     private Proprietaire proprio; 
     
     @OneToMany(mappedBy = "animalPese")
     private List<SuiviPoids> mesPoids = new LinkedList<>(); 
 
-    @ManyToOne
-    @JoinColumn(name="marace")
-    @NonNull
-    private Race maRace ;
+    @ManyToOne(optional = false)
+    @JoinColumn(name="id_race")
+    private Race maRace;
     
-    @ManyToOne
-    @JoinColumn(name="monactivite")
-    @NonNull
+    @ManyToOne(optional = false)
+    @JoinColumn(name="id_activite")
     private Activite monActivite; 
     
-    @ManyToOne
-    @JoinColumn(name="monstadephysio")
-    @NonNull
+    @ManyToOne(optional = false)
+    @JoinColumn(name="id_stade")
     private StadePhysiologique monStadePhysio; 
     
     //-=============-
