@@ -11,9 +11,9 @@ INSERT INTO Animal(id_animal, nom, espece, est_Male, date_naiss, taille_cm, nec)
 INSERT INTO Croquette(id_croq, nom, marque, espece, humidite, proteines_brutes, matieres_grasses, cellulose, matieres_minerales, calcium, phosphore) VALUES
     (1, 'ProPlan', 'Purina', 'CHIEN', 8, 15, 12, 5, 5, 1.2, 1.1);
 
-INSERT INTO Proprietaire(id_proprio, nom, prenom, tel) VALUES 
-    (1, 'Garriga', 'Léandre', '0600000000'),
-    (2, 'Sutarik', 'Agathe', '0660606060');
+INSERT INTO Proprietaire(id_proprio, nom, prenom, tel, mail) VALUES 
+    (1, 'Garriga', 'Léandre', '0600000000', 'leandre.garriga@etud.univ-jfc.fr'),
+    (2, 'Sutarik', 'Agathe', '0660606060', 'agathe.sutarik@etud.univ-jfc.fr');
 
 INSERT INTO Race(id_race, nom, k1, espece) VALUES
     (1, 'Berger Blanc Suisse', 1, 'CHIEN'),
