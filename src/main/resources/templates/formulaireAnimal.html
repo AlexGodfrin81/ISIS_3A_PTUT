@@ -42,14 +42,14 @@
 				<input type="submit" value="Enregistrer" /> <input type="reset" value="Réinitialiser" />		
 			</div>
                         <div class="column">
+                                <label for="croquette">Croquette :</label>
+                                <select name="croquette">
+                                    <option th:each="c : ${croquettes}" th:value="${c.id_croq}" th:text="${c.nom}" th:field="*{mesCroqs}"></option>
+                                </select>
+                                <br/>
                                 <label for="race">Race :</label>
                                 <select name="race">
                                     <option th:each="r : ${races}" th:value="${r.id_race}" th:text="${r.nom}"></option>
-                                </select>
-                                <br/>
-                                <label for="croquette">Croquette :</label>
-                                <select name="croquette">
-                                    <option th:each="c : ${croquettes}" th:value="${c.id}" th:text="${c.nom}" th:field="*{mesCroqs}"></option>
                                 </select>
                         </div>
                        

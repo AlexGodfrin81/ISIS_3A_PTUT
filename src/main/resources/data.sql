@@ -19,10 +19,10 @@ INSERT INTO Race(id_race, nom, k1, espece) VALUES
     (1, 'Berger Blanc Suisse', 1, 'CHIEN'),
     (2, 'Caniche nain', 1, 'CHIEN');
 
-INSERT INTO StadePhysiologique(id_stade, nom, k3) VALUES
+INSERT INTO Stade_Physiologique(id_stade, nom, k3) VALUES
     (1, 'Entier', 1),
     (2, 'Stérilisé', 0.8);
 
-INSERT INTO SuiviPoids(id_suivi, date, poids_kg) VALUES
+INSERT INTO Suivi_Poids(id_suivi, date_suivis, poids_kg) VALUES
     (1, '2021-03-01', 42),
     (2, '2021-03-08', 41.5);
