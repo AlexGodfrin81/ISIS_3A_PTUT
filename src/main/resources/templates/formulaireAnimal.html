@@ -49,8 +49,24 @@
                                 <br/>
                                 <label for="race">Race :</label>
                                 <select name="race">
-                                    <option th:each="r : ${races}" th:value="${r.id_race}" th:text="${r.nom}"></option>
+                                    <option th:each="r : ${races}" th:value="${r.id_race}" th:text="${r.nom}" th:field="*{maRace}"></option>
                                 </select>
+                                <br/>
+                                <label for="activite">Activité :</label>
+                                <select name="activite">
+                                    <option th:each="a : ${activites}" th:value="${a.id_activite}" th:text="${a.nom}" th:field="*{monActivite}"></option>
+                                </select>
+                                <br/>
+                                <label for="stadephysio">Stade Physiologique :</label>
+                                <select name="stadephysio">
+                                    <option th:each="s : ${stadephysios}" th:value="${s.id_stade}" th:text="${s.nom}" th:field="*{monStadePhysio}"></option>
+                                </select>
+                                <br/>
+                                <label for="proprio">Propriétaire :</label>
+                                <select name="proprio">
+                                    <option th:each="p : ${proprietaires}" th:value="${p.id_proprio}" th:text="${p.prenom} +' '+ ${p.nom}" th:field="*{proprio}"></option>
+                                </select>
+                                <br/>
                         </div>
                        
 		</form>		

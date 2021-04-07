@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import yucroq.dao.ActiviteRepository;
 import yucroq.dao.AnimalRepository;
 import yucroq.dao.CroquetteRepository;
 import yucroq.dao.ProprietaireRepository;
 import yucroq.dao.RaceRepository;
+import yucroq.dao.StadePhysiologiqueRepository;
 
 
 /**
@@ -40,6 +42,12 @@ public class AnimalController {
     
     @Autowired
     private RaceRepository dao3;
+    
+    @Autowired
+    private ActiviteRepository dao4;
+    
+    @Autowired
+    private StadePhysiologiqueRepository dao5;
     
     /**
      * Affiche toutes les catégories dans la base
@@ -78,6 +86,8 @@ public class AnimalController {
         model.addAttribute("croquettes", dao1.findAll());
         model.addAttribute("proprietaires", dao2.findAll());
         model.addAttribute("races", dao3.findAll());
+        model.addAttribute("activites", dao4.findAll());
+        model.addAttribute("stadephysios", dao5.findAll());
         return "formulaireAnimal";
     }
     
