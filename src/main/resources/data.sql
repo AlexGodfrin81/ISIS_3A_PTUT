@@ -4,7 +4,7 @@ INSERT INTO Activite(id_activite, nom, k2) VALUES
     (1, 'Peu actif', 0.8),
     (2, 'Actif', 1);
 
-INSERT INTO Animal(id_animal, nom, espece, est_Male, date_naiss, taille_cm, nec, proprio) VALUES
+INSERT INTO Animal(id_animal, nom, espece, est_Male, date_naiss, taille_cm, nec) VALUES
     (1, 'Hilda', 'CHIEN', false, '2012-03-01', 100, 3, 1),
     (2, 'Papouille', 'CHIEN', true, '2005-06-05', 45, 7, 2);
 
