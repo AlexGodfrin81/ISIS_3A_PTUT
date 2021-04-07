@@ -11,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -50,9 +51,11 @@ public class Ration {
      //-== Mapping ==-
     
     @ManyToOne(optional = false)
+    @JoinColumn(name="consommateur")
     private Animal consommateur;
 
     @ManyToOne(optional = false)
+    @JoinColumn(name="mescroqs")
     private Croquette mesCroqs;
     
     
