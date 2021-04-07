@@ -34,31 +34,25 @@ public class Animal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_animal;
     
-    @Column(unique=true)
     @NonNull
     private String nom;
     
-    @Column(unique=true)
     @NonNull
     @Enumerated(EnumType.STRING)
     private Espece espece;
     
-    @Column(unique=true)
     @NonNull
     private boolean est_Male;
     
-    @Column(unique=true)
     @NonNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date_naiss;
     
-    @Column(unique=true)
     @NonNull
     private Integer taille_cm;
     
-    @Column(unique=true)
     @NonNull
-    private Integer nec; 
+    private Integer nec;
     
     //-== Mapping ==-
 

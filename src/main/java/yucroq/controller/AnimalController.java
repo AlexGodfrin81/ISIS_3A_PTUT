@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import yucroq.dao.AnimalRepository;
 import yucroq.dao.CroquetteRepository;
 import yucroq.dao.ProprietaireRepository;
+import yucroq.dao.RaceRepository;
 
 
 /**
@@ -36,6 +37,9 @@ public class AnimalController {
     
     @Autowired
     private ProprietaireRepository dao2;
+    
+    @Autowired
+    private RaceRepository dao3;
     
     /**
      * Affiche toutes les catégories dans la base
@@ -73,6 +77,7 @@ public class AnimalController {
         model.addAttribute("animal", new Animal());
         model.addAttribute("croquettes", dao1.findAll());
         model.addAttribute("proprietaires", dao2.findAll());
+        model.addAttribute("races", dao3.findAll());
         return "formulaireAnimal";
     }
     
