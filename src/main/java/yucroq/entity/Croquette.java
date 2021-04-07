@@ -67,7 +67,7 @@ public class Croquette {
        
     @OneToMany(mappedBy = "mesCroqs")
     @NonNull
-    private List<Animal> animaux = new LinkedList<>();
+    private List<Ration> rationCroq;
     
     //-=============-
     

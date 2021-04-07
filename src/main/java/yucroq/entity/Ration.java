@@ -11,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import lombok.Getter;
@@ -49,4 +50,17 @@ public class Ration {
     @Column
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date_fin;
+    
+     //-== Mapping ==-
+    
+    @ManyToOne(optional = false)
+    private Animal consommateur;
+
+    @ManyToOne(optional = false)
+    private Croquette mesCroqs;
+    
+    
+    public float qte_aliment_kg(){
+        return consommateur.calcul_BE()/this.mesCroqs.densite_Energetique();
+    }
 }
