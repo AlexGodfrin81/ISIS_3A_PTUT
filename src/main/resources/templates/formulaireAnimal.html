@@ -42,23 +42,23 @@
 				<input type="submit" value="Enregistrer" /> <input type="reset" value="Réinitialiser" />		
 			</div>
                         <div class="column">
-                                <label for="ration">Rations :</label>
+                                <!--<label for="ration">Rations :</label>
                                 <select name="ration">
                                     <option th:each="r : ${rations}" th:value="${r.id_ration}" th:text="${r.mesCroqs.nom} + ' | ' + ${r.quantite} + ' grammes'" th:field="*{mesRations}"></option>
-                                </select>
+                                </select>-->
                                 <br/>
-                                <label for="race">Race :</label>
-                                <select name="race">
+                                <label for="maRace">Race :</label>
+                                <select name="maRace">
                                     <option th:each="r : ${races}" th:value="${r.id_race}" th:text="${r.nom}" th:field="*{maRace}"></option>
                                 </select>
                                 <br/>
-                                <label for="activite">Activité :</label>
-                                <select name="activite">
+                                <label for="monActivite">Activité :</label>
+                                <select name="monActivite">
                                     <option th:each="a : ${activites}" th:value="${a.id_activite}" th:text="${a.nom}" th:field="*{monActivite}"></option>
                                 </select>
                                 <br/>
-                                <label for="stadephysio">Stade Physiologique :</label>
-                                <select name="stadephysio">
+                                <label for="monStadePhysio">Stade Physiologique :</label>
+                                <select name="monStadePhysio">
                                     <option th:each="s : ${stadephysios}" th:value="${s.id_stade}" th:text="${s.nom}" th:field="*{monStadePhysio}"></option>
                                 </select>
                                 <br/>
