@@ -20,6 +20,7 @@ import yucroq.dao.AnimalRepository;
 import yucroq.dao.CroquetteRepository;
 import yucroq.dao.ProprietaireRepository;
 import yucroq.dao.RaceRepository;
+import yucroq.dao.RationRepository;
 import yucroq.dao.StadePhysiologiqueRepository;
 
 
@@ -48,6 +49,9 @@ public class AnimalController {
     
     @Autowired
     private StadePhysiologiqueRepository dao5;
+    
+    @Autowired
+    private RationRepository dao6;
     
     /**
      * Affiche toutes les catégories dans la base
@@ -88,6 +92,7 @@ public class AnimalController {
         model.addAttribute("races", dao3.findAll());
         model.addAttribute("activites", dao4.findAll());
         model.addAttribute("stadephysios", dao5.findAll());
+        model.addAttribute("rations", dao6.findAll());
         return "formulaireAnimal";
     }
     
