@@ -51,15 +51,16 @@ public class Ration {
      //-== Mapping ==-
     
     @ManyToOne(optional = false)
-    @JoinColumn(name="consommateur")
+    @JoinColumn(name="id_animal")
     private Animal consommateur;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name="mescroqs")
+    @JoinColumn(name="id_croq")
     private Croquette mesCroqs;
     
     
-    public float qte_aliment_kg(){
+    public float qte_aliment(){
+    // La quantité d'aliment recommandé (en kg par kg d'animal)
         return consommateur.calcul_BE()/this.mesCroqs.densite_Energetique();
     }
 }

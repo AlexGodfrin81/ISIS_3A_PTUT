@@ -72,30 +72,29 @@ public class Croquette {
     //-=============-
     
     public float densite_Energetique(){
-        float ENA=100-(proteines_brutes+matieres_grasses+matieres_minerales+humidite);//fibre ?  Ms–Mn–MAT (matière azotée totale)–MG-CB  
-        float EB=(float) ((5.7*this.proteines_brutes)+(9.4*this.matieres_grasses)+(4.1*this.cellulose)+ENA); // EB --> Energie Brute MANQUE ENA
-        float dE=1;
+        float ENA = 100 - (proteines_brutes + matieres_grasses + matieres_minerales + humidite + cellulose);
+        float EB = (float) ((10*5.7*this.proteines_brutes)+(10*9.4*this.matieres_grasses)+(10*4.1*(this.cellulose+ENA))); // EB --> Energie Brute MANQUE ENA
         
+        float dE = 1;        
         switch(this.espece){
             case CHIEN:
-                dE=(float) (91.2-(1.43*cellulose)); // digestibilité de l'energie Chien
+                dE=(float) (91.2-(1.43 * (cellulose * (100 - humidite)/100))); // digestibilité de l'énergie Chien
                 break;
             case CHAT:
-                dE=(float) (87.9-(0.88*cellulose));// digestibilité de l'energie Chat
+                dE=(float) (87.9-(0.88 * (cellulose * (100 - humidite)/100))); // digestibilité de l'énergie Chat
                 break;
         }
         float Ed=EB*(dE/100);//Energie digestive
         
         float EM=1;// Energie Metabolisable/Densité Energetique
-        
         switch(this.espece){
             case CHIEN:
-                EM=(float) (Ed-(1.04*proteines_brutes)); // Densité Energetique Chien
+                EM=(float) (Ed-(1.04*10*proteines_brutes)); // Densité Energetique Chien
                 break;
             case CHAT:
-                EM=(float) (Ed-(0.77*proteines_brutes));// Densité Energetique Chat
+                EM=(float) (Ed-(0.77*10*proteines_brutes));// Densité Energetique Chat
                 break;
-        }
+        }       
         return EM;
     }
 }

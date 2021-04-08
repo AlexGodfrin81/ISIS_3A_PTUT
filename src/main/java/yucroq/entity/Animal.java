@@ -11,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -60,23 +61,23 @@ public class Animal {
     @NonNull
     private List<Ration> mesRations = new LinkedList<>();
     
-    @ManyToOne
-    @NonNull
+    @ManyToOne(optional = false)
+    @JoinColumn(name="id_proprio")
     private Proprietaire proprio; 
     
     @OneToMany(mappedBy = "animalPese")
     private List<SuiviPoids> mesPoids = new LinkedList<>(); 
 
-    @ManyToOne
-    @NonNull
-    private Race maRace ;
+    @ManyToOne(optional = false)
+    @JoinColumn(name="id_race")
+    private Race maRace;
     
-    @ManyToOne
-    @NonNull
+    @ManyToOne(optional = false)
+    @JoinColumn(name="id_activite")
     private Activite monActivite; 
     
-    @ManyToOne
-    @NonNull
+    @ManyToOne(optional = false)
+    @JoinColumn(name="id_stade")
     private StadePhysiologique monStadePhysio; 
     
     //-=============-
@@ -89,17 +90,12 @@ public class Animal {
         return this.mesPoids.get(0).getPoids_kg()*(100/(100+(this.getNec()-5)));
     }
     
-    /**
-     * Calcule le besoin énergétique BE d'un animal.
-     * @return le besoin énergétique, en fonction du coefficient K et du besoin énergétique à l'entretien
-     */
-    public float calcul_BE(){
-        // si l'espèce est un chat, alors la puissance sera de 0.67, pour un chien 0.75
-        // attention, à changer si on rajoute une espèce (switch case)
-        double BE= Math.pow((double)(poids_ideal()), (Espece.CHAT==this.espece)?0.67:0.75); 
+    // Calcule le coefficient K de l'animal
+    public float calcul_K(){
+        float K;
         float k1=this.maRace.getK1();
         float k2=this.monActivite.getK2();
-        float k3 =this.monStadePhysio.getK3();
+        float k3=this.monStadePhysio.getK3();
         // A changer au besoin
         // coeff déterminé en fonction état de santé de l'animal
         // on considère tous les animaux en bonne santé donc k4=1
@@ -107,7 +103,39 @@ public class Animal {
         // coeff déterminé en fonction de la température de l'environnement
         // peu utilisé et difficile à évaluer --> k5=1
         float k5=1;
-        return (float)BE*k1*k2*k3*k4*k5;
+        K = k1*k2*k3*k4*k5;
+        
+        // Si K < 0,5, il est recommandé de le fixer à 0,5
+        // (pas de chute de poids trop brutale)
+        if (K > 0.5) {
+            return K;
+        }
+        else {
+            return (float) 0.5;
+        }
     }
+
+    /**
+     * Calcule le besoin énergétique BE d'un animal.
+     * @return le besoin énergétique, en fonction du coefficient K et du besoin énergétique à l'entretien
+     */
     
+    public float calcul_BE(){
+        // La formule est : BE = A * P_idéal ^ B
+        // Si l'animal est un chat adulte, A = 100 et B = 0.67
+        // Si l'animal est un chien adulte, A = 130 et B = 0.75
+        double A;
+        double B;
+        
+        if (Espece.CHAT==this.espece) {
+            A = 100;
+            B = 0.67;
+        }
+        else {
+            A = 130;
+            B = 0.75;
+        }
+        double BEE = A * Math.pow((double)(poids_ideal()),B);   
+        return (float)BEE*calcul_K();
+    }
 }
