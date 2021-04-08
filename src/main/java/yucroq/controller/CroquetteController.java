@@ -39,7 +39,7 @@ public class CroquetteController {
      */
     @GetMapping(path = "show")
     public String afficheToutesLesCroquettes(Model model) {
-       model.addAttribute("croquette", dao.findAll());    
+       model.addAttribute("croquettes", dao.findAll());    
         return "afficheCroquettes";
     }
     
