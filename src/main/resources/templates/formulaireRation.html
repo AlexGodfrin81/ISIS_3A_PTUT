@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Ajouter une Ration</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="../static/css/style.css"/>	
+	</head>
+    <body>
+        <h1>Ajouter une Ration</h1>
+        
+        <form th:object="${ration}" method="POST" th:action="@{/ration/save}">
+            <div class="column">
+                <label for="quantite">Quantite (en grammes) :</label>
+                <input type="number" min="0" th:field="*{quantite}"/>
+                <br/>
+                <label for="date_debut">Date de début :</label>
+		<input type="date" th:field="*{date_debut}" th:value="*{date_debut}"/>
+                <br/>
+                <label for="date_debut">Date de fin :</label>
+		<input type="date" th:field="*{date_fin}" th:value="*{date_fin}"/>
+                <hr/>
+                <input type="submit" value="Enregistrer" /> <input type="reset" value="Réinitialiser" />
+            </div>
+            <div class="column">
+                <label for="consommateur">Animal concerné :</label>
+                <select name="consommateur">
+                    <option th:each="a : ${animaux}" th:value="${a.id_animal}" th:text="${a.nom}" th:field="*{consommateur}"></option>
+                </select>
+                <br/>
+                <label for="mesCroqs">Croquettes :</label>
+                <select name="mesCroqs">
+                    <option th:each="c : ${croquettes}" th:value="${c.id_croq}" th:text="${c.nom}" th:field="*{mesCroqs}"></option>
+                </select>
+            </div>
+        </form>
+        <hr/>
+	<a th:href="@{/}" href="../static/index.html">Retour au menu</a>
+        <hr/>
+    </body>
+</html>
