@@ -8,6 +8,37 @@
 		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="../static/css/style.css"/>	
 	</head>
 	<body>
+            <script>
+                function adapt_race(){
+                    let esp = document.getElementById('select_espece').value;
+                    let race = document.getElementById('select_race');
+                    for (let options of race){
+                        if (options.getAttribute('data-esp') !== esp){
+                            options.style.display = "none";
+                        }else{
+                            options.style.display = "inline";
+                        }
+                    }
+                    let opt = race.options;
+                    let i = 0;
+                    while (opt[i].getAttribute('data-esp') !== esp){
+                        i++;
+                    }
+                    race.selectedIndex = i;
+                }
+                
+                function adapt_espece(){
+                    let esp = document.getElementById('select_espece');
+                    let race = document.getElementById('select_race');
+                    let selected = race.options[race.selectedIndex];
+                    console.log(selected);
+                    if (selected.getAttribute('data-esp') === "CHIEN"){
+                        esp.selectedIndex = 0;
+                    }else{
+                        esp.selectedIndex = 1;
+                    }
+                }
+            </script>
 		<h1>Ajouter un Animal</h1>
 		<!--/* Au revient au contrôleur, avec la méthode POST */-->
 		<!--/* th:object définit quel est l'objet édité par ce formulaire */-->
@@ -17,14 +48,14 @@
 				<input type="text" th:field="*{nom}" placeholder="Nom de l'animal"/>
                                 <br/>
                                 <label for="espece">Espèce :</label>
-				<select id="select_espece" th:field="*{espece}">
+				<select onchange="adapt_race()" id="select_espece" th:field="*{espece}">
                                     <option th:value="CHIEN" th:text="Chien"></option>
                                     <option th:value="CHAT" th:text="Chat"></option>
                                 </select>
                                 <br/>
                                 <label for="genre">Genre :</label>
                                 <select th:field="*{est_Male}">
-                                    <option th:value="true" th:text="Male"></option>
+                                    <option th:value="true" th:text="Male" selected></option>
                                     <option th:value="false" th:text="Femelle"></option>
                                 </select>
                                 <br/>
@@ -42,14 +73,9 @@
 				<input type="submit" value="Enregistrer" /> <input type="reset" value="Réinitialiser" />		
 			</div>
                         <div class="column">
-                                <label for="mesRations">Rations :</label>
-                                <select name="mesRations">
-                                    <option th:each="r : ${rations}" th:value="${r.id_ration}" th:text="${r.mesCroqs.nom} + ' | ' + ${r.quantite} + ' grammes' + ' | ' + ${r.date_debut} + ' --> ' + ${r.date_fin}" th:field="*{mesRations}"></option>
-                                </select>
-                                <br/>
                                 <label for="maRace">Race :</label>
-                                <select name="maRace">
-                                    <option th:each="r : ${races}" th:value="${r.id_race}" th:text="${r.nom}" th:field="*{maRace}"></option>
+                                <select onchange="adapt_espece()" id="select_race" name="maRace">
+                                    <option th:each="r : ${races}" th:data-esp="${r.espece}" th:value="${r.id_race}" th:text="${r.nom}" th:field="*{maRace}"></option>
                                 </select>
                                 <br/>
                                 <label for="monActivite">Activité :</label>

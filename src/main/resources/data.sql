@@ -14,7 +14,8 @@ INSERT INTO Proprietaire(id_proprio, nom, prenom, tel, mail) VALUES
 
 INSERT INTO Race(id_race, nom, k1, espece) VALUES
     (1, 'Berger Blanc Suisse', 1, 'CHIEN'),
-    (2, 'Caniche nain', 1, 'CHIEN');
+    (2, 'Caniche nain', 1, 'CHIEN'),
+    (3, 'Écaille de tortue', 1, 'CHAT');
 
 INSERT INTO Stade_Physiologique(id_stade, nom, k3) VALUES
     (1, 'Entier', 1),
