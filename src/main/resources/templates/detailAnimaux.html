@@ -28,7 +28,9 @@ and open the template in the editor.
         <figure>
             
         </figure>
-        <a th:href="@{/}" href="../static/index.html">Retour au menu</a>
+        <a th:href="@{/ration/add(id=${animal.id_animal})}" href='formulaireRation.html'>Ajouter une ration</a>
+        <br/>
+        <a th:href="@{/animal/show}" href="afficheAnimaux.html">Retour aux animaux</a>
         <footer>
             <a>Mentions légales</a>
             <a>Contacts</a>

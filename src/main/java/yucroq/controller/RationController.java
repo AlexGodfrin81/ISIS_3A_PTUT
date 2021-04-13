@@ -35,9 +35,9 @@ public class RationController {
     private CroquetteRepository dao3;
     
     @GetMapping(path = "add")
-    public String montreLeFormulairePourAjout(Model model) {   
+    public String montreLeFormulairePourAjout(Model model, Integer id) {   
         model.addAttribute("ration", new Ration());
-        model.addAttribute("animaux", dao2.findAll());
+        model.addAttribute("animal", dao2.getOne(id));
         model.addAttribute("croquettes", dao3.findAll());
         return "formulaireRation";
     }
