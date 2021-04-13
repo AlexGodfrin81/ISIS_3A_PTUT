@@ -231,6 +231,9 @@ button, input[type="submit"], input[type="reset"] {
     font-size: 15px;
     font-weight: 700;
     padding: 10px 15px 10px 15px;
+    margin: 5px 0 0 0;
+    outline: none;
+   
     text-align: center;
 }
 
@@ -242,6 +245,9 @@ button:hover {
     cursor: pointer;
 }
 
+a:hover{
+    cursor: pointer;
+}
 p {
     background-color: white;
     padding: 10px 15px 10px 15px;
