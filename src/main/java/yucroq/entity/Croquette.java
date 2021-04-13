@@ -54,7 +54,7 @@ public class Croquette {
     @NonNull
     private float cellulose;
     
-    @NonNull
+    
     private float matieres_minerales;
     
     @NonNull
@@ -72,6 +72,10 @@ public class Croquette {
     //-=============-
     
     public float densite_Energetique(){
+        
+        //if(matieres_minerales == null){
+        //    matieres_minerales=calcium+phosphore;
+        //}
         float ENA = 100 - (proteines_brutes + matieres_grasses + matieres_minerales + humidite + cellulose);
         float EB = (float) ((10*5.7*this.proteines_brutes)+(10*9.4*this.matieres_grasses)+(10*4.1*(this.cellulose+ENA))); // EB --> Energie Brute MANQUE ENA
         
