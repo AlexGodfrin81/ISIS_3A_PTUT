@@ -6,49 +6,77 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Inscription/Connexion</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <title>Accueil</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>	
     </head>
-    <body>
-        <div class="navbar">
-            <a>Yucroq + logo<a>
-            <a href="index.html">Accueil</a>
-            <a href="animal.html">Animal</a>
-            <a href="conseils.html">Conseils</a>
-            <a href="dosage.html">Dosage</a>
-            <a href="inscription.html">Connexion ou Inscription</a>
+
+    <header>
+        <div id="voletgauche">
+            <div id="compagnons"><a href="animal/show">
+                <div><img class="icone" id="imagecompagnons" src="images/Compagnons_gris.svg" alt="Icône compagnons"></div>
+                <div class="textevg">Compagnons</div>
+              </a></div>          
+              <div id="alimentation"><a href="croquette/show">
+                <div><img class="icone" id="imagealimentation" src="images/Alimentation_gris.svg" alt="Icône alimentation"></div>
+                <div class="textevg">Alimentation</div>
+              </a></div>
         </div>
-        
-        <h1>Inscrivez-vous sur Yucroq</h1>
+
+        <div id="voletcentral">
+          <img id="logoyucroq" src="images/Logo.svg" alt="Logo Yucroq">
+        </div>
+
+        <div id="voletdroit">
+          <div id="seconnecter"><a href="inscription.html">
+            Se connecter
+          </div>
+        </a><div><img class="icone" id="imageutilisateur" src="Images/Utilisateur_gris.svg" alt="Icône utilisateur"></div>
+        </div>   
+    </header>
+
+    <body>
+        <section>
+        <h1>Connexion</h1>
+        <h2>Inscrivez-vous sur Yucroq</h2>
         <form>
-            <label for="mail1">Adresse mail :</label>
-            <input type="email" required>
-            <br>
-            <label for="nom">Nom :</label>
-            <input type="text" required>
-            <br>
-            <label for="mdp1">Mot de Passe :</label>
-            <input type="password" required>
-            <br>
-            <label for="confirm_mdp">Confirmation du mot de passe :</label>
-            <input type="password" required>
-            <br>
-            <button>Confirmer</button>
+            <table class="form">
+                <tr>
+                    <td><label for="mail1">Adresse mail</label></td>
+                    <td><input id="mail1" type="email" placeholder="votreadresse@domaine.com" required></td>
+                </tr>
+                <tr>
+                    <td><label for="nom">Nom</label></td>
+                    <td><input id="nom" type="text" placeholder="Votre nom" required></td>
+                </tr>
+                <tr>
+                    <td><label for="mdp1">Mot de passe</label></td>
+                    <td><input id="mdp1" type="password" placeholder="••••••" required></td>
+                </tr>
+                <tr>
+                    <td><label for="confirm_mdp">Confirmation du mot de passe</label></td>
+                    <td><input id="confirm_mdp" type="password" placeholder="••••••" required></td>
+                </tr>
+            </table>
+        <button>Confirmer</button>
         </form>
         
-        <h1>Déjà inscrit ? Connexion :</h1>
+        <h2>Déjà inscrit ? Connexion</h2>
         <form>
-            <label for="mail2">Adresse mail :</label>
-            <input type="email" required>
-            <br>
-            <label for="mdp2">Mot de passe :</label>
-            <input type="email" required>
-            <br>
+            <table class="form">
+                <tr>
+                    <td><label for="mail2">Adresse mail</label></td>
+                    <td><input id="mail2" type="email" placeholder="votreadresse@domaine.com" required></td>
+                </tr>
+                <tr>
+                    <td><label for="mdp2">Mot de passe</label></td>
+                    <td><input id="mdp2" type="password" placeholder="••••••" required></td>
+                </tr>
+            </table>
             <button>Confirmer</button>
-            <br>
-            <a href="mdp_oublie.html">Mot de passe oublié</a>
+            <h3><a href="mdp_oublie.html">Mot de passe oublié</a></h3>
         </form>
+        </section>
     </body>
 </html>

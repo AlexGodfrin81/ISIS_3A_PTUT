@@ -10,17 +10,37 @@ and open the template in the editor.
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="../css/style.css" />
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
     </head>
-    <body>
-        <div class="navbar">
-            <img src="../images/logo.svg" alt="Yucroq" width="35" height="35"/>
-            <a href="../index.html">Accueil</a>
-            <a href="../croquette/show">Croquettes</a>
-            <a href="../animal/show">Animal</a>
-            <a href="../conseils.html">Conseils</a>
-            <a href="../dosage.html">Dosage</a>
-            <a href="../inscription.html">Connexion ou Inscription</a>
+
+    <header>
+        <div id="voletgauche">
+          <div id="compagnons"><a href="animal/show">
+            <div><img class="icone" id="imagecompagnons" src="../static/images/Compagnons_gris.svg" th:src="@{/images/Compagnons_gris.svg}" alt="Icône compagnons"></div>
+            <div class="textevg">Compagnons</div>
+          </a></div>          
+          <div id="alimentation"><a href="croquette/show">
+            <div><img class="icone" id="imagealimentation" src="../static/images/Alimentation_violet.svg" th:src="@{/images/Alimentation_violet.svg}" alt="Icône alimentation"></div>
+            <div class="selectionne textevg">Alimentation</div>
+            <div class="rectangleselect"></div>
+          </a></div>
         </div>
+
+        <div id="voletcentral">
+          <img id="logoyucroq" src="../static/images/Logo.svg" th:src="@{/images/Logo.svg}" alt="Logo Yucroq">
+        </div>
+
+        <div id="voletdroit">
+          <div id="utilisateur">
+            <div id="utilisateurco">Nom à récupérer</div>
+            <div id="deconnexion"><a href="index.html">Déconnexion</a></div>
+          </div>
+          <div><img class="icone" id="imageutilisateur" src="../static/images/Utilisateur_violet.svg" th:src="@{/images/Utilisateur_violet.svg}" alt="Icône utilisateur"></div>
+        </div>   
+    </header>
+
+    <body>
+        <section>
         <table>
             <thead>
                 <tr>
@@ -56,11 +76,12 @@ and open the template in the editor.
 		<a th:href="@{add}" href='formulaireCroquette.html'>Ajouter une croquette</a>
                 </div>
         <a th:href="@{/}" href="../static/index.html">Retour au menu</a>
-        
-        <footer>
-            <a>Mentions légales</a>
-            <a>Contacts</a>
-        </footer>
+        </section>
     </body>
+
+    <footer>
+        <a>Mentions légales</a>
+        <a>Contacts</a>
+    </footer>
 </html>
 
