@@ -53,8 +53,7 @@ and open the template in the editor.
                 <br/>
                 <label for="date_debut">Date de fin :</label>
 		<input type="date" th:field="*{date_fin}" th:value="*{date_fin}"/>
-                <hr/>
-                <input type="submit" value="Enregistrer" /> <input type="reset" value="Réinitialiser" />
+                
             </div>
             <div class="column">
                 <label for="consommateur">Animal concerné :</label>
@@ -66,6 +65,8 @@ and open the template in the editor.
                     <option th:each="c : ${croquettes}" th:value="${c.id_croq}" th:text="${c.nom}" th:field="*{mesCroqs}"></option>
                 </select>
             </div>
+            <hr/>
+                <input type="submit" value="Enregistrer" /> <input type="reset" value="Réinitialiser" />
         </form>
         <hr/>
 	<a th:href="@{/animal/show}" href="afficheAnimaux.html">Retour aux animaux</a>
