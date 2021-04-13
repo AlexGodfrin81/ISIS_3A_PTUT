@@ -2,7 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>TODO supply a title</title>
+        <title>Ajouter un compagnon</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="../css/style.css"/>
@@ -70,7 +70,7 @@
                 }
             </script>
             
-		<h1>Ajouter un Animal</h1>
+            <h1>Ajouter un Animal</h1>
 		<!--/* Au revient au contrôleur, avec la méthode POST */-->
 		<!--/* th:object définit quel est l'objet édité par ce formulaire */-->
 		<form th:object="${animal}" method="POST" th:action="@{/animal/save}">
@@ -100,8 +100,7 @@
                                 <input type="number" th:field="*{nec}" min="1" max="9"/>
                                 <br/>
                                 
-                                <hr/>
-				<input type="submit" value="Enregistrer" /> <input type="reset" value="Réinitialiser" />		
+                                		
 			</div>
                         <div class="column">
                                 <label for="maRace">Race :</label>
@@ -124,11 +123,14 @@
                                     <option th:each="p : ${proprietaires}" th:value="${p.id_proprio}" th:text="${p.prenom} +' '+ ${p.nom}" th:field="*{proprio}"></option>
                                 </select>
                                 <br/>
+                                <hr/>
+				<input type="submit" value="Enregistrer" /> <input type="reset" value="Réinitialiser" />
                         </div>
 		</form>		
 		<hr/>
 		<a th:href="@{/}" href="../static/index.html">Retour au menu</a>
 		<hr/>
+            
 	</section>
     </body>
     
