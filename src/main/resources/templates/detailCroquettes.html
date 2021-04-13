@@ -41,16 +41,51 @@ and open the template in the editor.
 
     <body>
         <section>
-            <h1>Liste des croquettes de ...</h1>
-            <ul>
-                <li th:each="c : ${croquettes}">
-                    <a th:href="@{getCroquette(id=${c.id_croq})}" th:text="${c.marque + ' ' + c.nom}">Référence</a>
-                </li>         
-            </ul>
-        <!--/* On appelle l'URL 'add' du contôleur */-->
-        <button><a th:href="@{add}" href='formulaireCroquette.html'>Ajouter une croquette</a></button>
-                </div>
-                <button><a th:href="@{/}" href="../static/index.html">Retour au menu</a></button>
+            <h1>Informations sur [[${croquette.marque + " " + croquette.nom}]]</h1>
+            <table class="form">
+                <tr>
+                    <td>Marque</td>
+                    <td>[[${croquette.marque}]]</td>
+                </tr>
+                <tr>
+                    <td>Nom</td>
+                    <td>[[${croquette.nom}]]</td>
+                </tr>
+                <tr>
+                    <td>Espèce</td>
+                    <td th:text="${#strings.capitalize(#strings.toLowerCase(croquette.espece))}"></td>
+                </tr>
+                <tr>
+                    <td>Humidité</td>
+                    <td>[[${croquette.humidite + " %"}]]</td>
+                </tr>
+                <tr>
+                    <td>Protéines brutes</td>
+                    <td>[[${croquette.proteines_brutes + " %"}]]</td>
+                </tr>
+                <tr>
+                    <td>Matières grasses</td>
+                    <td>[[${croquette.matieres_grasses + " %"}]]</td>
+                </tr>
+                <tr>
+                    <td>Cellulose brute</td>
+                    <td>[[${croquette.cellulose + " %"}]]</td>
+                </tr>
+                <tr>
+                    <td>Minéraux</td>
+                    <td>[[${croquette.matieres_minerales + " %"}]]</td>
+                </tr>
+                <tr>
+                    <td>Calcium</td>
+                    <td>[[${croquette.calcium + " %"}]]</td>
+                </tr>
+                <tr>
+                    <td>Phosphore</td>
+                    <td>[[${croquette.phosphore + " %"}]]</td>
+                </tr> 
+            </table>
+            
+            <h3><a href="../croquette/show">Retour à la liste</a></h3>
         </section>
     </body>
 

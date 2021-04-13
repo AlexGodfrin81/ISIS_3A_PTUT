@@ -35,18 +35,18 @@
     </header>
 
     <body>
-        <section>   
+        <section>
+            <h1>Vos compagnons</h1>              
         <ul>
             <li th:each="a : ${animaux}">
-                <a th:href="@{./getAnimal(id=${a.id_animal})}" >[[${a.nom}]]</a>
+                <a th:href="@{getAnimal(id=${a.id_animal})}" th:text="${a.nom}">Nom de l'animal</a>
             </li>        
         </ul>
         <div>
         <!--/* On appelle l'URL 'add' du contôleur */-->
-		<a th:href="@{add}" href='formulaireAnimal.html'>Ajouter un animal</a>
+        <button><a th:href="@{add}" href='formulaireAnimal.html'>Ajouter un animal</a></button>
                 <br/>
                 </div>
-        <a th:href="@{/}" href="../static/index.html">Retour au menu</a>
         </section>
     </body>
 
