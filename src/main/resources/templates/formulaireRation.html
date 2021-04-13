@@ -30,9 +30,8 @@ and open the template in the editor.
             <div class="column">
                 <label for="consommateur">Animal concerné :</label>
                 <select name="consommateur">
-                    <option th:each="a : ${animaux}" th:value="${a.id_animal}" th:text="${a.nom}" th:field="*{consommateur}"></option>
+                    <option th:value="${animal.id_animal}" th:text="${animal.nom}" th:field="*{consommateur}"></option>
                 </select>
-                <br/>
                 <label for="mesCroqs">Croquettes :</label>
                 <select name="mesCroqs">
                     <option th:each="c : ${croquettes}" th:value="${c.id_croq}" th:text="${c.nom}" th:field="*{mesCroqs}"></option>
@@ -40,7 +39,7 @@ and open the template in the editor.
             </div>
         </form>
         <hr/>
-	<a th:href="@{/}" href="../static/index.html">Retour au menu</a>
+	<a th:href="@{/animal/show}" href="afficheAnimaux.html">Retour aux animaux</a>
         <hr/>
     </body>
 </html>
