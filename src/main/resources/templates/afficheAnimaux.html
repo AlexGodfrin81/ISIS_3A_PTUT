@@ -37,7 +37,7 @@
     <body>
         <section>   
         <ul>
-            <li th:each="a:${animaux}" th:text="${a.nom}">Nom de l'animal</li>
+            <li th:each="a:${animaux}" th:text="${a.nom}"><a th:href="@{getAnimal(id=${a.id_animal})}">Nom de l'animal</a></li>
         </ul>
         <div>
         <!--/* On appelle l'URL 'add' du contôleur */-->
