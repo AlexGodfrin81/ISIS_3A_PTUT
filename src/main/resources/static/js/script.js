@@ -1,6 +1,7 @@
+// Pour selectionner Race en fonction de l'Espèce
 function adapt_race(){
-                    let esp = document.getElementById('select_espece').value;
-                    let race = document.getElementById('select_race');
+                    let esp = document.getElementById('espece').value;
+                    let race = document.getElementById('maRace');
                     for (let options of race){
                         if (options.getAttribute('data-esp') !== esp){
                             options.style.display = "none";
@@ -28,3 +29,42 @@ function adapt_race(){
                     }
                     adapt_race();
                 }
+ 
+ 
+ // Pour Gerer le choix de NEC
+                 majnec();
+                            document.getElementById("nec").addEventListener("input", majnec);
+                                function majnec() {
+                                    let valeurNEC = document.getElementById("nec").value;
+                                    let commentaireNEC = "";
+                                    switch (valeurNEC) {
+                                        case "1":
+                                            commentaireNEC = "Extrêmement maigre";
+                                            break;
+                                        case "2":
+                                            commentaireNEC = "Maigre";
+                                            break;
+                                        case "3":
+                                            commentaireNEC = "Mince";
+                                            break;
+                                        case "4":
+                                            commentaireNEC = "Poids idéal";
+                                            break;
+                                        case "5":
+                                            commentaireNEC = "Poids idéal";
+                                            break;
+                                        case "6":
+                                            commentaireNEC = "Un peu épais";
+                                            break;
+                                        case "7":
+                                            commentaireNEC = "Gras";
+                                            break;
+                                        case "8":
+                                            commentaireNEC = "Gros";
+                                            break;
+                                        case "9":
+                                            commentaireNEC = "Obèse";
+                                            break;
+                                        }   
+                                    document.getElementById("valeur_nec").textContent = valeurNEC + "/9 - " + commentaireNEC;
+                                    }
