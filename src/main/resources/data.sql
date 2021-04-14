@@ -15,15 +15,17 @@ INSERT INTO Proprietaire(id_proprio, nom, prenom, tel, email) VALUES
 INSERT INTO Race(id_race, nom, k1, espece) VALUES
     (1, 'Berger Blanc Suisse', 1, 'CHIEN'),
     (2, 'Caniche nain', 1, 'CHIEN'),
-    (3, 'Écaille de tortue', 1, 'CHAT');
+    (3, 'Écaille de tortue', 1, 'CHAT'),
+    (4, 'British Longhair', 1, 'CHAT');
 
 INSERT INTO Stade_Physiologique(id_stade, nom, k3) VALUES
     (1, 'Entier', 1),
     (2, 'Stérilisé', 0.8);
 
 INSERT INTO Animal(id_animal, nom, espece, est_Male, date_naiss, taille_cm, nec, id_proprio, id_race, id_activite, id_stade) VALUES
-    (1, 'Hilda', 'CHIEN', false, '2012-03-01', 100, 3, 1, 1, 2, 2),
-    (2, 'Papouille', 'CHIEN', true, '2005-06-05', 45, 7, 1, 2, 2, 1);
+    (1, 'Hilda', 'CHIEN', false, '2012-03-01', 100, 3, 3, 1, 2, 2),
+    (2, 'Papouille', 'CHIEN', true, '2005-06-05', 45, 7, 1, 2, 2, 1),
+    (3, 'Fidji', 'CHAT', true, '2010-02-28', 20, 3, 3, 4, 2, 2);
 
 INSERT INTO Suivi_Poids(id_suivi, date_suivi, poids_kg, id_animal) VALUES
     (1, '2021-03-01', 42, 1),

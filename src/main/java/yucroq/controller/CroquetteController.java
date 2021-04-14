@@ -43,6 +43,21 @@ public class CroquetteController {
         return "afficheCroquettes";
     }
     
+    
+    /**
+     * Redirige vers la page d'un animal selon son id
+     *
+     * @param model pour transmettre les informations à la vue
+     * @param id l'id de l'animal
+     * @return le nom de la vue à afficher ('detailCroquettes.html')
+     */
+    @GetMapping(path = "getCroquette")
+    public String afficheUneCroquette(Model model, Integer id) {
+        model.addAttribute("croquette", dao.getOne(id));
+        return "detailCroquettes";
+    }
+    
+    
       /**
      * Montre le formulaire permettant d'ajouter une croquette
      *

@@ -6,34 +6,98 @@ and open the template in the editor.
 -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Page de [[${animal.nom}]]</title>
+        <title>TODO supply a title</title>
         <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="../static/css/style.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet" />
     </head>
-    <body>
-        <div class="navbar">
-            <img src="../images/logo.svg" alt="Yucroq" width="35" height="35"/>
-            <a href="../index.html">Accueil</a>
-            <a href="../croquette/show">Croquettes</a>
-            <a href="../animal/show">Animal</a>
-            <a href="../conseils.html">Conseils</a>
-            <a href="../dosage.html">Dosage</a>
-            <a href="../inscription.html">Connexion ou Inscription</a>
+
+    <header>
+        <div id="voletgauche">
+          <div id="compagnons"><a href="../animal/show">
+            <div><img class="icone" id="imagecompagnons" src="../static/images/Compagnons_violet.svg" th:src="@{/images/Compagnons_violet.svg}" alt="Icône compagnons"></div>
+            <div class="selectionne textevg">Compagnons</div>
+            <div class="rectangleselect"></div>
+            </a></div>          
+          <div id="alimentation"><a href="../croquette/show">
+            <div><img class="icone" id="imagealimentation" src="../static/images/Alimentation_gris.svg" th:src="@{/images/Alimentation_gris.svg}" alt="Icône alimentation"></div>
+            <div class="textevg">Alimentation</div>
+          </a></div>
         </div>
-        <table>
-            <tr><th>Nom</th><th>Espèce</th><th>Sexe</th><th>Date de naissance</th><th>Taille (cm)</th><th>NEC</th></tr>
-            <tr><td>[[${animal.nom}]]</td><td th:text="${#strings.toLowerCase(animal.espece)}"></td><td th:text="${animal.est_Male} ? 'Mâle' : 'Femelle'"></td><td th:text="${#temporals.format(animal.date_naiss, 'dd/MM/yyyy')}"></td><td>[[${animal.taille_cm}]]</td><td>[[${animal.nec}]]</td></tr>
-        </table>
-        <figure>
+
+        <div id="voletcentral">
+          <img id="logoyucroq" src="../static/images/Logo.svg" th:src="@{/images/Logo.svg}" alt="Logo Yucroq">
+        </div>
+
+        <div id="voletdroit">
+          <div id="utilisateur">
+            <div id="utilisateurco">Nom à récupérer</div>
+            <div id="deconnexion"><a th:href="@{/}" href="../static/index.html">Déconnexion</a></div>
+          </div>
+          <div><img class="icone" id="imageutilisateur" src="../static/images/Utilisateur_violet.svg" th:src="@{/images/Utilisateur_violet.svg}" alt="Icône utilisateur"></div>
+        </div>   
+    </header>
+
+    <body>
+        <section> 
+            <h1>Informations de [[${animal.nom}]]</h1>
+            <table class="liste">
+                <tr>
+                    <td>Nom</td>
+                    <td>[[${animal.nom}]]</td>
+                </tr>
+                <tr>
+                    <td>Espèce</td>
+                    <td th:text="${#strings.capitalize(#strings.toLowerCase(animal.espece))}"></td>
+                </tr>
+                <tr>
+                    <td>Genre</td>
+                    <td th:text="${animal.est_Male} ? 'Mâle' : 'Femelle'"></td>
+                </tr>
+                <tr>
+                    <td>Date de naissance</td>
+                    <td th:text="${#temporals.format(animal.date_naiss, 'dd/MM/yyyy')}">
+                </tr>
+                <tr>
+                    <td>Taille</td>
+                    <td>[[${animal.taille_cm + " cm"}]]</td>
+                </tr>
+                <tr>
+                    <td>Note d'état corporel</td>
+                    <td>[[${animal.nec + "/9"}]]</td>
+                </tr>
+            </table>
             
-        </figure>
-        <a th:href="@{/ration/add(id=${animal.id_animal})}" href='formulaireRation.html'>Ajouter une ration</a>
-        <br/>
-        <a th:href="@{/animal/show}" href="afficheAnimaux.html">Retour aux animaux</a>
-        <footer>
-            <a>Mentions légales</a>
-            <a>Contacts</a>
-        </footer>
+            <h1>Suivi de [[${animal.nom}]]</h1>
+            <h2>Courbe de poids</h2>
+            <p>À ajouter !</p>
+            
+            <div class="ajout">
+            <a th:href="@{/ration/add(id=${animal.id_animal})}" href='formulaireRation.html'>
+            <div class="plus">+</div>
+            <div class="texteajout">Ajouter une pesée (mauvais lien)</div>
+            </a>
+        </div>
+            
+            
+            <h1>Rations de [[${animal.nom}]]</h1>
+            <h2>Ration en cours</h2>
+            <p>À ajouter aujourd'hui</p>        
+        <div class="ajout">
+            <a th:href="@{/ration/add(id=${animal.id_animal})}" href='formulaireRation.html'>
+            <div class="plus">+</div>
+            <div class="texteajout">Ajouter une ration</div>
+            </a>
+        </div>
+        
+        
+        <h4><a th:href="@{/animal/show}" href="afficheAnimaux.html">Retour aux compagnons</a></h4>
+        </section>
     </body>
+    
+    <footer>
+        <a>Mentions légales</a>
+        <a>Contacts</a>
+    </footer>
 </html>
