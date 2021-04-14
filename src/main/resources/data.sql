@@ -33,4 +33,5 @@ INSERT INTO Suivi_Poids(id_suivi, date_suivi, poids_kg, id_animal) VALUES
 
 INSERT INTO Ration(id_ration, quantite, date_debut, date_fin, id_animal, id_croq) VALUES
     (1, 200, '2012-03-01', '2012-03-03', 1, 1),
+    (3, 230, '2012-03-03', null, 1, 1),
     (2, 180, '2012-03-03', '2012-03-05', 2, 1);
