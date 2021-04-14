@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Page utilisateur</title>
+          <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet" />
+    </head>
+
+    <body>
+
+        <div class="container">
+
+            <form method="POST" th:object="${userForm}" th:action="@{/registration}" class="form-signin">
+                <h2 class="form-signin-heading">Create your account</h2>
+                <div class='form-group' th:classappend="${#fields.hasErrors('username') ? 'has-error' : ''}">
+                    <input type="text" th:field="*{username}" class="form-control" placeholder="User name"
+                           autofocus="true"/>
+                    <ul><li th:errors="*{username}">Erreur sur le nom</li></ul>
+                </div>
+                
+                <div class='form-group' th:classappend="${#fields.hasErrors('email') ? 'has-error' : ''}">
+                    <input type="email" th:field="*{email}" class="form-control" placeholder="Nom.Prenom@somewhere.com"/>
+                    <ul><li th:errors="*{email}">Erreur sur le mail</li></ul>
+                </div>
+
+                <div class='form-group' th:classappend="${#fields.hasErrors('password') ? 'has-error' : ''}">
+                    <input type="password"  th:field="*{password}"  class="form-control" placeholder="Password" />
+                    <ul><li th:errors="*{password}">Erreur sur le password</li></ul>
+                </div>
+
+                <div class='form-group' th:classappend="${#fields.hasErrors('passwordConfirm') ? 'has-error' : ''}">
+                    <input type="password"  th:field="*{passwordConfirm}"  class="form-control"
+                           placeholder="Confirm your password" />
+                    <ul><li th:errors="*{passwordConfirm}">Erreur confirmation password</li></ul>
+                </div>
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+            </form>
+
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script th:src="@{/js/bootstrap.min.js}" src="../static/js/bootstrap.min.js"></script>
+    </body>
+</html>
