@@ -1,6 +1,6 @@
 package yucroq.controller;
 
-import yucroq.entity.Utilisateur;
+import yucroq.entity.Proprietaire;
 import yucroq.service.SecurityService;
 import yucroq.service.UserService;
 import yucroq.validator.UserValidator;
@@ -29,13 +29,13 @@ public class LoginAndRegistrationController {
 
     @GetMapping("/registration")
     public String registration(Model model) {
-        model.addAttribute("userForm", new Utilisateur());
+        model.addAttribute("userForm", new Proprietaire());
 
         return "registration";
     }
 
     @PostMapping("/registration")
-    public String registration(@Valid @ModelAttribute("userForm") Utilisateur userForm, BindingResult bindingResult) {
+    public String registration(@Valid @ModelAttribute("userForm") Proprietaire userForm, BindingResult bindingResult) {
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
@@ -46,7 +46,7 @@ public class LoginAndRegistrationController {
 
         securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
 
-        return "redirect:/welcome";
+        return "redirect:/animal/show";
     }
 
     @GetMapping("/login")
@@ -62,6 +62,6 @@ public class LoginAndRegistrationController {
 
     @GetMapping({"/", "/welcome"})
     public String welcome(Model model) {
-        return "welcome";
+        return "login";
     }
 }

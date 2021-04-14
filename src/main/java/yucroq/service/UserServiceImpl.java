@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import yucroq.dao.RoleRepository;
 import yucroq.dao.UserRepository;
 import yucroq.entity.Role;
-import yucroq.entity.Utilisateur;
+import yucroq.entity.Proprietaire;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,6 +23,8 @@ public class UserServiceImpl implements UserService {
     private String adminPassword;
     @Value("${admin.email}")
     private String adminEmail;
+    @Value("${admin.prenom}")
+    private String adminPrenom;
 
     public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
@@ -31,7 +33,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void save(Utilisateur user) {
+    public void save(Proprietaire user) {
         // Par défaut on attribue le rôle 'ROLE_USER' aux nouveaux utilisateurs
         // Ce rôle est créé automatiquement au lancement de l'application
         Role normal = roleRepository.findByName("ROLE_USER").orElseThrow();
@@ -42,7 +44,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Utilisateur findByUserName(String username) {
+    public Proprietaire findByUserName(String username) {
         return userRepository.findByUsername(username);
     }
 
@@ -54,7 +56,7 @@ public class UserServiceImpl implements UserService {
             Role roleUser = new Role("ROLE_USER");
             roleRepository.save(roleAdmin);
             roleRepository.save(roleUser);
-            Utilisateur firstAdmin = new Utilisateur(adminLogin, adminPassword, adminEmail);
+            Proprietaire firstAdmin = new Proprietaire(adminLogin, adminPassword, adminEmail, adminPrenom);
             // On crypte le mot de passe avant de l'enregistrer
             firstAdmin.setPassword(bCryptPasswordEncoder.encode(firstAdmin.getPassword()));
             firstAdmin.getRoles().add(roleAdmin);

@@ -2,7 +2,7 @@ package yucroq.service;
 
 import lombok.extern.slf4j.Slf4j;
 import yucroq.dao.UserRepository;
-import yucroq.entity.Utilisateur;
+import yucroq.entity.Proprietaire;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,7 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) {
-        Utilisateur user = userRepository.findByUsername(username);
+        Proprietaire user = userRepository.findByUsername(username);
         if (user == null) throw new UsernameNotFoundException(username);
 
         return user;

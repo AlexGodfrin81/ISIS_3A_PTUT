@@ -1,6 +1,6 @@
 package yucroq.validator;
 
-import yucroq.entity.Utilisateur;
+import yucroq.entity.Proprietaire;
 import yucroq.service.UserService;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -17,12 +17,12 @@ public class UserValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> aClass) {
-        return Utilisateur.class.equals(aClass);
+        return Proprietaire.class.equals(aClass);
     }
 
     @Override
     public void validate(Object o, Errors errors) {
-        Utilisateur user = (Utilisateur) o;
+        Proprietaire user = (Proprietaire) o;
 
 
         if (userService.findByUserName(user.getUsername()) != null) {

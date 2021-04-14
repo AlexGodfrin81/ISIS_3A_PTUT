@@ -20,7 +20,7 @@ import java.util.List;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @ToString
-public class Utilisateur implements UserDetails {
+public class Proprietaire implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,6 +41,21 @@ public class Utilisateur implements UserDetails {
 
     @Transient // Non enregistré dans la BD
     private String passwordConfirm;
+    
+   private String nom;
+    
+    @NonNull
+    private String prenom;
+    
+    private String tel;
+
+    //-== Mapping ==-
+
+    @OneToMany(mappedBy = "proprio")
+    @NonNull
+    private List<Animal> mesAnimaux = new LinkedList<>(); 
+
+    //-=============-
 
     @ManyToMany(fetch = FetchType.EAGER)
     @Setter(AccessLevel.NONE)

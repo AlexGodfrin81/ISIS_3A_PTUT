@@ -1,11 +1,11 @@
 package yucroq.service;
 
-import yucroq.entity.Utilisateur;
+import yucroq.entity.Proprietaire;
 
 public interface UserService {
     void initializeRolesAndAdmin();
 
-    void save(Utilisateur user);
+    void save(Proprietaire user);
 
-    Utilisateur findByUserName(String username);
+    Proprietaire findByUserName(String username);
 }
