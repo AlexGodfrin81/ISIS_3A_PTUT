@@ -39,7 +39,7 @@ function adapt_race(){
                                     let commentaireNEC = "";
                                     switch (valeurNEC) {
                                         case "1":
-                                            commentaireNEC = "Extrêmement maigre";
+                                            commentaireNEC = "Très maigre";
                                             break;
                                         case "2":
                                             commentaireNEC = "Maigre";
