@@ -18,6 +18,12 @@ public class AdminController {
     public String montreLaPageAdmin(@AuthenticationPrincipal Proprietaire user,  // Les infos de l'utilisateur connecté
                                     Model model) {
         log.info("L'administrateur id: {}, email: {} accède à sa page", user.getId_proprio(), user.getEmail());
+<<<<<<< HEAD
         return "detailAdmin"; // On affiche la vue 'detailAdmin.html'
     }
 }
+=======
+        return "pageAdmin"; // On affiche la vue 'pageAdmin.html'
+    }
+}
+>>>>>>> 7747a35da5b0022b46dbe169213f503ad2c49a97

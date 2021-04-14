@@ -19,6 +19,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Entity
+<<<<<<< HEAD
+=======
+// Lombok
+>>>>>>> 7747a35da5b0022b46dbe169213f503ad2c49a97
 @Getter
 @Setter
 @NoArgsConstructor
@@ -30,6 +34,10 @@ public class Proprietaire implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
     private Integer id_proprio;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7747a35da5b0022b46dbe169213f503ad2c49a97
     @NonNull // Lombok
     // Contraintes de taille
     @Size(min = 6, max = 32)
@@ -42,12 +50,19 @@ public class Proprietaire implements UserDetails {
     @Email // Doit avoir la forme d'une adresse email
     private String email;
 
+<<<<<<< HEAD
     @NonNull
+=======
+    @Transient // Non enregistré dans la BD
+    private String passwordConfirm;
+
+>>>>>>> 7747a35da5b0022b46dbe169213f503ad2c49a97
     private String nom;
 
     @NonNull
     private String prenom;
 
+<<<<<<< HEAD
     @NonNull
     private String tel;
 
@@ -83,8 +98,51 @@ public class Proprietaire implements UserDetails {
         return true;
     }
 
+=======
+    private String tel;
+
+    //-== Mapping ==-
+    @OneToMany(mappedBy = "proprio")
+    @NonNull
+    private List<Animal> mesAnimaux = new LinkedList<>();
+
+    //-=============-
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Setter(AccessLevel.NONE)
+    private List<Role> roles = new LinkedList<>();
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+
+        for (Role role : roles) {
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
+        return authorities;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+>>>>>>> 7747a35da5b0022b46dbe169213f503ad2c49a97
     @Override
     public boolean isEnabled() {
         return true;
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7747a35da5b0022b46dbe169213f503ad2c49a97
 }

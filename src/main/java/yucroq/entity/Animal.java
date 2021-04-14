@@ -53,7 +53,7 @@ public class Animal {
     private Integer taille_cm;
     
     @NonNull
-    private Integer nec;
+    private Integer nec; // de 1 à 9
     
     //-== Mapping ==-
 

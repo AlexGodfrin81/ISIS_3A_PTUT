@@ -391,6 +391,10 @@ input {
     font-size: 1em;
 }
 
+input[type="range"] {
+    width: 100%;
+}
+    
 /*
 input[type="range"] {
     -webkit-appearance: none; 
@@ -445,7 +449,7 @@ Mobile
 
 @media (prefers-color-scheme: dark) {
     header {
-        background-color: #252525;
+        background-color: #101010;
     }
 
     body {
@@ -466,5 +470,10 @@ Mobile
 
     td:first-child {
         color:#d2aaf8;
-}
+    }
+
+    li {
+        background-color: #202020;
+        color: white;
+    }
 }

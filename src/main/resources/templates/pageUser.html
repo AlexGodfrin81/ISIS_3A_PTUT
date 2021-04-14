@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Page Utilisateur</title>
+        <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet" />
+    </head>
+
+    <body>
+        <div class="container">
+            <h2 class="form-heading">Page Utilisateur</h2>
+            <div>Votre email est : <span sec:authentication="principal.email">ab.cd@xyz.com</span></div>
+            <div>Cette page est
+                <a href="pageAdmin.html" th:href="@{/admin/pageAdmin}">réservée aux administrateurs</a>
+            </div>
+            <a href="welcome.html" th:href="@{/}">Back to Home Page</a>
+        </div>
+        <script th:src="@{/js/bootstrap.min.js}" src="../static/js/bootstrap.min.js"></script>
+    </body>
+</html>

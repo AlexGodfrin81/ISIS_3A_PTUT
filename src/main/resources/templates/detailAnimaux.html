@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>TODO supply a title</title>
+        <title>Détails sur [[${animal.nom}]]</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="../css/style.css"/>
@@ -67,6 +67,10 @@ and open the template in the editor.
                     <td>Note d'état corporel</td>
                     <td>[[${animal.nec + "/9"}]]</td>
                 </tr>
+                <tr>
+                    <td>Poids idéal</td>
+                    <td th:text="${animal.poids_ideal() + ' kg'}">Poids</td>
+                </tr>
             </table>
             
             <h1>Suivi de [[${animal.nom}]]</h1>
@@ -81,9 +85,44 @@ and open the template in the editor.
         </div>
             
             
-            <h1>Rations de [[${animal.nom}]]</h1>
-            <h2>Ration en cours</h2>
-            <p>À ajouter aujourd'hui</p>        
+            <h1>Rations de Hilda</h1>
+            
+            <h2>Ration actuelle</h2>
+            <div th:each="r: ${rations}" th:if="${r.datefin==null}">
+                <h3 th:text="${r.marquecroq + ' ' + r.nomcroq}">Marque nom</h3>
+                <table class="liste">
+                    <tr>
+                        <td>Marque</td>
+                        <td th:text="${r.marquecroq}">Marque</td>
+                    </tr>
+                    <tr>
+                        <td>Nom</td>
+                        <td th:text="${r.nomcroq}">Nom</td>
+                    </tr>
+                    <tr>
+                        <td>Commencée le</td>
+                        <td th:text="${r.datedebut}">Début</td>
+                    </tr>
+                    <tr>
+                        <td>Quantité</td>
+                        <td th:text="${r.quantiteration + ' g/j'}">Quantité</td>
+                    </tr>
+                    <tr>
+                        <td>Densité énergétique</td>
+                        <td>Quantité (pas fini)</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <h2>Anciennes rations</h2>
+            <table class="form">
+                <tr th:each="r: ${rations}" th:if="${r.datefin!=null}">
+                    <td th:text="${r.marquecroq + ' ' + r.nomcroq}">Marque</td>
+                    <td th:text="${r.quantiteration + ' g/j du ' + r.datedebut + ' au ' + r.datefin}">Quantité</td>
+                </tr>
+            </table>
+            
+                 
         <div class="ajout">
             <a th:href="@{/ration/add(id=${animal.id_animal})}" href='formulaireRation.html'>
             <div class="plus">+</div>
