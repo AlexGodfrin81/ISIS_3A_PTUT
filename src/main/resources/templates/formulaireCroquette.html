@@ -86,9 +86,29 @@
                             <td><input id="phosphore" type="number" step="0.1" th:field="*{phosphore}"style="margin-left:-40px;"/><span class="unite">%</span></td>
                         </tr>                                
                 </table> 
-                    <input type="submit" value="Enregistrer" />
+                    <input id="enregistrement" type="submit" value="Enregistrer" disabled/>
                     <input type="reset" value="Réinitialiser" />
-		</form>		                
+		</form>	
+                
+                <script>
+                    
+                    document.getElementById("enregistrement").disabled=true;
+                    
+                    document.getElementById("marque").addEventListener("input", deblocagevalidation);
+                    document.getElementById("nom").addEventListener("input", deblocagevalidation);
+                    
+                    function deblocagevalidation() {
+                        if (document.getElementById("nom").value != "" && document.getElementById("marque").value != "") {
+                            document.getElementById("enregistrement").disabled=false;
+                        }
+                        else {
+                            document.getElementById("enregistrement").disabled=true;
+                        }
+                    }
+                        </script>
+                
+                
+                
                     <h4><a th:href="@{/}" href="../static/index.html">Retour au menu</a></h4>
 	</section>
     </body>

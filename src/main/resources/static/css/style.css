@@ -242,13 +242,13 @@ button, input[type="submit"], input[type="reset"] {
     text-align: center;
 }
 
-button:hover {
+button:hover, input[type="submit"] {
     cursor: pointer;
 }
 
-button:disabled {
-    cursor: pointer;
+input[type="submit"]:disabled  {
     background-color: grey;
+    cursor: not-allowed;
 }
 
 select{
@@ -259,6 +259,7 @@ select{
 a:hover{
     cursor: pointer;
 }
+
 p {
     background-color: white;
     padding: 10px 15px 10px 15px;
