@@ -25,7 +25,7 @@ public class Proprietaire implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
-    private Integer id;
+    private Integer id_proprio;
 
     @NonNull // Lombok
     // Contraintes de taille
@@ -41,22 +41,20 @@ public class Proprietaire implements UserDetails {
 
     @Transient // Non enregistré dans la BD
     private String passwordConfirm;
-    
-   private String nom;
-    
+
+    private String nom;
+
     @NonNull
     private String prenom;
-    
+
     private String tel;
 
     //-== Mapping ==-
-
     @OneToMany(mappedBy = "proprio")
     @NonNull
-    private List<Animal> mesAnimaux = new LinkedList<>(); 
+    private List<Animal> mesAnimaux = new LinkedList<>();
 
     //-=============-
-
     @ManyToMany(fetch = FetchType.EAGER)
     @Setter(AccessLevel.NONE)
     private List<Role> roles = new LinkedList<>();
@@ -70,7 +68,6 @@ public class Proprietaire implements UserDetails {
         }
         return authorities;
     }
-
 
     @Override
     public boolean isAccountNonExpired() {

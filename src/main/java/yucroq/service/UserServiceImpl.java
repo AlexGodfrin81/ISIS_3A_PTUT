@@ -17,8 +17,8 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     // Login et Password de l'administrateur son définis dans 'application.properties'
-    @Value("${admin.login}")
-    private String adminLogin;
+    @Value("${admin.username}")
+    private String adminUsername;
     @Value("${admin.password}")
     private String adminPassword;
     @Value("${admin.email}")
@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
             Role roleUser = new Role("ROLE_USER");
             roleRepository.save(roleAdmin);
             roleRepository.save(roleUser);
-            Proprietaire firstAdmin = new Proprietaire(adminLogin, adminPassword, adminEmail, adminPrenom);
+            Proprietaire firstAdmin = new Proprietaire(adminUsername, adminPassword, adminEmail, adminPrenom);
             // On crypte le mot de passe avant de l'enregistrer
             firstAdmin.setPassword(bCryptPasswordEncoder.encode(firstAdmin.getPassword()));
             firstAdmin.getRoles().add(roleAdmin);

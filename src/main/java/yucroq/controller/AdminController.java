@@ -17,7 +17,7 @@ public class AdminController {
     @GetMapping(path = "pageAdmin")
     public String montreLaPageAdmin(@AuthenticationPrincipal Proprietaire user,  // Les infos de l'utilisateur connecté
                                     Model model) {
-        log.info("L'administrateur id: {}, email: {} accède à sa page", user.getId(), user.getEmail());
+        log.info("L'administrateur id: {}, email: {} accède à sa page", user.getId_proprio(), user.getEmail());
         return "pageAdmin"; // On affiche la vue 'pageAdmin.html'
     }
 }

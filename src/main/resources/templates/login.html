@@ -4,15 +4,15 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Log in with your account</title>
+        <title>Connexion à Yucroq</title>
         <link rel="stylesheet" type="text/css" href="../css/style.css"/>
         <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet" />
     </head>
 
     <body>
         <section>
-        <h2>Connexion</h2>
-        <form method="POST" th:action="@{/login}" action="#" >
+            <h2>Connexion</h2>
+            <form method="POST" th:action="@{/login}" action="#" >
 
                 <span th:text="${message}">Message</span>
                 <table class="form">
@@ -26,14 +26,17 @@
                     </tr>
 
                 </table>
+                <span th:text="${error}">Message d'erreur</span>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                 <button type="submit">Connexion</button>
 
-                <h4><a th:href="@{/registration}" href="registration.html">Créer un compte</a></h4>
-                <a href="mdp_oublie.html">Mot de passe oublié</a>
-            <br>
-                            <a href="afficheCroquettes.html">Accès caché</a>
 
             </form>
+
+            <h4><a th:href="@{/registration}" href="registration.html">Créer un compte</a></h4>
+            <a href="mdp_oublie.html">Mot de passe oublié</a><br>
+            <a th:href="@{/croquette/show}" href="./afficheCroquettes.html">Accès caché</a>
+
         </section>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

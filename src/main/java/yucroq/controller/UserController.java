@@ -18,7 +18,7 @@ public class UserController {
     public String montrePageUtilisateur(
         @AuthenticationPrincipal Proprietaire user,  // Les infos de l'utilisateur connecté
         Model model) {
-        log.info("L'utilisateur id: {}, email: {} accède à sa page", user.getId(), user.getEmail());
+        log.info("L'utilisateur id: {}, email: {} accède à sa page", user.getId_proprio(), user.getEmail());
         return "pageUser"; // On affiche la vue 'pageUser.html'
     }
 }
