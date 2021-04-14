@@ -57,6 +57,12 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+                <!-- https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity4 -->
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+            <version>3.0.4.RELEASE</version>
+        </dependency>
 		<dependency>
 			<!-- Contraintes de validation -->
 			<groupId>org.springframework.boot</groupId>
@@ -68,6 +74,13 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+                <dependency>
+			<!-- Driver JDBC Postgres pour déploiement sur heroku -->
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+                <!-- Tests unitaires -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -99,6 +112,10 @@
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
 		</dependency>
+                <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
 	 <dependency>
 	  <groupId>com.github.spullara.mustache.java</groupId>
 	  <artifactId>mustache-maven-plugin</artifactId>
