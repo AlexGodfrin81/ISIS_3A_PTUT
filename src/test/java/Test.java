@@ -26,13 +26,13 @@ public class Test {
     private CroquetteRepository croquetteDAO;
     
     //@Test
-    public void testMethodeDensiteEnergetique(){
+    /*public void testMethodeDensiteEnergetique(){
         Croquette croq = croquetteDAO.findById(1).orElseThrow();
         log.info("On calcule la densite énergetique de la croquette {} en java", croq.getNom());
         assertEquals(34.544f, croq.densite_Energetique(), 0.001f, 
                 "La densite energetique de ces croquettes est de 34.544f" );
         
-    }
+    }*/
     
     
 }
