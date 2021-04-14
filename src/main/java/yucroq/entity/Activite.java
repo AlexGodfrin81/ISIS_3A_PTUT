@@ -31,7 +31,7 @@ public class Activite {
     private String nom;
     
     @NonNull
-    private float k2;
+    private float k2; // entre 0 et 1
     
     @OneToMany(mappedBy = "monActivite")
     private List<Animal> animauxActivite = new LinkedList<>();

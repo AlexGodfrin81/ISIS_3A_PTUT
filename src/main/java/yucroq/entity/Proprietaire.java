@@ -39,7 +39,7 @@ public class Proprietaire {
     
     @Column(unique=true)
     @NonNull
-    private String mail;
+    private String email;
 
     //-== Mapping ==-
 
