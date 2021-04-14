@@ -43,7 +43,7 @@ public class Croquette {
     private Espece espece;
     
     @NonNull
-    private float humidite;
+    private float humidite; // g/kg
     
     @NonNull
     private float proteines_brutes;
@@ -73,12 +73,13 @@ public class Croquette {
     
     public float densite_Energetique(){
         
-        //if(matieres_minerales == null){
-        //    matieres_minerales=calcium+phosphore;
-        //}
+        if(matieres_minerales == 0.0f){
+           matieres_minerales=calcium+phosphore;
+        }
         float ENA = 100 - (proteines_brutes + matieres_grasses + matieres_minerales + humidite + cellulose);
+        System.out.println("ENA:" + ENA);
         float EB = (float) ((10*5.7*this.proteines_brutes)+(10*9.4*this.matieres_grasses)+(10*4.1*(this.cellulose+ENA))); // EB --> Energie Brute MANQUE ENA
-        
+        System.out.println("EB:"+EB);
         float dE = 1;        
         switch(this.espece){
             case CHIEN:
@@ -88,8 +89,9 @@ public class Croquette {
                 dE=(float) (87.9-(0.88 * (cellulose * (100 - humidite)/100))); // digestibilité de l'énergie Chat
                 break;
         }
+        System.out.println("dE:"+dE);
         float Ed=EB*(dE/100);//Energie digestive
-        
+        System.out.println("Ed:"+Ed);
         float EM=1;// Energie Metabolisable/Densité Energetique
         switch(this.espece){
             case CHIEN:
