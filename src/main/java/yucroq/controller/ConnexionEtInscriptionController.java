@@ -40,7 +40,7 @@ public class ConnexionEtInscriptionController {
     }
 
     @PostMapping("/inscription")
-    public String registration(@Valid @ModelAttribute("userForm") Proprietaire userForm, BindingResult bindingResult) {
+    public String inscription(@Valid @ModelAttribute("userForm") Proprietaire userForm, BindingResult bindingResult) {
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
@@ -55,7 +55,7 @@ public class ConnexionEtInscriptionController {
     }
 
     @GetMapping("/connexion")
-    public String login(Model model, String error, String logout) {
+    public String connexion(Model model, String error, String logout) {
         if (error != null)
             model.addAttribute("error", "Nom d'utilisateur ou mot de passe incorrect.");
 
@@ -67,7 +67,7 @@ public class ConnexionEtInscriptionController {
 
     //première page 
     @GetMapping({"/", "/accueil"})
-    public String welcome(Model model) {
-        return "accueil";
+    public String accueil(Model model) {
+        return "connexion";
     }
 }

@@ -5,35 +5,37 @@
         <title>Inscription</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" type="text/css" href="../css/style.css"/>
     </head>
     <body>
         <h1>Inscrivez-vous sur Yucroq</h1>
         <form method="POST" th:object="${userForm}" th:action="@{/inscription}">
-            <div th:classappend="${#fields.hasErrors('username') ? 'has-error' : ''}">
+<!--            <div th:classappend="${#fields.hasErrors('username') ? 'has-error' : ''}">-->
                 <label for="userInscription">Nom d'utilisateur :</label>
-                <input id="userInscription" type="text" th:field="*{username}" placeholder="Nom d'utilisateur" autofocus="autofocus" required="required"/>
+                <input id="userInscription" type="text" th:field="*{username}" placeholder="Nom d'utilisateur" autofocus="autofocus" required="required" autocomplete="username"/>
                 <ul><li th:errors="*{username}">Erreur sur le pseudo</li></ul>
-            </div>
-            
-            <div th:classappend="${#fields.hasErrors('email') ? 'has-error' : ''}">
+<!--            </div>-->
+
+<!--            <div th:classappend="${#fields.hasErrors('email') ? 'has-error' : ''}">-->
                 <label for="mailInscription">Adresse mail :</label>
-                <input id="mailInscription" type="email" th:field="*{email}" placeholder="Adresse mail" required="required"/>
+                <input id="mailInscription" type="email" th:field="*{email}" placeholder="Adresse mail" required="required" autocomplete="email"/>
                 <ul><li th:errors="*{email}">Erreur sur le mail</li></ul>
-            </div>
+<!--            </div>
 
-            <div th:classappend="${#fields.hasErrors('password') ? 'has-error' : ''}">
+            <div th:classappend="${#fields.hasErrors('password') ? 'has-error' : ''}">-->
                 <label for="mdpInscription">Mot de passe :</label>
-                <input id="mdpInscription" type="password"  th:field="*{password}"  placeholder="Mot de passe" required="required"/>
+                <input id="mdpInscription" type="password"  th:field="*{password}"  placeholder="Mot de passe" required="required" autocomplete="new-password"/>
                 <ul><li th:errors="*{password}">Erreur sur le password</li></ul>
-            </div>
+<!--            </div>
 
-            <div th:classappend="${#fields.hasErrors('passwordConfirm') ? 'has-error' : ''}">
+            <div th:classappend="${#fields.hasErrors('passwordConfirm') ? 'has-error' : ''}">-->
                 <label for="mdp2Inscription">Confirmation du mot de passe :</label>
-                <input id="mdp2Inscription" type="password"  th:field="*{passwordConfirm}" placeholder="Confirmez votre mot de passe." required="required"/>
+                <input id="mdp2Inscription" type="password"  th:field="*{passwordConfirm}" placeholder="Confirmez votre mot de passe." required="required" autocomplete="new-password"/>
                 <ul><li th:errors="*{passwordConfirm}">Erreur dans la confirmation du mot de passe.</li></ul>
-            </div>
-            
+<!--            </div>-->
+
             <button type="submit">Confirmer</button>
         </form>
+<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
     </body>
 </html>

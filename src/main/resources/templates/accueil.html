@@ -9,27 +9,26 @@
     </head>
     <body>
         <div sec:authorize="isAnonymous()">
-            <h2>Bienvenue | <a th:href="@{/inscription}">Inscription</a></h2>
+            <h2>Bienvenue | <a th:href="@{/connexion}">Inscription</a></h2>
         </div>
         <!-- Pour les utilisateurs authentifiés -->
-        <div sec:authorize="isAuthenticated()">
-            <form id="logoutForm" method="POST" th:action="@{/logout}" action="#">
+        <!--<div sec:authorize="isAuthenticated()">
+            <!--<form id="logoutForm" method="POST" th:action="@{/logout}" action="#">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            </form>
+            </form>-->
 
-            <h2>Welcome <span th:text="${#authentication.name}">Untel</span>  | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+        <!--    <h2>Bienvenue <span th:text="${#authentication.name}">Untel</span>  | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
             <!-- Pour les utilisateurs qui ont le rôle 'ROLE_ADMIN' -->
-            <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <!--    <div sec:authorize="hasRole('ROLE_ADMIN')">
                 <h3>Vous êtes administrateur</h3>
                 <a href="#" th:href="@{/h2-console}">Console d'administration de la BD (JDBC URL: jdbc:h2:mem:testdb) - désactivé sur Heroku</a>
                 <a href="#" th:href="@{/admin/detailAdmin}">Page réservée aux admins</a>                
             </div>
             <!-- Pour les utilisateurs qui ont le rôle 'ROLE_USER' -->
-            <div sec:authorize="hasRole('ROLE_USER')">
+        <!--    <div sec:authorize="hasRole('ROLE_USER')">
                 <h3>Vous êtes un simple utilisateur !</h3>
                 <a href="#" th:href="@{/utilisateur/detailProprio}">Page réservée aux utilisateurs connectés</a>                
             </div>
-        </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script th:src="@{/js/bootstrap.min.js}" src="../static/js/bootstrap.min.js"></script>    </body>
+        </div>--->
+        </body>
 </html>

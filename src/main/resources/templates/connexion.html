@@ -12,47 +12,29 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
     </head>
     <body>
-        <div class="navbar">
-            <a>Yucroq + logo</a>
-            <a href="../static/index.html">Accueil</a>
-            <a href="animal.html">Animal</a>
-            <a href="conseils.html">Conseils</a>
-            <a href="dosage.html">Dosage</a>
-            <a href="connexion.html">Connexion ou Inscription</a>
-        </div>
-
-        <!-- <h1>Inscrivez-vous sur Yucroq</h1>
-       <form>
-            <label for="mail1">Adresse mail :</label>
-            <input id="mail1" type="email" required="required"/>
-            <label for="nom">Nom :</label>
-            <input id="nom" type="text" required="required"/>
-            <label for="mdp1">Mot de Passe :</label>
-            <input id="mdp1" type="password" required="required"/>
-            <label for="confirm_mdp">Confirmation du mot de passe :</label>
-            <input id="confirm_mdp" type="password" required="required"/>
-            <button>Confirmer</button>
-        </form>-->
-
-        <h1>Déjà inscrit ? Connexion :</h1>
-        <form method="POST" th:action="@{/login}" action="#" >
-            <label for="mail2">Adresse mail :</label>
-            <input id="mail2" type="email" required="required"/>
-            <label for="mdp2">Mot de passe :</label>
-            <input id="mdp2" type="password" required="required"/>
-            <button>Confirmer</button>
-            <a href="mdp_oublie.html">Mot de passe oublié</a>
+        <h1>Connexion</h1>
+        <form method="POST" th:action="@{/connexion}" action="#" >
             <div th:classappend="${#strings.isEmpty(error) ? 'has-error' : ''}">
                 <span th:text="${message}">Message</span>
                 <label for="pseudoConnexion">Nom d'utilisateur :</label>
-                <input name="username" type="text" placeholder="Nom d'utilisateur" autofocus="autofocus"/>
-                <input name="password" type="password" class="form-control" placeholder="Password"/>
+                <input id="pseudoConnexion" type="text" placeholder="Nom d'utilisateur" autofocus="autofocus" autocomplete="username"/>
+                <label for="mdpConnexion">Mot de passe :</label>
+                <input id="mdpConnexion" type="password" placeholder="Mot de passe" autocomplete="current-password"/>
                 <span th:text="${error}">Message d'erreur</span>
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-
                 <button type="submit">Connexion</button>
-                <h4 class="text-center"><a th:href="@{/registration}" href="registration.html">Create an account</a></h4>
+                <h4><a th:href="@{/inscription}" href="inscription.html">Créer un compte</a></h4>
+                <a href="mdp_oublie.html">Mot de passe oublié</a>
             </div>
         </form>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <!--                    <tr><th><span th:text="${message}">Message</span></th></tr>
+                    <tr><th><label for="pseudoConnexion">Nom d'utilisateur :</label></th></tr>
+                    <tr><th><input id="pseudoConnexion" type="text" placeholder="Nom d'utilisateur" autofocus="autofocus"/></th></tr>
+                    <tr><th><label for="mdpConnexion">Mot de passe :</label></th></tr>
+                    <tr><th><input id="mdpConnexion" type="password" placeholder="Mot de passe"/></th></tr>
+                    <tr><th><span th:text="${error}">Message d'erreur</span></th></tr>
+                    <tr><th><input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/></th></tr>
+                    <tr><th><button type="submit">Connexion</button></th></tr>-->
     </body>
 </html>

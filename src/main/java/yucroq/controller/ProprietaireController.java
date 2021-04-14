@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
-@RequestMapping(path = "/user")
+@RequestMapping(path = "/utilisateur")
 @Secured({"ROLE_ADMIN", "ROLE_USER"}) // Réservé aux utilisateurs qui ont le rôle 'ROLE_USER' ou 'ROLE_ADMIN'
 public class ProprietaireController {
-    @GetMapping(path = "pageUser")
+    @GetMapping(path = "detailProprio")
     public String montrePageUtilisateur(
         @AuthenticationPrincipal Proprietaire user,  // Les infos de l'utilisateur connecté
         Model model) {
         log.info("L'utilisateur id: {}, email: {} accède à sa page", user.getId_proprio(), user.getEmail());
-        return "detailProprio"; // On affiche la vue 'pageUser.html'
+        return "detailProprio"; // On affiche la vue 'detailProprio.html'
     }
 }
