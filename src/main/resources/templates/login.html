@@ -18,11 +18,11 @@
                 <table class="form">
                     <tr>
                         <td><label for="pseudoConnexion">Nom d'utilisateur :</label></td>
-                        <td><input id="pseudoConnexion" type="text" placeholder="Nom d'utilisateur" autofocus="autofocus" autocomplete="username"/></td>
+                        <td><input name="username" id="pseudoConnexion" type="text" placeholder="Nom d'utilisateur" autofocus="autofocus" autocomplete="username"/></td>
                     </tr>
                     <tr>
                         <td> <label for="mdpConnexion">Mot de passe :</label></td>
-                        <td><input id="mdpConnexion" type="password" placeholder="Mot de passe" autocomplete="current-password"/></td>
+                        <td><input id="mdpConnexion" name="password" type="password" placeholder="Mot de passe" autocomplete="current-password"/></td>
                     </tr>
 
                 </table>
@@ -35,11 +35,10 @@
 
             <h4><a th:href="@{/registration}" href="registration.html">Créer un compte</a></h4>
             <a href="mdp_oublie.html">Mot de passe oublié</a><br>
-            <a th:href="@{/croquette/show}" href="./afficheCroquettes.html">Accès caché</a>
+                <a th:href="@{/croquette/show}" href="./afficheCroquettes.html">Accès caché</a>
 
         </section>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script th:src="@{/js/bootstrap.min.js}" src="../static/js/bootstrap.min.js"></script>
     </body>
 </html>
