@@ -42,7 +42,7 @@ and open the template in the editor.
     <body>
         <section>
             <h1>Informations sur [[${croquette.marque + " " + croquette.nom}]]</h1>
-            <table class="form">
+            <table class="liste">
                 <tr>
                     <td>Marque</td>
                     <td>[[${croquette.marque}]]</td>
@@ -52,9 +52,21 @@ and open the template in the editor.
                     <td>[[${croquette.nom}]]</td>
                 </tr>
                 <tr>
-                    <td>Espèce</td>
+                    <td>Espèce cible</td>
                     <td th:text="${#strings.capitalize(#strings.toLowerCase(croquette.espece))}"></td>
                 </tr>
+            </table>
+            
+            <h2>Densité énergétique</h2>
+            <table class="form">
+                <tr class="emphase">
+                    <td>Énergie</td>
+                    <td>À calculer</td>
+                </tr>
+            </table>
+            
+            <h2>Composition</h2>
+            <table class="form">
                 <tr>
                     <td>Humidité</td>
                     <td>[[${croquette.humidite + " %"}]]</td>

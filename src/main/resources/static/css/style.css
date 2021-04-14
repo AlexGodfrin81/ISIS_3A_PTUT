@@ -185,7 +185,7 @@ section {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 20px;
+    padding-top: 5px;
     padding-bottom: 20px;
     min-height: calc(100vh - 160px);
 }
@@ -195,6 +195,7 @@ h1 {
     font-size: 25px;
     font-weight: 800;
     text-transform: uppercase;
+    margin-top: 40px;
 }
 
 h2 {
@@ -274,6 +275,7 @@ li {
     padding: 10px 15px 10px 15px;
     background-color: white;
     margin-bottom: 10px;
+    font-weight: 500;
 }
 
 table.liste {
@@ -285,6 +287,7 @@ table.liste {
     text-align: right;
     line-height: 2.5em;
     margin-bottom: 10px;
+    font-weight: 500;
 }
 
 td:first-child {
@@ -308,6 +311,7 @@ table.form {
     border-collapse: separate;
     border-spacing: 0px 8px;
     width: 100%;
+    font-weight: 500;
 }
 
 table.form td {
@@ -320,6 +324,11 @@ table.form td {
 table.form td:first-child {
     border-radius: 10px 0px 0px 10px;
     text-align: left;
+}
+
+tr.emphase > td {
+    background-color: #8500FF;
+    color: white;
 }
 
 /*
@@ -345,7 +354,7 @@ Bouton d'ajout
 
 .texteajout {
     text-align: center;
-    width: 80px;
+    width: 100px;
     margin-left: auto;
     margin-right: auto;
     font-weight: 600;
