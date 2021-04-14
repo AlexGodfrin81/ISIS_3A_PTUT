@@ -44,9 +44,12 @@
         </ul>
         <div>
         <!--/* On appelle l'URL 'add' du contôleur */-->
-        <button><a th:href="@{add}" href='formulaireAnimal.html'>Ajouter un animal</a></button>
-                <br/>
-                </div>
+        <div class="ajout">
+            <a th:href="@{add}" href='formulaireAnimal.html'>
+            <div class="plus">+</div>
+            <div class="texteajout">Ajouter un compagnon</div>
+            </a>
+        </div>
         </section>
     </body>
 

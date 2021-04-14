@@ -48,9 +48,13 @@ and open the template in the editor.
                 </li>         
             </ul>
         <!--/* On appelle l'URL 'add' du contôleur */-->
-        <button><a th:href="@{add}" href='formulaireCroquette.html'>Ajouter une croquette</a></button>
-                </div>
-                <button><a th:href="@{/}" href="../static/index.html">Retour au menu</a></button>
+        <div class="ajout">
+            <a th:href="@{add}" href='formulaireCroquette.html'>
+            <div class="plus">+</div>
+            <div class="texteajout">Ajouter un aliment</div>
+            </a>
+        </div>
+            <h4><a th:href="@{/}" href="../static/index.html">Retour au menu</a></h4>
         </section>
     </body>
 

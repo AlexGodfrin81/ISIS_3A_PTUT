@@ -222,6 +222,10 @@ h4 {
     margin-top: 20px;
 }
 
+.unite {
+    font-size: 0.9em;
+}
+
 button, input[type="submit"], input[type="reset"] {
     width: 100%;
     border: none;
@@ -237,12 +241,18 @@ button, input[type="submit"], input[type="reset"] {
     text-align: center;
 }
 
-input[type="reset"] {
+button:hover {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: pointer;
     background-color: grey;
 }
 
-button:hover {
-    cursor: pointer;
+select{
+    font-size: 1em;
+    font-family: Poppins;
 }
 
 a:hover{
@@ -310,6 +320,37 @@ table.form td {
 table.form td:first-child {
     border-radius: 10px 0px 0px 10px;
     text-align: left;
+}
+
+/*
+Bouton d'ajout
+*/
+.plus {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding-top: 2px;
+    background-color: #8500FF;
+    color: white;
+    width: 50px;
+    height: 50px;
+    font-size: 2.5em;
+    text-align: center;
+    align-items: center;
+    border-radius: 30px;
+    border: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.texteajout {
+    text-align: center;
+    width: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 600;
+    font-size: 1.1em;
+    line-height: 1.4;
 }
 
 /*

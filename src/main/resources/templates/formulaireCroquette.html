@@ -37,51 +37,59 @@
     
     <body>
         <section>
-		<h1>Ajouter une Croquette</h1>
+		<h1>Ajouter un aliment</h1>
 		<!--/* on revient au contrôleur, avec la méthode POST */-->
 		<!--/* th:object définit quel est l'objet édité par ce formulaire */-->
 		<form th:object="${croquette}" method="POST" th:action="@{/croquette/save}">
-			<div class="column">
-				<label for="nom">Nom :</label>
-				<input type="text" th:field="*{nom}" placeholder="Nom de la croquette"/>
-                                <br/>
-                                <label for="marque">Marque :</label>
-				<input type="text" th:field="*{marque}" placeholder="Marque de la croquette"/>
-                                <br/>
-                                <label for="espece">Espèce :</label>
-				<select th:field="*{espece}">
+                    <table class="form">
+                        <tr>
+                            <td><label for="marque">Marque</label></td>
+                            <td><input id="marque" type="text" th:field="*{marque}" placeholder="Marque"/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="nom">Nom</label></td>
+                            <td><input id="nom" type="text" th:field="*{nom}" placeholder="Nom"/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="espece">Espèce cible</label></td>
+                            <td><select id="espece" th:field="*{espece}">
                                     <option th:value="CHIEN" th:text="Chien"></option>
                                     <option th:value="CHAT" th:text="Chat"></option>
-                                </select>
-                                <br/>       
-                                <label for="humidite">Humidité :</label>
-                                <input type="number" step="0.1" th:field="*{humidite}"/>
-                                <br/>
-                                <label for="proteines_brutes">Proteines brutes :</label>
-                                <input type="number" step="0.1" th:field="*{proteines_brutes}"/>
-                                <label for="matieres_grasses">Matières grasses :</label>
-                                <input type="number" step="0.1" th:field="*{matieres_grasses}"/>
-                                <br/>
-                                <label for="cellulose">Cellulose :</label>
-                                <input type="number" step="0.1" th:field="*{cellulose}"/>
-                                <br/>
-                                <label for="matieres_minerales">Matières minerales :</label>
-                                <input type="number" step="0.1" th:field="*{matieres_minerales}"/>
-                                <br/>
-                                <label for="calcium">Calcium :</label>
-                                <input type="number" step="0.1" th:field="*{calcium}"/>
-                                <br/>
-                                <label for="phosphore">Phosphore :</label>
-                                <input type="number" step="0.1" th:field="*{phosphore}"/>
-                          
-                                <hr/>
-				<input type="submit" value="Enregistrer" /> <input type="reset" value="Réinitialiser" />		
-			</div>
-                        
-		</form>		
-		<hr/>
-		<a th:href="@{/}" href="../static/index.html">Retour au menu</a>
-		<hr/>
+                                </select></td>
+                        </tr>
+                        <tr>
+                            <td><label for="humidite">Humidité</label></td>
+                            <td><input id="humidite" type="number" step="0.1" th:field="*{humidite}"style="margin-left:-40px;"/><span class="unite">%</span></td>
+                        </tr>
+                        <tr>
+                            <td><label for="proteines_brutes">Protéines brutes</label></td>
+                            <td><input id="proteines_brutes" type="number" step="0.1" th:field="*{proteines_brutes}"style="margin-left:-40px;"/><span class="unite">%</span></td>
+                        </tr>
+                        <tr>
+                            <td><label for="matieres_grasses">Matières grasses</label></td>
+                            <td><input id="matieres_grasses" type="number" step="0.1" th:field="*{matieres_grasses}"style="margin-left:-40px;"/><span class="unite">%</span></td>
+                        </tr>
+                        <tr>
+                            <td><label for="cellulose">Cellulose brute</label></td>
+                            <td><input id="cellulose" type="number" step="0.1" th:field="*{cellulose}" style="margin-left:-40px;"/><span class="unite">%</span></td>
+                        </tr>
+                        <tr>
+                            <td><label for="matieres_minerales">Matière minerale</label></td>
+                            <td><input id="matieres_minerales" type="number" step="0.1" th:field="*{matieres_minerales}"style="margin-left:-40px;"/><span class="unite">%</span></td>
+                        </tr>
+                        <tr>
+                            <td><label for="calcium">Calcium</label></td>
+                            <td><input id="calcium" type="number" step="0.1" th:field="*{calcium}"style="margin-left:-40px;"/><span class="unite">%</span></td>
+                        </tr>
+                        <tr>
+                            <td><label for="phosphore">Phosphore</label></td>
+                            <td><input id="phosphore" type="number" step="0.1" th:field="*{phosphore}"style="margin-left:-40px;"/><span class="unite">%</span></td>
+                        </tr>                                
+                </table> 
+                    <input type="submit" value="Enregistrer" />
+                    <input type="reset" value="Réinitialiser" />
+		</form>		                
+                    <h4><a th:href="@{/}" href="../static/index.html">Retour au menu</a></h4>
 	</section>
     </body>
     

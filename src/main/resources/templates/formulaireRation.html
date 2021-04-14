@@ -41,36 +41,47 @@ and open the template in the editor.
     
     <body>
         <section>
-        <h1>Ajouter une Ration</h1>
+        <h1>Ajouter une ration</h1>
         
         <form th:object="${ration}" method="POST" th:action="@{/ration/save}">
-            <div class="column">
-                <label for="quantite">Quantite (en grammes) :</label>
-                <input type="number" min="0" th:field="*{quantite}"/>
-                <br/>
-                <label for="date_debut">Date de début :</label>
-		<input type="date" th:field="*{date_debut}" th:value="*{date_debut}"/>
-                <br/>
-                <label for="date_debut">Date de fin :</label>
-		<input type="date" th:field="*{date_fin}" th:value="*{date_fin}"/>
+          <h2>Détails de la ration</h2>
+          <table class="form">
+            <tr>
+              <td><label for="mesCroqs">Aliment</label></td>
+              <td>
+                <select id="mesCroqs" name="mesCroqs">
+                  <option th:each="c : ${croquettes}" th:value="${c.id_croq}" th:text="${c.marque + ' ' + c.nom}" th:field="*{mesCroqs}"></option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td><label for="quantite">Quantité</label></td>
+              <td><input id="quantite" type="number" min="0" th:field="*{quantite}" style="margin-left:-40px;"/><span class="unite">g</span></td>
+            </tr>
+            <tr>
+              <td><label for="date_debut">Date de début</label></td>
+              <td><input id="date_debut" type="date" th:field="*{date_debut}" th:value="*{date_debut}"/></td>
+            </tr>
+            <tr>
+              <td><label for="date_fin">Date de fin</label></td>
+              <td><input id="date_fin" type="date" th:field="*{date_fin}" th:value="*{date_fin}"/></td>
+            </tr>
+            <tr>
+              <td><label for="consommateur">Compagnon</label></td>
+              <td>
+                <select id="consommateur" name="consommateur">
+                  <option th:value="${animal.id_animal}" th:text="${animal.nom}" th:field="*{consommateur}"></option>
+                </select>
+              </td>
+            </tr>
+          </table>
+
+          <input type="submit" value="Enregistrer" />
+          <input type="reset" value="Réinitialiser" />
                 
-            </div>
-            <div class="column">
-                <label for="consommateur">Animal concerné :</label>
-                <select name="consommateur">
-                    <option th:value="${animal.id_animal}" th:text="${animal.nom}" th:field="*{consommateur}"></option>
-                </select>
-                <label for="mesCroqs">Croquettes :</label>
-                <select name="mesCroqs">
-                    <option th:each="c : ${croquettes}" th:value="${c.id_croq}" th:text="${c.nom}" th:field="*{mesCroqs}"></option>
-                </select>
-            </div>
-            <hr/>
-                <input type="submit" value="Enregistrer" /> <input type="reset" value="Réinitialiser" />
+            
         </form>
-        <hr/>
-	<a th:href="@{/animal/show}" href="afficheAnimaux.html">Retour aux animaux</a>
-        <hr/>
+	<h4><a th:href="@{/animal/show}" href="afficheAnimaux.html">Retour aux compagnons</a></h4>
         
     </section>
     </body>
