@@ -391,6 +391,10 @@ input {
     font-size: 1em;
 }
 
+input[type="range"] {
+    width: 100%;
+}
+    
 /*
 input[type="range"] {
     -webkit-appearance: none; 

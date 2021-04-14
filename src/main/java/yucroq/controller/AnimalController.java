@@ -75,6 +75,7 @@ public class AnimalController {
     @GetMapping(path = "getAnimal")
     public String afficheUnAnimal(Model model, Integer id) {
         model.addAttribute("animal", dao.getOne(id));
+        model.addAttribute("rations", dao.listeRationsPour(id));
         return "detailAnimaux";
     }
     
