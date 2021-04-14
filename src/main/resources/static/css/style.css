@@ -391,6 +391,31 @@ input {
 }
 
 /*
+input[type="range"] {
+    -webkit-appearance: none; 
+    width: 100%;
+    background: transparent;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 18px;
+    width: 18px;
+    border-radius: 25px;
+    background-color: #8500FF;
+    position:relative;
+    top: -7px;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: 5px;
+    background: #e7e7e7;
+    position:relative;
+}
+*/
+
+/*
 Mobile
 */
 @media (max-width: 640px) { 
