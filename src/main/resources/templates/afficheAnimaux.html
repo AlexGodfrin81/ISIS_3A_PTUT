@@ -40,6 +40,7 @@
             <ul>
                 <li th:each="a : ${animaux}">
                     <a th:href="@{getAnimal(id=${a.id_animal})}" th:text="${a.nom}">Nom de l'animal</a>
+                     <a th:href = "@{delete(id = ${a.id_animal})}">Supprimer</a>
 
                 </li>        
 
