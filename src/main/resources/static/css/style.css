@@ -337,6 +337,10 @@ tr.emphase > td {
     color: white;
 }
 
+tr.emphase > td:first-child {
+    color: white;
+}
+
 /*
 Bouton d'ajout
 */
