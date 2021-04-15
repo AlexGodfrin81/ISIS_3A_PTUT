@@ -87,7 +87,13 @@ public class Animal {
     }
     
     public float poids_ideal(){
-        return this.mesPoids.get(0).getPoids_kg()*(100/(100+(this.getNec()-5)));
+        float rep;
+        if (this.mesPoids.isEmpty()) {
+            rep = 0;
+        } else {
+            rep = this.mesPoids.get(0).getPoids_kg()*(100/(100+(this.getNec()-5)));
+        }
+        return rep;
     }
     
     // Calcule le coefficient K de l'animal

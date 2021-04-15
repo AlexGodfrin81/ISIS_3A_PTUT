@@ -71,6 +71,7 @@ and open the template in the editor.
                     <td>Poids idéal</td>
                     <td th:text="${animal.poids_ideal() + ' kg'}">Poids</td>
                 </tr>
+               
             </table>
             
             <h1>Suivi de [[${animal.nom}]]</h1>
@@ -108,8 +109,12 @@ and open the template in the editor.
                         <td th:text="${r.quantiteration + ' g/j'}">Quantité</td>
                     </tr>
                     <tr>
+                        <td>Espèce des croquettes</td>
+                        <td th:text="${r.espece}">Esp</td>
+                    </tr>
+                    <tr>
                         <td>Densité énergétique</td>
-                        <td>Quantité (pas fini)</td>
+                        <td>Densité énergétique</td>
                     </tr>
                 </table>
             </div>

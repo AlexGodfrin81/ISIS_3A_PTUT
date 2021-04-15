@@ -54,7 +54,7 @@ public class Croquette {
     @NonNull
     private float cellulose;
     
-    
+    @NonNull
     private float matieres_minerales;
     
     @NonNull
