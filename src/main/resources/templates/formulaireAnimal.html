@@ -37,7 +37,6 @@
         </header>
         <section>
             <h1>Ajouter un Animal</h1>
-<<<<<<< HEAD
 		<!--/* Au revient au contrôleur, avec la méthode POST */-->
 		<!--/* th:object définit quel est l'objet édité par ce formulaire */-->
 		<form th:object="${animal}" method="POST" th:action="@{/animal/save}">
@@ -110,82 +109,7 @@
                         <input type="reset" value="Réinitialiser" />
 		</form>		
                 <h4><a th:href="@{/}" href="../static/index.html">Retour au menu</a></h4>
-            
 	</section>
-            <!--/* Au revient au contrôleur, avec la méthode POST */-->
-            <!--/* th:object définit quel est l'objet édité par ce formulaire */-->
-            <form th:object="${animal}" method="POST" th:action="@{/animal/save}">
-                <table class="form">
-                    <tr>
-                        <td><label for="nom">Nom</label></td>
-                        <td><input id="nom" type="text" th:field="*{nom}" placeholder="Nom de l'animal" required/></td>
-                    </tr>
-                    <tr>
-                        <td><label for="espece">Espèce</label></td>
-                        <td><select onchange="adapt_race()" id="espece" th:field="*{espece}">
-                                <option th:value="CHIEN" th:text="Chien"></option>
-                                <option th:value="CHAT" th:text="Chat"></option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="genre">Genre</label></td>
-                        <td><select id="genre" th:field="*{est_Male}">
-                                <option th:value="true" th:text="Male" selected></option>
-                                <option th:value="false" th:text="Femelle"></option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="date_naiss">Date de naissance</label></td>
-                        <td><input id="date_naiss" type="date" th:field="*{date_naiss}" th:value="*{date_naiss}" placeholder="2012-03-02"/></td>
-                    </tr>
-                    <tr>
-                        <td><label for="taille">Taille (cm)</label></td>
-                        <td><input id="taille" type="number" th:field="*{taille_cm}" placeholder="20" style="margin-left:-40px;"/><span class="unite">cm</span></td>
-                    </tr>                        
-                    <tr>
-                        <td><label for="nec">Note d'état corporel</label></td>
-                        <td>
-                            <input id="nec" type="range" th:field="*{nec}" step="1" min="1" max="9"><span id="valeur_nec">Valeur NEC</span>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td><label for="maRace">Race</label></td>
-                        <td><select id="maRace" onchange="adapt_espece()" name="maRace">
-                                <option th:each="r : ${races}" th:data-esp="${r.espece}" th:value="${r.id_race}" th:text="${r.nom}" th:field="*{maRace}"></option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="monActivite">Activité</label></td>
-                        <td><select id="monActivite" name="monActivite">
-                                <option th:each="a : ${activites}" th:value="${a.id_activite}" th:text="${a.nom}" th:field="*{monActivite}"></option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="monStadePhysio">Stade Physiologique</label></td>
-                        <td><select id="monStadePhysio" name="monStadePhysio">
-                                <option th:each="s : ${stadephysios}" th:value="${s.id_stade}" th:text="${s.nom}" th:field="*{monStadePhysio}"></option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="proprio">Propriétaire</label></td>
-                        <td><select id="proprio" name="proprio">
-                                <option th:each="p : ${proprietaires}" th:value="${p.id_proprio}" th:text="${p.prenom} +' '+ ${p.nom}" th:field="*{proprio}"></option>
-                            </select>
-                        </td>
-                    </tr>
-                </table>
-                <input type="submit" value="Enregistrer" />
-                <input type="reset" value="Réinitialiser" />
-            </form>		
-            <h4><a th:href="@{/}" href="../static/index.html">Retour au menu</a></h4>
-
-        </section>
         <script th:src="@{/js/script.js}" src="../static/js/script.js"/></script>
     </body>
 
