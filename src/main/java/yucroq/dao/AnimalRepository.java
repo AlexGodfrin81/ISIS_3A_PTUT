@@ -15,7 +15,8 @@ import yucroq.dto.RationPourAnimal;
 public interface AnimalRepository extends JpaRepository<Animal, Integer> {
     
     // Une requête qui renvoie une liste de DTO (Data Transfer Object)
-    @Query("SELECT c.marque as marquecroq, c.nom as nomcroq, r.date_debut as datedebut, r.date_fin as datefin, r.quantite as quantiteration "
+    @Query("SELECT c.marque as marquecroq, c.nom as nomcroq, r.date_debut as datedebut, r.date_fin as datefin, r.quantite as quantiteration, "
+            + "CASE WHEN c.espece = 'CHIEN' THEN 'Dog' WHEN c.espece = 'CHAT' THEN 'Cat' END AS espece "
             + "FROM Ration r " 
             + "JOIN r.mesCroqs c "
             + "JOIN r.consommateur a "
