@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import yucroq.dao.AnimalRepository;
 import yucroq.dao.CroquetteRepository;
@@ -96,4 +97,16 @@ public class CroquetteController {
         redirectInfo.addFlashAttribute("message", message);
         return "redirect:show"; // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
     }
+     @GetMapping(path = "delete")
+    public String supprimerCroquette(@RequestParam("id") Croquette croquette, RedirectAttributes redirectInfo) {
+        String message = croquette.getNom() + "' a été supprimé";
+        try {
+            dao.delete(croquette);
+        } catch (DataIntegrityViolationException e) {
+            message = "Erreur : impossible de supprimer " + croquette.getNom();
+        }
+        redirectInfo.addFlashAttribute("message", message);
+        return "redirect:show";
+    }
+
 }
