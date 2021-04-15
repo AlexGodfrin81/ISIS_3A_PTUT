@@ -36,14 +36,27 @@
         </header>
 
         <section>
-            <h1>Mes compagnons</h1>              
+            <h1>Mes compagnons</h1>
+            <div th:if="${#lists.size(animaux.?[espece.name() == 'CHIEN'])!=0}">
+            <h3>Chiens</h3>
             <table class="suppr">
-                <tr th:each="a : ${animaux}">
+                <tr th:each="a : ${animaux}" th:if="${a.espece.name() == 'CHIEN'}">
                     <td><a th:href="@{getAnimal(id=${a.id_animal})}" th:text="${a.nom}">Nom de l'animal</a></td>
                     <td><a th:href = "@{delete(id = ${a.id_animal})}">Supprimer</a></td>
                 </tr>     
             </table>
-            <div>
+            </div>
+            
+            <div th:if="${#lists.size(animaux.?[espece.name() == 'CHAT'])!=0}">
+            <h3>Chats</h3>
+            <table class="suppr">
+                <tr th:each="a : ${animaux}" th:if="${a.espece.name() == 'CHAT'}">
+                    <td><a th:href="@{getAnimal(id=${a.id_animal})}" th:text="${a.nom}">Nom de l'animal</a></td>
+                    <td><a th:href = "@{delete(id = ${a.id_animal})}">Supprimer</a></td>
+                </tr>     
+            </table>
+            </div>
+            
                 <!--/* On appelle l'URL 'add' du contôleur */-->
                 <div class="ajout">
                     <a th:href="@{add}" href='formulaireAnimal.html'>
