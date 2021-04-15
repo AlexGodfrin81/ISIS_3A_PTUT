@@ -125,7 +125,7 @@ public class AnimalController {
     }
     
           @GetMapping(path = "delete")
-    public String supprimerTableauAfficherListe(@RequestParam("id") Animal animal, RedirectAttributes redirectInfo){
+    public String supprimerAnimal(@RequestParam("id") Animal animal, RedirectAttributes redirectInfo){
         String message = animal.getNom()+"' a été supprimé";
         try{
             dao.delete(animal);
