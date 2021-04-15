@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import yucroq.dao.ActiviteRepository;
 import yucroq.dao.AnimalRepository;
@@ -121,6 +122,18 @@ public class AnimalController {
         // Ce message est accessible et affiché dans la vue 'afficheAnimal.html'
         redirectInfo.addFlashAttribute("message", message);
         return "redirect:show"; // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
+    }
+    
+          @GetMapping(path = "delete")
+    public String supprimerTableauAfficherListe(@RequestParam("id") Animal animal, RedirectAttributes redirectInfo){
+        String message = animal.getNom()+"' a été supprimé";
+        try{
+            dao.delete(animal);
+        }catch (DataIntegrityViolationException e){
+            message = "Erreur : impossible de supprimer " + animal.getNom();
+        }
+        redirectInfo.addFlashAttribute("message", message);
+        return "redirect:show";
     }
     /**
      * TODO faire page d'erreur
