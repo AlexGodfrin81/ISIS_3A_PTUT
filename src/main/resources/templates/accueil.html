@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org" lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Accueil</title>
+        <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    </head>
+    <body>
+        <div sec:authorize="isAnonymous()">
+            <h2>Bienvenue | <a th:href="@{/connexion}">Inscription</a></h2>
+        </div>
+        <!-- Pour les utilisateurs authentifiés -->
+        <!--<div sec:authorize="isAuthenticated()">
+            <!--<form id="logoutForm" method="POST" th:action="@{/logout}" action="#">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            </form>-->
+
+        <!--    <h2>Bienvenue <span th:text="${#authentication.name}">Untel</span>  | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+            <!-- Pour les utilisateurs qui ont le rôle 'ROLE_ADMIN' -->
+        <!--    <div sec:authorize="hasRole('ROLE_ADMIN')">
+                <h3>Vous êtes administrateur</h3>
+                <a href="#" th:href="@{/h2-console}">Console d'administration de la BD (JDBC URL: jdbc:h2:mem:testdb) - désactivé sur Heroku</a>
+                <a href="#" th:href="@{/admin/detailAdmin}">Page réservée aux admins</a>                
+            </div>
+            <!-- Pour les utilisateurs qui ont le rôle 'ROLE_USER' -->
+        <!--    <div sec:authorize="hasRole('ROLE_USER')">
+                <h3>Vous êtes un simple utilisateur !</h3>
+                <a href="#" th:href="@{/utilisateur/detailProprio}">Page réservée aux utilisateurs connectés</a>                
+            </div>
+        </div>--->
+        </body>
+</html>

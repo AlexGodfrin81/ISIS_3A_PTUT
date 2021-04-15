@@ -13,33 +13,32 @@ and open the template in the editor.
         <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet" />
     </head>
 
-    <header>
-        <div id="voletgauche">
-          <div id="compagnons"><a href="../animal/show">
-            <div><img class="icone" id="imagecompagnons" src="../static/images/Compagnons_violet.svg" th:src="@{/images/Compagnons_violet.svg}" alt="Icône compagnons"></div>
-            <div class="selectionne textevg">Compagnons</div>
-            <div class="rectangleselect"></div>
-            </a></div>          
-          <div id="alimentation"><a href="../croquette/show">
-            <div><img class="icone" id="imagealimentation" src="../static/images/Alimentation_gris.svg" th:src="@{/images/Alimentation_gris.svg}" alt="Icône alimentation"></div>
-            <div class="textevg">Alimentation</div>
-          </a></div>
-        </div>
+    <body>    
+        <header>
+            <div id="voletgauche">
+                <div id="compagnons"><a href="../animal/show">
+                        <div><img class="icone" id="imagecompagnons" src="../static/images/Compagnons_violet.svg" th:src="@{/images/Compagnons_violet.svg}" alt="Icône compagnons"></div>
+                        <div class="selectionne textevg">Compagnons</div>
+                        <div class="rectangleselect"></div>
+                    </a></div>          
+                <div id="alimentation"><a href="../croquette/show">
+                        <div><img class="icone" id="imagealimentation" src="../static/images/Alimentation_gris.svg" th:src="@{/images/Alimentation_gris.svg}" alt="Icône alimentation"></div>
+                        <div class="textevg">Alimentation</div>
+                    </a></div>
+            </div>
 
-        <div id="voletcentral">
-          <img id="logoyucroq" src="../static/images/Logo.svg" th:src="@{/images/Logo.svg}" alt="Logo Yucroq">
-        </div>
+            <div id="voletcentral">
+                <img id="logoyucroq" src="../static/images/Logo.svg" th:src="@{/images/Logo.svg}" alt="Logo Yucroq">
+            </div>
 
-        <div id="voletdroit">
-          <div id="utilisateur">
-            <div id="utilisateurco">Nom à récupérer</div>
-            <div id="deconnexion"><a th:href="@{/}" href="../static/index.html">Déconnexion</a></div>
-          </div>
-          <div><img class="icone" id="imageutilisateur" src="../static/images/Utilisateur_violet.svg" th:src="@{/images/Utilisateur_violet.svg}" alt="Icône utilisateur"></div>
-        </div>   
-    </header>
-
-    <body>
+            <div id="voletdroit">
+                <div id="utilisateur">
+                    <div id="utilisateurco">Nom à récupérer</div>
+                    <div id="deconnexion"><a th:action="@{/logout}" th:href= "@{/login}" href="../static/index.html">Déconnexion</a></div>
+                </div>
+                <div><img class="icone" id="im ageutilisateur" src="../static/images/Utilisateur_violet.svg" th:src="@{/images/Utilisateur_violet.svg}" alt="Icône utilisateur"></div>
+            </div>   
+        </header>
         <section> 
             <h1>Informations de [[${animal.nom}]]</h1>
             <table class="liste">
@@ -67,50 +66,79 @@ and open the template in the editor.
                     <td>Note d'état corporel</td>
                     <td>[[${animal.nec + "/9"}]]</td>
                 </tr>
+                <tr>
+                    <td>Poids idéal</td>
+                    <td th:text="${animal.poids_ideal() + ' kg'}">Poids</td>
+                </tr>
+
             </table>
-            
+
             <h1>Suivi de [[${animal.nom}]]</h1>
             <h2>Courbe de poids</h2>
             <p>À ajouter !</p>
-            
+
             <div class="ajout">
-            <a th:href="@{/ration/add(id=${animal.id_animal})}" href='formulaireRation.html'>
-            <div class="plus">+</div>
-            <div class="texteajout">Ajouter une pesée (mauvais lien)</div>
-            </a>
-        </div>
-            
-            
+                <a th:href="@{/ration/add(id=${animal.id_animal})}" href='formulaireRation.html'>
+                    <div class="plus">+</div>
+                    <div class="texteajout">Ajouter une pesée (mauvais lien)</div>
+                </a>
+            </div>
+
+
             <h1>Rations de Hilda</h1>
+
             <h2>Ration actuelle</h2>
-            <table class="liste">
-                <tr th:each="r: ${rations}" th:if="${r.datefin==null}">
-                    <td th:text="${r.marquecroq + ' ' + r.nomcroq}">Marque</td>
-                    <td th:text="${r.quantiteration + ' g'}">Quantité</td>
-                </tr>
-            </table>
-            
+            <div th:each="r: ${rations}" th:if="${r.datefin==null}">
+                <h3 th:text="${r.marquecroq + ' ' + r.nomcroq}">Marque nom</h3>
+                <table class="liste">
+                    <tr>
+                        <td>Marque</td>
+                        <td th:text="${r.marquecroq}">Marque</td>
+                    </tr>
+                    <tr>
+                        <td>Nom</td>
+                        <td th:text="${r.nomcroq}">Nom</td>
+                    </tr>
+                    <tr>
+                        <td>Commencée le</td>
+                        <td th:text="${r.datedebut}">Début</td>
+                    </tr>
+                    <tr>
+                        <td>Quantité</td>
+                        <td th:text="${r.quantiteration + ' g/j'}">Quantité</td>
+                    </tr>
+                    <tr>
+                        <td>Espèce des croquettes</td>
+                        <td th:text="${r.espece}">Esp</td>
+                    </tr>
+                    <tr>
+                        <td>Densité énergétique</td>
+                        <td>Densité énergétique</td>
+                    </tr>
+                </table>
+            </div>
+
             <h2>Anciennes rations</h2>
-            <table class="liste">
+            <table class="form">
                 <tr th:each="r: ${rations}" th:if="${r.datefin!=null}">
                     <td th:text="${r.marquecroq + ' ' + r.nomcroq}">Marque</td>
-                    <td th:text="${r.quantiteration + ' g'}">Quantité</td>
+                    <td th:text="${r.quantiteration + ' g/j du ' + r.datedebut + ' au ' + r.datefin}">Quantité</td>
                 </tr>
             </table>
-            
-                 
-        <div class="ajout">
-            <a th:href="@{/ration/add(id=${animal.id_animal})}" href='formulaireRation.html'>
-            <div class="plus">+</div>
-            <div class="texteajout">Ajouter une ration</div>
-            </a>
-        </div>
-        
-        
-        <h4><a th:href="@{/animal/show}" href="afficheAnimaux.html">Retour aux compagnons</a></h4>
+
+
+            <div class="ajout">
+                <a th:href="@{/ration/add(id=${animal.id_animal})}" href='formulaireRation.html'>
+                    <div class="plus">+</div>
+                    <div class="texteajout">Ajouter une ration</div>
+                </a>
+            </div>
+
+
+            <h4><a th:href="@{/animal/show}" href="afficheAnimaux.html">Retour aux compagnons</a></h4>
         </section>
     </body>
-    
+
     <footer>
         <a>Mentions légales</a>
         <a>Contacts</a>

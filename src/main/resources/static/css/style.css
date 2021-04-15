@@ -449,7 +449,7 @@ Mobile
 
 @media (prefers-color-scheme: dark) {
     header {
-        background-color: #252525;
+        background-color: #101010;
     }
 
     body {
@@ -470,5 +470,10 @@ Mobile
 
     td:first-child {
         color:#d2aaf8;
-}
+    }
+
+    li {
+        background-color: #202020;
+        color: white;
+    }
 }

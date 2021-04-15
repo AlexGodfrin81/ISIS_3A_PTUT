@@ -87,13 +87,13 @@ public class Animal {
     }
     
     public float poids_ideal(){
-        float poidsO=this.mesPoids.get(0).getPoids_kg();
-        System.out.println("poids:"+poidsO);
-        float coef=(float)100/(100+(this.getNec()-5));
-        System.out.println("coef:"+coef);
-        float poidsI=poidsO*coef;
-        System.out.println("poids idéal:"+poidsI);
-        return poidsI;
+        float rep;
+        if (this.mesPoids.isEmpty()) {
+            rep = 0;
+        } else {
+            rep = this.mesPoids.get(0).getPoids_kg()*((float)100/(100+(this.getNec()-5)));
+        }
+        return rep;
     }
     
     // Calcule le coefficient K de l'animal

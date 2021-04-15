@@ -8,4 +8,5 @@ public interface RationPourAnimal {
     float getQuantiteration();
     LocalDate getDatedebut();
     LocalDate getDatefin();
+    String getEspece();
 }

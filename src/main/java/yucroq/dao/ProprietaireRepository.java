@@ -5,9 +5,10 @@
  */
 package yucroq.dao;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import yucroq.entity.Proprietaire;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ProprietaireRepository extends JpaRepository<Proprietaire, Integer> {
-    
+public interface ProprietaireRepository extends JpaRepository<Proprietaire, Long> {
+    Proprietaire findByUsername(String name);
 }
+
