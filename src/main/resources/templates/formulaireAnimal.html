@@ -77,46 +77,6 @@
                             </td>
                         </tr>
                         
-                        <script>
-                            majnec();
-                            document.getElementById("nec").addEventListener("input", majnec);
-                                function majnec() {
-                                    let valeurNEC = document.getElementById("nec").value;
-                                    let commentaireNEC = "";
-                                    switch (valeurNEC) {
-                                        case "1":
-                                            commentaireNEC = "Très maigre";
-                                            break;
-                                        case "2":
-                                            commentaireNEC = "Maigre";
-                                            break;
-                                        case "3":
-                                            commentaireNEC = "Mince";
-                                            break;
-                                        case "4":
-                                            commentaireNEC = "Poids idéal";
-                                            break;
-                                        case "5":
-                                            commentaireNEC = "Poids idéal";
-                                            break;
-                                        case "6":
-                                            commentaireNEC = "Un peu épais";
-                                            break;
-                                        case "7":
-                                            commentaireNEC = "Gras";
-                                            break;
-                                        case "8":
-                                            commentaireNEC = "Gros";
-                                            break;
-                                        case "9":
-                                            commentaireNEC = "Obèse";
-                                            break;
-                                        }   
-                                    document.getElementById("valeur_nec").textContent = valeurNEC + "/9 - " + commentaireNEC;
-                                    }
-                        </script>      
-                        
-                        
                         <tr>
                             <td><label for="maRace">Race</label></td>
                             <td><select id="maRace" onchange="adapt_espece()" name="maRace">
