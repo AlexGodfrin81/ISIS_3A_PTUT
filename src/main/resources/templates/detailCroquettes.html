@@ -61,7 +61,7 @@ and open the template in the editor.
             <table class="form">
                 <tr class="emphase">
                     <td>Énergie</td>
-                    <td>À calculer</td>
+                    <td th:text="${croquette.densite_Energetique() + ' kcal/kg'}"></td>
                 </tr>
             </table>
             

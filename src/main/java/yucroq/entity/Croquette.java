@@ -43,7 +43,7 @@ public class Croquette {
     private Espece espece;
     
     @NonNull
-    private float humidite; // g/kg
+    private float humidite;
     
     @NonNull
     private float proteines_brutes;
@@ -63,6 +63,8 @@ public class Croquette {
     @NonNull
     private float phosphore;
 
+    //TODO : ajouter magnésium, potassium, sodium
+    
     //-== Mapping ==-
        
     @OneToMany(mappedBy = "mesCroqs")
@@ -83,10 +85,10 @@ public class Croquette {
         float dE = 1;        
         switch(this.espece){
             case CHIEN:
-                dE=(float) (91.2-(1.43 * (cellulose * (100 - humidite)/100))); // digestibilité de l'énergie Chien
+                dE=(float) (91.2-(1.43 * cellulose/(1 - humidite/100))); // digestibilité de l'énergie Chien
                 break;
             case CHAT:
-                dE=(float) (87.9-(0.88 * (cellulose * (100 - humidite)/100))); // digestibilité de l'énergie Chat
+                dE=(float) (87.9-(0.88 * cellulose/(1 - humidite/100))); // digestibilité de l'énergie Chat
                 break;
         }
         System.out.println("dE:"+dE);

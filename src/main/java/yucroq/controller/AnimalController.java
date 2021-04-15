@@ -76,6 +76,7 @@ public class AnimalController {
     public String afficheUnAnimal(Model model, Integer id) {
         model.addAttribute("animal", dao.getOne(id));
         model.addAttribute("rations", dao.listeRationsPour(id));
+        model.addAttribute("pesees", dao.listePeseesPour(id));
         return "detailAnimaux";
     }
     
