@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package yucroq.entity;
 
 import lombok.*;
@@ -38,26 +43,30 @@ public class Proprietaire implements UserDetails {
     @NonNull // Lombok
     @Email // Doit avoir la forme d'une adresse email
     private String email;
+ 
+    @NonNull
+    private String prenom;
 
+    @NonNull
     @Transient // Non enregistré dans la BD
     private String passwordConfirm;
 
     private String nom;
 
+  
     @NonNull
-    private String prenom;
-
     private String tel;
 
-    //-== Mapping ==-
-    @OneToMany(mappedBy = "proprio")
-    @NonNull
-    private List<Animal> mesAnimaux = new LinkedList<>();
-
-    //-=============-
     @ManyToMany(fetch = FetchType.EAGER)
     @Setter(AccessLevel.NONE)
     private List<Role> roles = new LinkedList<>();
+
+    public Proprietaire(String adminUsername, String adminPassword, String adminEmail, String adminPrenom) {
+        this.username=adminUsername;
+        this.password=adminPassword;
+        this.email=adminEmail;
+        this.prenom=adminPrenom;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -84,6 +93,13 @@ public class Proprietaire implements UserDetails {
         return true;
     }
 
+    //-== Mapping ==-
+    @OneToMany(mappedBy = "proprio")
+    @NonNull
+    private List<Animal> mesAnimaux = new LinkedList<>();
+
+    //-========= ====-
+   
     @Override
     public boolean isEnabled() {
         return true;

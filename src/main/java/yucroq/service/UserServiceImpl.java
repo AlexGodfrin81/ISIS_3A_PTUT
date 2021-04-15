@@ -2,7 +2,7 @@ package yucroq.service;
 
 import lombok.extern.slf4j.Slf4j;
 import yucroq.dao.RoleRepository;
-import yucroq.dao.UserRepository;
+import yucroq.dao.ProprietaireRepository;
 import yucroq.entity.Role;
 import yucroq.entity.Proprietaire;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository;
+    private final ProprietaireRepository userRepository;
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     // Login et Password de l'administrateur son définis dans 'application.properties'
@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
     @Value("${admin.prenom}")
     private String adminPrenom;
 
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public UserServiceImpl(ProprietaireRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
