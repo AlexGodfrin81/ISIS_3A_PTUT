@@ -8,50 +8,50 @@
         <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet" />
     </head>
 
-    <header>
-        <div id="voletgauche">
-          <div id="compagnons"><a href="../animal/show">
-            <div><img class="icone" id="imagecompagnons" src="../static/images/Compagnons_violet.svg" th:src="@{/images/Compagnons_violet.svg}" alt="Icône compagnons"></div>
-            <div class="selectionne textevg">Compagnons</div>
-            <div class="rectangleselect"></div>
-            </a></div>          
-          <div id="alimentation"><a href="../croquette/show">
-            <div><img class="icone" id="imagealimentation" src="../static/images/Alimentation_gris.svg" th:src="@{/images/Alimentation_gris.svg}" alt="Icône alimentation"></div>
-            <div class="textevg">Alimentation</div>
-          </a></div>
-        </div>
-
-        <div id="voletcentral">
-          <img id="logoyucroq" src="../static/images/Logo.svg" th:src="@{/images/Logo.svg}" alt="Logo Yucroq">
-        </div>
-
-        <div id="voletdroit">
-          <div id="utilisateur">
-            <div id="utilisateurco">Nom à récupérer</div>
-            <div id="deconnexion"><a th:href="@{/}" href="../static/index.html">Déconnexion</a></div>
-          </div>
-          <div><img class="icone" id="imageutilisateur" src="../static/images/Utilisateur_violet.svg" th:src="@{/images/Utilisateur_violet.svg}" alt="Icône utilisateur"></div>
-        </div>   
-    </header>
-
     <body>
+        <header>
+            <div id="voletgauche">
+                <div id="compagnons"><a href="../animal/show">
+                        <div><img class="icone" id="imagecompagnons" src="../static/images/Compagnons_violet.svg" th:src="@{/images/Compagnons_violet.svg}" alt="Icône compagnons"></div>
+                        <div class="selectionne textevg">Compagnons</div>
+                        <div class="rectangleselect"></div>
+                    </a></div>          
+                <div id="alimentation"><a href="../croquette/show">
+                        <div><img class="icone" id="imagealimentation" src="../static/images/Alimentation_gris.svg" th:src="@{/images/Alimentation_gris.svg}" alt="Icône alimentation"></div>
+                        <div class="textevg">Alimentation</div>
+                    </a></div>
+            </div>
+
+            <div id="voletcentral">
+                <img id="logoyucroq" src="../static/images/Logo.svg" th:src="@{/images/Logo.svg}" alt="Logo Yucroq">
+            </div>
+
+            <div id="voletdroit">
+                <div id="utilisateur">
+                    <div id="utilisateurco">Nom à récupérer</div>
+                    <div id="deconnexion"><a th:action="@{/logout}" th:href= "@{/login}" href="../static/index.html">Déconnexion</a></div>
+                </div>
+                <div><img class="icone" id="imageutilisateur" src="../static/images/Utilisateur_violet.svg" th:src="@{/images/Utilisateur_violet.svg}" alt="Icône utilisateur"></div>
+            </div>   
+        </header>
+
         <section>
             <h1>Vos compagnons</h1>              
-        <ul>
-            <li th:each="a : ${animaux}">
-                <a th:href="@{getAnimal(id=${a.id_animal})}" th:text="${a.nom}">Nom de l'animal</a>
-              
-            </li>        
-            
-        </ul>
-        <div>
-        <!--/* On appelle l'URL 'add' du contôleur */-->
-        <div class="ajout">
-            <a th:href="@{add}" href='formulaireAnimal.html'>
-            <div class="plus">+</div>
-            <div class="texteajout">Ajouter un compagnon</div>
-            </a>
-        </div>
+            <ul>
+                <li th:each="a : ${animaux}">
+                    <a th:href="@{getAnimal(id=${a.id_animal})}" th:text="${a.nom}">Nom de l'animal</a>
+
+                </li>        
+
+            </ul>
+            <div>
+                <!--/* On appelle l'URL 'add' du contôleur */-->
+                <div class="ajout">
+                    <a th:href="@{add}" href='formulaireAnimal.html'>
+                        <div class="plus">+</div>
+                        <div class="texteajout">Ajouter un compagnon</div>
+                    </a>
+                </div>
         </section>
     </body>
 
