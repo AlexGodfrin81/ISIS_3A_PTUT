@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
-@RequestMapping(path = "/utilisateur")
+@RequestMapping(path = "/user")
 @Secured({"ROLE_ADMIN", "ROLE_USER"}) // Réservé aux utilisateurs qui ont le rôle 'ROLE_USER' ou 'ROLE_ADMIN'
 public class ProprietaireController {
     @GetMapping(path = "detailProprio")
