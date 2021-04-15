@@ -42,11 +42,13 @@
 
             <section>
                     <h1>Liste des croquettes de ...</h1>
-                    <ul>
-                        <li th:each="c : ${croquettes}">
-                            <a th:href="@{getCroquette(id=${c.id_croq})}" th:text="${c.marque + ' ' + c.nom}">Référence</a>
-                        </li>         
-                    </ul>
+                    <table class="suppr">
+                        <tr th:each="c : ${croquettes}">
+                            <td><a th:href="@{getCroquette(id=${c.id_croq})}" th:text="${c.marque + ' ' + c.nom}">Référence</a></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    
                     <!--/* On appelle l'URL 'add' du contôleur */-->
                     <div class="ajout">
                         <a th:href="@{./add}" href='formulaireCroquette.html'>

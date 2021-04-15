@@ -291,7 +291,7 @@ table.liste {
     font-weight: 500;
 }
 
-td:first-child {
+table.form td:first-child, table.liste td:first-child {
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -308,23 +308,28 @@ td:first-child {
     padding-top: 10px;
 }
 
-table.form {
+table.form, table.suppr {
     border-collapse: separate;
     border-spacing: 0px 8px;
     width: 100%;
     font-weight: 500;
 }
 
-table.form td {
+table.form td, table.suppr td {
     background-color: white;
     border-radius: 0px 10px 10px 0px;
     padding: 10px 15px 10px 15px;
     text-align: right;
 }
 
-table.form td:first-child {
+table.form td:first-child, table.suppr td:first-child {
     border-radius: 10px 0px 0px 10px;
     text-align: left;
+}
+
+table.suppr td:last-child {
+    color:grey;
+    font-weight: 300;
 }
 
 tr.emphase > td {

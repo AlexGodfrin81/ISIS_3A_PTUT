@@ -36,15 +36,13 @@
         </header>
 
         <section>
-            <h1>Vos compagnons</h1>              
-            <ul>
-                <li th:each="a : ${animaux}">
-                    <a th:href="@{getAnimal(id=${a.id_animal})}" th:text="${a.nom}">Nom de l'animal</a>
-                     <a th:href = "@{delete(id = ${a.id_animal})}">Supprimer</a>
-
-                </li>        
-
-            </ul>
+            <h1>Mes compagnons</h1>              
+            <table class="suppr">
+                <tr th:each="a : ${animaux}">
+                    <td><a th:href="@{getAnimal(id=${a.id_animal})}" th:text="${a.nom}">Nom de l'animal</a></td>
+                    <td><a th:href = "@{delete(id = ${a.id_animal})}">Supprimer</a></td>
+                </tr>     
+            </table>
             <div>
                 <!--/* On appelle l'URL 'add' du contôleur */-->
                 <div class="ajout">
