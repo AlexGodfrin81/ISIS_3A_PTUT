@@ -122,7 +122,4 @@ public class AnimalController {
         redirectInfo.addFlashAttribute("message", message);
         return "redirect:show"; // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
     }
-    /**
-     * TODO faire page d'erreur
-     */
 }
