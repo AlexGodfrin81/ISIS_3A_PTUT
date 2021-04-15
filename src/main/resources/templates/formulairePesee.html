@@ -36,24 +36,26 @@
             </div>   
         </header>
         <section>
-            <h1>Ajouter une pesée (en cours !)</h1>
+            <h1>Ajouter une pesée</h1>
 		<!--/* Au revient au contrôleur, avec la méthode POST */-->
 		<!--/* th:object définit quel est l'objet édité par ce formulaire */-->
 		<form th:object="${pesee}" method="POST" th:action="@{/pesee/save}">
                     <table class="form">
                         <tr>
-                            <td><label for="date">Date</label></td>
-                            <td><input id="date" type="date" th:field="*{date_suivi}" placeholder="Date de la pesée" required/></td>
+                            <td><label for="date_pesee">Date</label></td>
+                            <td><input id="date_pesee" type="date" th:field="*{date_suivi}" th:value="*{date_suivi}" placeholder="2012-03-02" /></td>
                         </tr>
                         <tr>
                             <td><label for="poids">Poids</label></td>
-                            <td><input id="poids" type="text" th:field="*{poids_kg}" placeholder="Poids mesuré" required/></td>
+                            <td><input id="poids" type="text" th:field="*{poids_kg}" placeholder="Poids mesuré" required style="margin-left:-40px;"/><span class="unite"> kg</span></td>
                         </tr>
                         <tr>
-                            <td><label for="poids">Animal</label></td>
-                            <td><select id="poids" name="poids">
-                                    <option th:each="a : ${animal}" th:value="${a.id_animal}" th:text="${a.nom}" th:field="*{animalPese}"></option>
-                                </select></td>
+                            <td><label for="animalPese">Compagnon</label></td>
+                            <td>
+                                <select id="animalPese" name="animalPese">
+                                    <option th:value="${animal.id_animal}" th:text="${animal.nom}" th:field="*{animalPese}"></option>
+                                </select>
+                            </td>
                         </tr>
                     </table>
                     	<input type="submit" value="Enregistrer" />
