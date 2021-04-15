@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import yucroq.dao.ActiviteRepository;
 import yucroq.dao.AnimalRepository;
@@ -23,7 +24,6 @@ import yucroq.dao.RaceRepository;
 import yucroq.dao.RationRepository;
 import yucroq.dao.StadePhysiologiqueRepository;
 
-
 /**
  *
  * @author leand
@@ -31,28 +31,28 @@ import yucroq.dao.StadePhysiologiqueRepository;
 @Controller
 @RequestMapping(path = "/animal")
 public class AnimalController {
-    
+
     @Autowired
     private AnimalRepository dao;
-    
+
     @Autowired
     private CroquetteRepository dao1;
-    
+
     @Autowired
     private ProprietaireRepository dao2;
-    
+
     @Autowired
     private RaceRepository dao3;
-    
+
     @Autowired
     private ActiviteRepository dao4;
-    
+
     @Autowired
     private StadePhysiologiqueRepository dao5;
-    
+
     @Autowired
     private RationRepository dao6;
-    
+
     /**
      * Affiche toutes les catégories dans la base
      *
@@ -64,7 +64,7 @@ public class AnimalController {
         model.addAttribute("animaux", dao.findAll());
         return "afficheAnimaux";
     }
-    
+
     /**
      * Redirige vers la page d'un animal selon son id
      *
@@ -78,11 +78,12 @@ public class AnimalController {
         model.addAttribute("rations", dao.listeRationsPour(id));
         return "detailAnimaux";
     }
-    
-     /**
+
+    /**
      * Montre le formulaire permettant d'ajouter un animal
      *
-     * @param animal initialisé par Spring, valeurs par défaut à afficher dans le formulaire
+     * @param animal initialisé par Spring, valeurs par défaut à afficher dans
+     * le formulaire
      * @return le nom de la vue à afficher ('formulaireAnimal.html')
      */
     @GetMapping(path = "add")
@@ -96,12 +97,13 @@ public class AnimalController {
         model.addAttribute("rations", dao6.findAll());
         return "formulaireAnimal";
     }
-    
+
     /**
      * Appelé par 'formulaireAnimal.html', méthode POST
      *
      * @param animal initialisée avec les valeurs saisies dans le formulaire
-     * @param redirectInfo pour transmettre des paramètres lors de la redirection
+     * @param redirectInfo pour transmettre des paramètres lors de la
+     * redirection
      * @return une redirection vers l'affichage de la liste des animaux
      */
     @PostMapping(path = "save")
@@ -122,7 +124,17 @@ public class AnimalController {
         redirectInfo.addFlashAttribute("message", message);
         return "redirect:show"; // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
     }
-    /**
-     * TODO faire page d'erreur
-     */
+
+    @GetMapping(path = "delete")
+    public String supprimerAnimal(@RequestParam("id") Animal animal, RedirectAttributes redirectInfo) {
+        String message = animal.getNom() + "' a été supprimé";
+        try {
+            dao.delete(animal);
+        } catch (DataIntegrityViolationException e) {
+            message = "Erreur : impossible de supprimer " + animal.getNom();
+        }
+        redirectInfo.addFlashAttribute("message", message);
+        return "redirect:show";
+    }
+
 }
