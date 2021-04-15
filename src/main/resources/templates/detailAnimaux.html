@@ -79,18 +79,18 @@ and open the template in the editor.
             </table>
             
             <h1>Suivi du poids de [[${animal.nom}]]</h1>
-            <table class="liste">
-                <tr th:each="p:${pesees}">
-                    <td th:text="${p.date}">Date de la pesée</td>
-                    <td th:text="${p.poids + ' kg'}">Poids</td>
-                </tr>
-            </table>
+            <table th:if="${#lists.size(pesees) > 0}" class="liste">
+                    <tr th:each="p:${pesees}">
+                        <td th:text="${p.date}">Date de la pesée</td>
+                        <td th:text="${p.poids + ' kg'}">Poids</td>
+                    </tr>
+                </table>
+                <p th:if="${#lists.size(pesees)==0}">Aucune pesée n'a été enregistrée.</p>
             
             <div class="ajout">
             <div class="plus"><a th:href="@{/pesee/add(id=${animal.id_animal})}" href='formulaireRation.html'>+</a></div>
             <div class="texteajout">Ajouter une pesée</div>
-            
-        </div>
+           </div>
             
             <h1>Alimentation de [[${animal.nom}]]</h1>
             <h2>Ration actuelle</h2>
@@ -130,7 +130,7 @@ and open the template in the editor.
                     </tr>
             </table>
             </div>
-   
+            <p th:if="${#lists.size(rations.?[datefin==null])==0}">Aucune ration actuelle n'a été enregistrée.</p>
             
             <h2>Anciennes rations</h2>
             <table class="form">
@@ -139,10 +139,11 @@ and open the template in the editor.
                     <td th:text="${r.quantiteration + ' g/j du ' + r.datedebut + ' au ' + r.datefin}">Quantité</td>
                 </tr>
             </table>
+            <p th:if="${#lists.size(rations.?[datefin!=null])==0}">Aucune ancienne ration n'a été enregistrée.</p>
             
                  
         <div class="ajout">
-            <div class="plus"><a th:href="@{/ration/add(id=${animal.id_animal})}" href='formulaireRation.html'>+            </a>
+            <div class="plus"><a th:href="@{/ration/add(id=${animal.id_animal})}" href='formulaireRation.html'>+</a>
 </div>
             <div class="texteajout">Ajouter une ration</div>
         </div>
