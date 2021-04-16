@@ -61,7 +61,7 @@ and open the template in the editor.
             <table class="form">
                 <tr class="emphase">
                     <td>Énergie</td>
-                    <td th:text="${croquette.densite_Energetique() + ' kcal/kg'}"></td>
+                    <td th:text="${#numbers.formatInteger(croquette.densite_Energetique(),0,'NONE') + ' kcal/kg'}"></td>
                 </tr>
             </table>
 
