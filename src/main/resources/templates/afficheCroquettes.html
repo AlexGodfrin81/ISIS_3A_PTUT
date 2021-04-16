@@ -49,7 +49,7 @@
                         </tr>
                     </table>
                     
-                    <p th:if="${#lists.size(croquettes)==0}">Aucune référence n'est enregistrée.</p>
+             <p th:if="${#lists.isEmpty(croquettes)}">Aucune référence n'est enregistrée.</p>
 
                     <!--/* On appelle l'URL 'add' du contôleur */-->
                     <div class="ajout">

@@ -41,7 +41,8 @@ and open the template in the editor.
 
     <body>
         <section> 
-            <h1>Informations de [[${animal.nom}]]</h1>
+            <h1>Carte d'identité de [[${animal.nom}]]</h1>
+ 
             <table class="liste">
                 <tr>
                     <td>Nom</td>
@@ -69,20 +70,20 @@ and open the template in the editor.
                 </tr>
                 <tr>
                     <td>Poids idéal</td>
-                    <td th:text="${animal.poids_ideal()==0} ? ${'Non calculé'} : ${animal.poids_ideal() + ' kg'}">Poids</td>
+                    <td th:text="${animal.poids_ideal()==0} ? ${'Non calculé'} : ${#numbers.formatInteger(animal.poids_ideal(), 0, 'NONE') + ' kg'}">Poids</td>
                 </tr>
                 <tr>
                     <td>Besoin énergétique</td>
-                    <td th:text="${animal.calcul_BE() + ' kcal/j'}">À calculer</td>
+                    <td th:text="${#numbers.formatInteger(animal.calcul_BE(), 0, 'NONE') + ' kcal/j'}">À calculer</td>
                 </tr>
                
             </table>
             
-            <h1>Suivi du poids de [[${animal.nom}]]</h1>
+            <h1>Suivi du poids</h1>
             <table th:if="${#lists.size(pesees) > 0}" class="liste">
                     <tr th:each="p:${pesees}">
                         <td th:text="${p.date}">Date de la pesée</td>
-                        <td th:text="${p.poids + ' kg'}">Poids</td>
+                        <td th:text="${#numbers.formatDecimal(p.poids, 0, 1) + ' kg'}">Poids</td>
                     </tr>
                 </table>
                 <p th:if="${#lists.size(pesees)==0}">Aucune pesée n'a été enregistrée.</p>
@@ -92,7 +93,7 @@ and open the template in the editor.
             <div class="texteajout">Ajouter une pesée</div>
            </div>
             
-            <h1>Alimentation de [[${animal.nom}]]</h1>
+            <h1>Alimentation</h1>
             <h2>Ration actuelle</h2>
             <div th:each="r: ${rations}" th:if="${r.datefin==null}">
                 <h3 th:text="${r.marquecroq + ' ' + r.nomcroq}">Marque nom</h3>
@@ -111,22 +112,28 @@ and open the template in the editor.
                     </tr>
                     <tr class="separateur">
                         <td>Densité énergétique</td>
-                        <td th:text="${r.densiteenergetique + ' kcal/kg'}">Esp</td>
+                        <td th:text="${#numbers.formatInteger(r.densiteenergetique,0,'NONE') + ' kcal/kg'}">Esp</td>
                     </tr>
                     <tr>
                         <td>Quantité reçue</td>
-                        <td th:text="${r.quantiteration + ' g/j'}">Quantité</td>
+                        <td th:text="${#numbers.formatInteger(r.quantiteration,0,'NONE') + ' g/j'}">Quantité</td>
                     </tr>
                     <tr>
                         <td>Énergie reçue</td>
-                        <td th:text="${r.densiteenergetique*r.quantiteration/1000 + ' kcal/j'}">Esp</td>
+                        <td th:text="${#numbers.formatInteger(r.densiteenergetique*r.quantiteration/1000,0,'NONE') + ' kcal/j'}">Esp</td>
                     </tr>
                 </table>
                 
+                <h3>Bilan énergétique et recommandations</h3>             
+                
                 <table th:if="${#lists.size(rations.?[datefin==null])==1}" class="form">
                     <tr class="emphase">
+                        <td>Énergie totale</td>
+                        <td th:text="${#numbers.formatInteger(#aggregates.sum(rations.?[datefin==null].![densiteenergetique*quantiteration/1000]),0,'NONE') + ' kcal/j'}"></td>
+                    </tr>
+                    <tr class="emphase">
                         <td>Quantité recommandée</td>
-                        <td th:text="${animal.calcul_BE()/r.densiteenergetique*1000 + ' g/j'}"></td>
+                        <td th:text="${#numbers.formatInteger(animal.calcul_BE()/r.densiteenergetique*1000,0,'NONE') + ' g/j'}"></td>
                     </tr>
             </table>
             </div>
@@ -136,7 +143,7 @@ and open the template in the editor.
             <table class="form">
                 <tr th:each="r: ${rations}" th:if="${r.datefin!=null}">
                     <td><a th:href="@{/croquette/getCroquette(id=${r.idcroq})}" th:text="${r.marquecroq + ' ' + r.nomcroq}">Nom de la croquette</a></td>
-                    <td th:text="${r.quantiteration + ' g/j du ' + r.datedebut + ' au ' + r.datefin}">Quantité</td>
+                    <td th:text="${#numbers.formatInteger(r.quantiteration,0,'NONE') + ' g/j du ' + r.datedebut + ' au ' + r.datefin}">Quantité</td>
                 </tr>
             </table>
             <p th:if="${#lists.size(rations.?[datefin!=null])==0}">Aucune ancienne ration n'a été enregistrée.</p>
