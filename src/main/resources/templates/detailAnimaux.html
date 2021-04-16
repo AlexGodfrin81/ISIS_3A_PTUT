@@ -11,6 +11,52 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="../css/style.css"/>
         <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet" />
+        
+        <!-- Chargement de l'API (non modifié actuellement) -->
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            // cf. https://developers.google.com/chart/interactive/docs/gallery/piechart
+            // cf. https://developers.google.com/chart/interactive/docs/gallery/linechart
+            google.charts.load('current', {'packages': ['corechart']});
+
+            // On fait l'appel AJAX dès le chargement de la page
+            google.charts.setOnLoadCallback(doAjax);
+
+            // Fait un appel AJAX pour récupérer les données à afficher
+            function doAjax() {
+                $.ajax({
+                    // On appelle le service qui renvoie le résultat comme un tableau de valeurs
+                    url: "/api/stats/listePeseesPourAnimal",
+                    // On passe comme paramètre les données saisies dans le formulaire
+                    data: $('#formulaireCategorie').serialize(),
+                    // On demande du JSON comme résultat
+                    dataType: "json",
+                    success: drawChart, // La fonction qui traite les résultats
+                    error: showError
+                });
+            }
+
+            // Affiche le résultat des statistiques sous forme de camembert
+            function drawChart(result) {
+                // On met le résultat au format attendu par google
+                // En-têtes des colonnes
+                const headers = ['Produit', 'Unités vendues'];
+                // cf. https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array/unshift
+                result.unshift(headers);
+
+                const dataTable = google.visualization.arrayToDataTable(result);
+                const chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+                const options = {title: 'Titre du graphe'};
+                chart.draw(dataTable, options);
+            }
+
+            // Fonction qui traite les erreurs de la requête
+            function showError(xhr, status, message) {
+                alert("Erreur: " + status + " : " + message);
+            }
+
+        </script>
     </head>
 
     <header>
@@ -124,13 +170,17 @@ and open the template in the editor.
                     </tr>
                 </table>
                 
-                <h3>Bilan énergétique et recommandations</h3>             
+                <h3>Bilan énergétique</h3>             
                 
                 <table th:if="${#lists.size(rations.?[datefin==null])==1}" class="form">
                     <tr class="emphase">
-                        <td>Énergie totale</td>
+                        <td>Énergie totale reçue</td>
                         <td th:text="${#numbers.formatInteger(#aggregates.sum(rations.?[datefin==null].![densiteenergetique*quantiteration/1000]),0,'NONE') + ' kcal/j'}"></td>
                     </tr>
+                </table>
+                
+                <h2>Recommandations</h2>
+                <table th:if="${#lists.size(rations.?[datefin==null])==1}" class="form">
                     <tr class="emphase">
                         <td>Quantité recommandée</td>
                         <td th:text="${#numbers.formatInteger(animal.calcul_BE()/r.densiteenergetique*1000,0,'NONE') + ' g/j'}"></td>
