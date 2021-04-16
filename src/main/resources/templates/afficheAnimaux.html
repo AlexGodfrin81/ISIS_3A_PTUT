@@ -42,7 +42,7 @@
             <table class="suppr">
                 <tr th:each="a : ${animaux}" th:if="${a.espece.name() == 'CHIEN'}">
                     <td><a th:href="@{getAnimal(id=${a.id_animal})}" th:text="${a.nom}">Nom de l'animal</a></td>
-                    <td><a th:href = "@{delete(id = ${a.id_animal})}">×</a></td>
+                    <td><a class="close" th:href = "@{delete(id = ${a.id_animal})}">×</a></td>
                 </tr>     
             </table>
             </div>
@@ -52,7 +52,7 @@
             <table class="suppr">
                 <tr th:each="a : ${animaux}" th:if="${a.espece.name() == 'CHAT'}">
                     <td><a th:href="@{getAnimal(id=${a.id_animal})}" th:text="${a.nom}">Nom de l'animal</a></td>
-                    <td><a th:href = "@{delete(id = ${a.id_animal})}">×</a></td>
+                    <td><a class="close" th:href = "@{delete(id = ${a.id_animal})}">×</a></td>
                 </tr>     
             </table>
             </div>

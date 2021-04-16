@@ -341,6 +341,13 @@ tr.emphase > td:first-child {
     color: white;
 }
 
+.close{
+    font-size: 20px;
+}
+.close:hover{
+    color: #8500FF;
+}
+
 /*
 Bouton d'ajout
 */
