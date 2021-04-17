@@ -332,6 +332,10 @@ table.suppr td:last-child {
     font-weight: 300;
 }
 
+table.suppr td:last-child:hover {
+    color: #8500FF;
+}
+
 tr.emphase > td {
     background-color: #8500FF;
     color: white;
@@ -339,13 +343,6 @@ tr.emphase > td {
 
 tr.emphase > td:first-child {
     color: white;
-}
-
-.close{
-    font-size: 20px;
-}
-.close:hover{
-    color: #8500FF;
 }
 
 /*

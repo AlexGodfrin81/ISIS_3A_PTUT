@@ -26,7 +26,7 @@ public interface AnimalRepository extends JpaRepository<Animal, Integer> {
             + "WHERE a.id_animal = :id ")  
     public List<RationPourAnimal> listeRationsPour(Integer id);
     
-    @Query("SELECT sp.id_suivi as idsuivi, sp.date_suivi as date, sp.poids_kg as poids "
+    @Query("SELECT sp.date_suivi as date, sp.poids_kg as poids "
             + "FROM SuiviPoids sp " 
             + "JOIN sp.animalPese a "
             + "WHERE a.id_animal = :id ")

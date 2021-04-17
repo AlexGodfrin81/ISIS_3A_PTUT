@@ -24,8 +24,7 @@ public class StatsWebService {
 	 */
 	@GetMapping(
                 path = "listePeseesPourAnimal", 
-                produces = { MediaType.APPLICATION_JSON_VALUE,
-			     MediaType.APPLICATION_XML_VALUE }
+                produces = { MediaType.APPLICATION_JSON_VALUE}
         )
 	public @ResponseBody List<PoidsPourAnimal> listePeseesPourAnimal(
 			@RequestParam(required = true) final Integer id) {
