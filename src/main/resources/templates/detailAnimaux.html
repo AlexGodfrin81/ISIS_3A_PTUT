@@ -50,22 +50,19 @@ and open the template in the editor.
 
             // Affiche le résultat des statistiques
             function drawChart(result) {
-                console.log(result);
-                // On met le résultat au format attendu par google
-                // En-têtes des colonnes
-                var headers = ['Date', 'Poids (kg)'];
                 var tableresult = [];
-                
                 for (var i in result) {
-                    tableresult.push([result[i].date, result[i].poids]);
+                    tableresult.push([new Date(result[i].date), result[i].poids]);
                 }
                 console.log(tableresult);
-                
-                tableresult.unshift(headers);
-                console.log(tableresult);
-                
-                var data = google.visualization.arrayToDataTable(tableresult);
-            
+
+                // On met le résultat au format attendu par google
+                // En-têtes des colonnes
+                var data = new google.visualization.DataTable();
+                data.addColumn('date', 'Date');
+                data.addColumn('number', 'Poids (kg)');
+                data.addRows(tableresult);                
+                            
                 var options = {
                     title: 'Suivi du poids',
                     legend: 'none'
