@@ -13,25 +13,26 @@ and open the template in the editor.
         <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet" />
         
         <!-- Chargement de l'API -->
+        
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script type="text/javascript">           
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>
+        <script th:inline="javascript" type="text/javascript">           
             // cf. https://developers.google.com/chart/interactive/docs/gallery/linechart
             google.charts.load('current', {'packages':['corechart']});
+            var idanimal = [[${animal.id_animal}]];
 
             // On fait l'appel AJAX dès le chargement de la page
-            // google.charts.setOnLoadCallback(doAjax);
-            google.charts.setOnLoadCallback(drawChart);
+            google.charts.setOnLoadCallback(doAjax());
 
             // On fait l'appel AJAX
             function doAjax() {
                 $.ajax({
                     // On appelle le service qui renvoie le résultat comme un tableau de valeurs
-                    url: "/api/stats/listePeseesPourAnimal?id=1",
+                    url: "/api/stats/listePeseesPourAnimal",
                     // On passe comme paramètre les données saisies dans le formulaire
-                    // data: '${animal.id_animal}'.serialize(),
+                    data: { "id" : idanimal },
                     // On demande du JSON comme résultat
-                    type: "GET",
                     dataType: "json",
                     success: drawChart, // La fonction qui traite les résultats
                     error: showError
@@ -43,11 +44,18 @@ and open the template in the editor.
                 console.log(result);
                 // On met le résultat au format attendu par google
                 // En-têtes des colonnes
-                const headers = ['Date', 'Poids (kg)'];
-                // cf. https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array/unshift
-                result.unshift(headers);
-
-                const dataTable = google.visualization.arrayToDataTable(result);
+                var headers = ['Date', 'Poids (kg)'];
+                var tableresult = [];
+                
+                for (var i in result) {
+                    tableresult.push([result[i].date, result[i].poids]);
+                }
+                console.log(tableresult);
+                
+                tableresult.unshift(headers);
+                console.log(tableresult);
+                
+                var data = google.visualization.arrayToDataTable(tableresult);
             
                 var options = {
                     title: 'Suivi du poids',
@@ -55,7 +63,7 @@ and open the template in the editor.
                 };
             
                 var chart = new google.visualization.LineChart(document.getElementById('graphe'));
-                chart.draw(dataTable, options);
+                chart.draw(data, options);
             }
             
             // Fonction qui traite les erreurs de la requête
@@ -92,12 +100,7 @@ and open the template in the editor.
     </header>
 
     <body>
-        <section> 
-            <h1>Zone test</h1>
-            <p id="zonetest"></p>
-            
-            <h1>Carte d'identité de [[${animal.nom}]]</h1>
- 
+        <section>  
             <table class="liste">
                 <tr>
                     <td>Nom</td>
