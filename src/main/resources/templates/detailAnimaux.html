@@ -55,7 +55,6 @@ and open the template in the editor.
                 for (var i in result) {
                     tableresult.push([new Date(result[i].date), result[i].poids, poidsideal]);
                 }
-                console.log(tableresult);
 
                 // On met le résultat au format attendu par google
                 // En-têtes des colonnes
@@ -92,6 +91,53 @@ and open the template in the editor.
             // Fonction qui traite les erreurs de la requête
             function showError(xhr, status, message) {
                 alert("Erreur : " + status + " : " + message);
+            }
+            
+            
+        </script>
+        <script th:inline="javascript" type="text/javascript" th:unless="${#lists.isEmpty(rations)}">
+            // Ne fonctionne pas si l'on n'attend pas le chargement de Google…
+            window.addEventListener('load', recommandations, false);
+            function recommandations() {
+                var nomanimal = [[${animal.nom}]];
+                var energie_tot = Math.floor([[${#aggregates.sum(rations.?[datefin==null].![densiteenergetique*quantiteration/1000])}]]);
+                var besoin = Math.floor([[${animal.calcul_BE()}]]);
+                var rapport = energie_tot/besoin;
+                var qte_ideale = Math.floor([[${animal.calcul_BE()/rations[0].densiteenergetique*1000}]]);
+                var nom_aliment = [[${rations[0].marquecroq + ' ' + rations[0].nomcroq}]];
+                var recommandation;
+                
+                if (rapport > 1.05) {
+                    recommandation = "L'alimentation de " + nomanimal + " est trop riche, avec " + energie_tot + " kcal/j. ";
+                    recommandation += nomanimal + " devrait manger " + besoin + " kcal/j. ";
+                    recommandation += "Nous vous recommandons de réduire sa portion à " + qte_ideale + " g/j de " + nom_aliment;
+                    recommandation += " ou de basculer sur un aliment moins riche en énergie."
+                    
+                    document.getElementById("bilan1").setAttribute("style", "background-color: red;");
+                    document.getElementById("bilan2").setAttribute("style", "background-color: red;");
+                }
+                
+                else if (rapport < 0.95) {
+                    recommandation = "L'alimentation de " + nomanimal + " est trop pauvre en énergie, avec " + energie_tot + " kcal/j. ";
+                    recommandation += nomanimal + " devrait manger " + besoin + " kcal/j. ";
+                    recommandation += "Nous vous recommandons d'augmenter sa portion à " + qte_ideale + " g/j de " + nom_aliment;
+                    recommandation += " ou de basculer sur un aliment plus riche en énergie."
+                }
+                
+                document.getElementById("bilan1").setAttribute("style", "background-color: red;");
+                document.getElementById("bilan2").setAttribute("style", "background-color: red;");
+                
+                else {
+                    recommandation = "L'alimentation de " + nomanimal + " lui apporte la bonne quantité d'énergie. ";
+                    recommandation += nomanimal + " doit en effet manger environ " + besoin + " kcal/j. ";
+                    recommandation += "Nous vous recommandons de conserver cette ration quodidienne de " + nom_aliment;
+                    recommandation += " en évitant les à-côtés caloriques."
+                    
+                    document.getElementById("bilan1").setAttribute("style", "background-color: green;");
+                    document.getElementById("bilan2").setAttribute("style", "background-color: green;");
+                }
+                
+                document.getElementById("recommandation").textContent = recommandation;
             }
         </script>
     </head>
@@ -184,6 +230,7 @@ and open the template in the editor.
            </div>
             
             <h1>Alimentation</h1>
+
             <h2>Ration actuelle</h2>
             <div th:each="r: ${rations}" th:if="${r.datefin==null}">
                 <h3 th:text="${r.marquecroq + ' ' + r.nomcroq}">Marque nom</h3>
@@ -218,19 +265,15 @@ and open the template in the editor.
                 
                 <table th:if="${#lists.size(rations.?[datefin==null])==1}" class="form">
                     <tr class="emphase">
-                        <td>Énergie totale reçue</td>
-                        <td th:text="${#numbers.formatInteger(#aggregates.sum(rations.?[datefin==null].![densiteenergetique*quantiteration/1000]),0,'NONE') + ' kcal/j'}"></td>
+                        <td id="bilan1">Énergie totale reçue</td>
+                        <td id="bilan2" th:text="${#numbers.formatInteger(#aggregates.sum(rations.?[datefin==null].![densiteenergetique*quantiteration/1000]),0,'NONE') + ' kcal/j'}"></td>
                     </tr>
                 </table>
                 
                 <h2>Recommandations</h2>
-                <table th:if="${#lists.size(rations.?[datefin==null])==1}" class="form">
-                    <tr class="emphase">
-                        <td>Quantité recommandée</td>
-                        <td th:text="${#numbers.formatInteger(animal.calcul_BE()/r.densiteenergetique*1000,0,'NONE') + ' g/j'}"></td>
-                    </tr>
-            </table>
-            </div>
+                <p id="recommandation">Ici s'affichent les recommandations.</p>
+                
+                </div>
             <p th:if="${#lists.size(rations.?[datefin==null])==0}">Aucune ration n'est actuellement enregistrée.</p>
             
             <h2>Anciennes rations</h2>
@@ -245,7 +288,7 @@ and open the template in the editor.
                  
         <div class="ajout">
             <div class="plus"><a th:href="@{/ration/add(id=${animal.id_animal})}" href='formulaireRation.html'>+</a>
-</div>
+            </div>
             <div class="texteajout">Ajouter une ration</div>
         </div>
         
