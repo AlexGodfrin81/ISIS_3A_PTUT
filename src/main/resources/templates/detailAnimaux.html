@@ -19,11 +19,20 @@ and open the template in the editor.
         <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>
         <script th:inline="javascript" type="text/javascript">           
             // cf. https://developers.google.com/chart/interactive/docs/gallery/linechart
-            google.charts.load('current', {'packages':['corechart']});
-            var idanimal = [[${animal.id_animal}]];
-
+            
             // On fait l'appel AJAX dès le chargement de la page
-            google.charts.setOnLoadCallback(doAjax());
+            // google.charts.setOnLoadCallback(doAjax());
+            // google.charts.load('current', {'packages':['corechart']});
+            
+            // Attendre que la page se charge
+            window.addEventListener('load', loadGoogle, false);
+
+            function loadGoogle() {
+              // define callback in load statement
+              google.charts.load('current', {'packages':['corechart'], 'callback': doAjax});
+            }
+            
+            var idanimal = [[${animal.id_animal}]];
 
             // On fait l'appel AJAX
             function doAjax() {
@@ -59,7 +68,7 @@ and open the template in the editor.
             
                 var options = {
                     title: 'Suivi du poids',
-                    legend: { position: 'bottom' }
+                    legend: 'none'
                 };
             
                 var chart = new google.visualization.LineChart(document.getElementById('graphe'));
