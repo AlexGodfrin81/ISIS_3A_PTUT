@@ -69,7 +69,7 @@ and open the template in the editor.
                     title: 'Évolution du poids de [[${animal.nom}]]',
                     fontName: 'Poppins',
                     backgroundColor: 'none',
-                    chartArea: {width: '70%', height: '70%'},
+                    chartArea: {width: '85%', height: '75%'},
                     legend: 'none',
                     pointSize: 10,
                     colors: ['#8500FF', 'grey'],
@@ -162,9 +162,10 @@ and open the template in the editor.
             </table>
             
             <h1>Suivi du poids</h1>
-            <div id="conteneurgraphe">
+            <div id="conteneurgraphe" th:unless="${#lists.isEmpty(pesees)}">
             <div id="graphe" style="height: 350px"></div>
             </div>
+            <p th:if="${#lists.isEmpty(pesees)}">Aucune pesée n'a été enregistrée pour [[${animal.nom}]].</p>
             
             <!--
             <h1>Suivi du poids</h1>
@@ -174,7 +175,7 @@ and open the template in the editor.
                         <td th:text="${#numbers.formatDecimal(p.poids, 0, 1) + ' kg'}">Poids</td>
                     </tr>
                 </table>
-                <p th:if="${#lists.size(pesees)==0}">Aucune pesée n'a été enregistrée.</p>
+                <p th:if="${#lists.isEmpty(pesees)}">Aucune pesée n'a été enregistrée.</p>
             -->
             
             <div class="ajout">
@@ -230,7 +231,7 @@ and open the template in the editor.
                     </tr>
             </table>
             </div>
-            <p th:if="${#lists.size(rations.?[datefin==null])==0}">Aucune ration actuelle n'a été enregistrée.</p>
+            <p th:if="${#lists.size(rations.?[datefin==null])==0}">Aucune ration n'est actuellement enregistrée.</p>
             
             <h2>Anciennes rations</h2>
             <table class="form">
