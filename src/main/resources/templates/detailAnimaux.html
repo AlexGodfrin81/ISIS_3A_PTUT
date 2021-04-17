@@ -33,6 +33,7 @@ and open the template in the editor.
             }
             
             var idanimal = [[${animal.id_animal}]];
+            var poidsideal = [[${animal.poids_ideal()}]];
 
             // On fait l'appel AJAX
             function doAjax() {
@@ -52,7 +53,7 @@ and open the template in the editor.
             function drawChart(result) {
                 var tableresult = [];
                 for (var i in result) {
-                    tableresult.push([new Date(result[i].date), result[i].poids]);
+                    tableresult.push([new Date(result[i].date), result[i].poids, poidsideal]);
                 }
                 console.log(tableresult);
 
@@ -60,12 +61,28 @@ and open the template in the editor.
                 // En-têtes des colonnes
                 var data = new google.visualization.DataTable();
                 data.addColumn('date', 'Date');
-                data.addColumn('number', 'Poids (kg)');
+                data.addColumn('number', 'Poids de [[${animal.nom}]] (kg)');
+                data.addColumn('number', 'Objectif');
                 data.addRows(tableresult);                
                             
                 var options = {
-                    title: 'Suivi du poids',
-                    legend: 'none'
+                    title: 'Évolution du poids de [[${animal.nom}]]',
+                    fontName: 'Poppins',
+                    backgroundColor: 'none',
+                    chartArea: {width: '70%', height: '70%'},
+                    legend: 'none',
+                    pointSize: 10,
+                    colors: ['#8500FF', 'grey'],
+                    lineWidth: 3,
+                    series: {
+                        1 : { pointsVisible: false, lineDashStyle: [10, 10], lineWidth: 2 }
+                    },
+                    hAxis: {
+                        title: 'Date'
+                    },
+                    vAxis: {
+                        title: 'Poids (kg)'
+                    }
                 };
             
                 var chart = new google.visualization.LineChart(document.getElementById('graphe'));
@@ -107,6 +124,7 @@ and open the template in the editor.
 
     <body>
         <section>  
+            <h1>Carte d'identité</h1>
             <table class="liste">
                 <tr>
                     <td>Nom</td>
@@ -143,9 +161,12 @@ and open the template in the editor.
                
             </table>
             
-            <h1>Suivi du poids : graphe</h1>
-            <div id="graphe" style="width: 900px; height: 500px"></div>
+            <h1>Suivi du poids</h1>
+            <div id="conteneurgraphe">
+            <div id="graphe" style="height: 350px"></div>
+            </div>
             
+            <!--
             <h1>Suivi du poids</h1>
             <table th:if="${#lists.size(pesees) > 0}" class="liste">
                     <tr th:each="p:${pesees}">
@@ -154,6 +175,7 @@ and open the template in the editor.
                     </tr>
                 </table>
                 <p th:if="${#lists.size(pesees)==0}">Aucune pesée n'a été enregistrée.</p>
+            -->
             
             <div class="ajout">
             <div class="plus"><a th:href="@{/pesee/add(id=${animal.id_animal})}" href='formulaireRation.html'>+</a></div>
