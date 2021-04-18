@@ -44,6 +44,7 @@ public class CroquetteController {
         model.addAttribute("croquettes", dao.findAll());   
         model.addAttribute("croquette", dao.listeCroquettesPour(id));
         model.addAttribute("animal", dao1.getOne(id));
+        model.addAttribute("listeanimaux", dao.listeAnimaux());
         return "afficheCroquettes";
     }
     

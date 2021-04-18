@@ -40,8 +40,24 @@
                 </div>   
             </header>
 
+            <div id="sous-menu">
+                <div id="recherche">
+                  <div id="iconeloupe"><img id="loupe" src="../static/images/Loupe.svg" th:src="@{/images/Loupe.svg}"></div>
+                  <div id="texterecherche">Recherche nom ou code-barre</div>
+                </div>
+
+                <div id="choixcompagnon">
+                  <div id="animalchoisi">Hilda</div>
+                  <div id="boutonliste"><img id="Liste" src="../static/images/Liste.svg" th:src="@{/images/Liste.svg}"></div>
+                </div>
+            </div>
+            
             <section>
-                    <h1>Liste des croquettes de [[${animal.nom}]]</h1>
+                <!-- L'opérateur Elvis ne permet pas  -->
+                <div th:switch="${#lists.isEmpty(animal)}">
+                    <h1 th:case="true">Liste des croquettes</h1>
+                    <h1 th:case="false">Liste des croquettes de [[${animal.nom}]]</h1>
+                </div>
                     <table class="suppr">
                         <tr th:each="c : ${croquette}">
                             <td><a th:href="@{getCroquette(id=${c.idcroq})}" th:text="${c.marquecroq + ' ' + c.nomcroq}">Référence</a></td>
