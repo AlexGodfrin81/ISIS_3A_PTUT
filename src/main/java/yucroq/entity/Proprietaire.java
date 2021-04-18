@@ -34,7 +34,7 @@ public class Proprietaire implements UserDetails {
 
     @NonNull // Lombok
     // Contraintes de taille
-    @Size(min = 6, max = 32)
+    @Size(min = 3, max = 32)
     private String username;
 
     @NonNull // Lombok

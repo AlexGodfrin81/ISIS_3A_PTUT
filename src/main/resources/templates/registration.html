@@ -46,7 +46,12 @@
                         <td><ul><li th:errors="*{username}">Erreur sur le pseudo</li></ul></td>
                         <!--                        </div>-->
                     </tr>
-                                      <tr>
+                    <tr>
+                        <td><label for="nom">Nom :</label></td>
+                        <td><input id="nom" type="text" th:field="*{nom}" placeholder="Nom" required="required"/></td>
+                        <td><ul><li th:errors="*{nom}">Erreur sur le Nom</li></ul></td>
+                    </tr>                  
+                    <tr>
                         <td><label for="prenom">Prénom :</label></td>
                         <td><input id="prenom" type="text" th:field="*{prenom}" placeholder="Prénom" required="required"/></td>
                         <td><ul><li th:errors="*{prenom}">Erreur sur le prénom</li></ul></td>
