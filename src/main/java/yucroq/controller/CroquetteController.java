@@ -57,8 +57,8 @@ public class CroquetteController {
      * @return le nom de la vue à afficher ('detailCroquettes.html')
      */
     @GetMapping(path = "getCroquette")
-    public String afficheUneCroquette(Model model, Integer id) {
-        model.addAttribute("croquette", dao.getOne(id));
+    public String afficheUneCroquette(Model model, Integer idcroq) {
+        model.addAttribute("croquette", dao.getOne(idcroq));
         return "detailCroquettes";
     }
     

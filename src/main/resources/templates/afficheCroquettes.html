@@ -62,7 +62,7 @@
                 </div>
                     <table class="suppr">
                         <tr th:each="c : ${croquette}">
-                            <td><a th:href="@{getCroquette(id=${c.idcroq})}" th:text="${c.marquecroq + ' ' + c.nomcroq}">Référence</a></td>
+                            <td><a th:href="@{getCroquette(idcroq=${c.idcroq})}" th:text="${c.marquecroq + ' ' + c.nomcroq}">Référence</a></td>
                             <td><a class="close" th:href = "@{delete(id = ${c.idcroq})}">×</a></td>
                         </tr>
                     </table>
