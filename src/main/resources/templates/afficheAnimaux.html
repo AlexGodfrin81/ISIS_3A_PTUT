@@ -59,7 +59,7 @@
             
                 <!--/* On appelle l'URL 'add' du contôleur */-->
                 <div class="ajout">
-                    <a th:href="@{add}" href='formulaireAnimal.html'>
+                    <a th:href="@{add(name=${#authentication.name})}" href='formulaireAnimal.html'>
                         <div class="plus">+</div>
                         <div class="texteajout">Ajouter un compagnon</div>
                     </a>
