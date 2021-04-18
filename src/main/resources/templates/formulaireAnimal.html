@@ -100,7 +100,7 @@
                         <tr>
                             <td><label for="proprio">Propriétaire</label></td>
                             <td><select id="proprio" name="proprio">
-                                    <option th:each="p : ${proprietaires}" th:value="${p.id_proprio}" th:text="${p.prenom} +' '+ ${p.nom}" th:field="*{proprio}"></option>
+                                    <option th:value="${proprio.id_proprio}" th:text="${proprio.prenom} +' '+ ${proprio.nom}" th:field="*{proprio}"></option>
                                 </select>
                             </td>
                         </tr>
