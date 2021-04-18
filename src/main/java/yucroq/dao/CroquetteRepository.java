@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import yucroq.dto.CroquettesPourAnimal;
+import yucroq.dto.Animaux;
 import yucroq.entity.Croquette;
 
 public interface CroquetteRepository extends JpaRepository<Croquette, Integer> {
@@ -20,7 +21,8 @@ public interface CroquetteRepository extends JpaRepository<Croquette, Integer> {
             + "WHERE a.id_animal = :idanimal ")
     public List<CroquettesPourAnimal> listeCroquettesPour(Integer idanimal);
     
-    @Query("SELECT a.id_animal as id_animal, a.nom as nom "
-            + "FROM Animal a ")
-    public List<Object> listeAnimaux();
+    @Query("SELECT a.id_animal as idanimal, a.nom as nomanimal "
+            + "FROM Animal a "
+            + "WHERE a.id_animal <> :idanimal ")
+    public List<Animaux> listeAnimaux(Integer idanimal);
 }

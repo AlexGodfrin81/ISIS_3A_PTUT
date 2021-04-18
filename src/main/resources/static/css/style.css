@@ -148,12 +148,16 @@ Sous-menu
     display: flex;
     flex-direction: row;
     align-items: center;
+    text-align: right;
+    background-color: none;
 }
 
-#texterecherche {
+#inputrecherche {
     margin-bottom: 5px;
     margin-left: 15px;
     color: grey;
+    background-color: transparent;
+    text-align: left;
 }
 
 #choixcompagnon {
