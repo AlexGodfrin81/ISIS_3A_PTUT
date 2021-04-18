@@ -36,11 +36,14 @@ public class CroquetteController {
      * Affiche toutes les catégories dans la base
      *
      * @param model pour transmettre les informations à la vue
+     * @param id l'id de l'animal concerné
      * @return le nom de la vue à afficher ('afficheGTableaux.html')
      */
     @GetMapping(path = "show")
-    public String afficheToutesLesCroquettes(Model model) {
-       model.addAttribute("croquettes", dao.findAll());    
+    public String afficheToutesLesCroquettes(Model model, Integer id) {
+        model.addAttribute("croquettes", dao.findAll());   
+        model.addAttribute("croquette", dao.listeCroquettesPour(id));
+        model.addAttribute("animal", dao1.getOne(id));
         return "afficheCroquettes";
     }
     

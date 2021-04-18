@@ -41,15 +41,15 @@
             </header>
 
             <section>
-                    <h1>Liste des croquettes de ...</h1>
+                    <h1>Liste des croquettes de [[${animal.nom}]]</h1>
                     <table class="suppr">
-                        <tr th:each="c : ${croquettes}">
-                            <td><a th:href="@{getCroquette(id=${c.id_croq})}" th:text="${c.marque + ' ' + c.nom}">Référence</a></td>
-                            <td><a class="close" th:href = "@{delete(id = ${c.id_croq})}">×</a></td>
+                        <tr th:each="c : ${croquette}">
+                            <td><a th:href="@{getCroquette(id=${c.idcroq})}" th:text="${c.marquecroq + ' ' + c.nomcroq}">Référence</a></td>
+                            <td><a class="close" th:href = "@{delete(id = ${c.idcroq})}">×</a></td>
                         </tr>
                     </table>
                     
-             <p th:if="${#lists.isEmpty(croquettes)}">Aucune référence n'est enregistrée.</p>
+             <p th:if="${#lists.isEmpty(croquette)}">Aucune référence n'est enregistrée.</p>
 
                     <!--/* On appelle l'URL 'add' du contôleur */-->
                     <div class="ajout">
