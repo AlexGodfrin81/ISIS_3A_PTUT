@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org" lang="en">
-
+     
+    <!-- Pour les visiteurs non authentifiés -->
+    <div sec:authorize="isAnonymous()">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,7 +11,7 @@
         <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet" />
     </head>
     
-           <header>
+    <header>
         <div id="voletgauche">
           <div id="compagnons">
             <div><img class="icone" id="imagecompagnons" src="images/Compagnons_gris.svg" alt="Icône compagnons"></div>
@@ -33,22 +35,97 @@
         </div>   
 
     </header>
-    
-    
     <body>
         <!-- Pour les visiteurs non authentifiés -->
-        <div sec:authorize="isAnonymous()">
+       
             <h2>Welcome to our application | please <a th:href="@{/login}">Login</a></h2>
+    </body>
+         
         </div>
+    
         <!-- Pour les utilisateurs authentifiés -->
         <div sec:authorize="isAuthenticated()">
-            <form id="logoutForm" method="POST" th:action="@{/logout}" action="#">
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            </form>
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>Welcome</title>
+            <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+            <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet" />
+        </head>    
+            <header>
+                <div id="voletgauche">
+                    <div id="compagnons"><a href="../animal/show">
+                            <div><img class="icone" id="imagecompagnons" src="../static/images/Compagnons_gris.svg" th:src="@{/images/Compagnons_gris.svg}" alt="Icône compagnons"></div>
+                            <div class="textevg">Compagnons</div>
+                        </a></div>          
+                    <div id="alimentation">
+                            <div><img class="icone" id="imagealimentation" src="../static/images/Alimentation_violet.svg" th:src="@{/images/Alimentation_violet.svg}" alt="Icône alimentation"></div>
+                            <div class="selectionne textevg">Alimentation</div>
+                            <div class="rectangleselect"></div>
+                        </div>
+                </div>
 
+                <div id="voletcentral">
+                    <img id="logoyucroq" src="../static/images/Logo.svg" th:src="@{/images/Logo.svg}" alt="Logo Yucroq">
+                </div>
+
+                <div id="voletdroit">
+                    <div id="utilisateur">
+                        <div id="utilisateurco" th:text="${#authentication.name}">Anonyme</div>
+                        <div id="deconnexion"><a th:action="@{/logout}" th:href= "@{/login}" href="../static/index.html">Déconnexion</a></div>
+                    </div>
+                    <div><img class="icone" id="imageutilisateur" src="../static/images/Utilisateur_violet.svg" th:src="@{/images/Utilisateur_violet.svg}" alt="Icône utilisateur"></div>
+                </div>
+            </header>
+        <body>
+            <div id="sous-menu">
+                <div id="recherche">
+                  <div id="iconeloupe"><img id="loupe" src="../static/images/Loupe.svg" th:src="@{/images/Loupe.svg}"></div>
+                  <input id="inputrecherche" type="text" placeholder="Nom de la référence à chercher"/>
+                </div>
+                
+                <div id="choixcompagnon" th:unless="${#lists.isEmpty(listeanimaux)}">
+                  <select id="animalchoisi" name="animalchoisi" onChange="window.location.href=this.value">
+                      <option th:value=${animal.id_animal} th:text="${animal.nom}" selected="selected"></option>
+                      <option th:each="a : ${listeanimaux}" th:value="@{../croquette/show(id=${a.idanimal})}" th:text="${a.nomanimal}" th:href="@{../croquette/show(id=${a.idanimal})}"></option>
+                  </select>
+                  <div id="boutonliste"><img id="Liste" src="../static/images/Liste.svg" th:src="@{/images/Liste.svg}"></div>
+                </div>
+            </div>
             
+            <section>
+                <div th:switch="${#lists.isEmpty(animal)}">
+                    <h1 th:case="true">Liste des croquettes</h1>
+                    <h1 th:case="false">Liste des croquettes de [[${animal.nom}]]</h1>
+                </div>
+                    <table class="suppr">
+                        <tr th:each="c : ${croquette}">
+                            <td><a th:href="@{getCroquette(idcroq=${c.idcroq}, idanimal=${animal.id_animal})}" th:text="${c.marquecroq + ' ' + c.nomcroq}">Référence</a></td>
+                            <td><a class="close" th:href = "@{delete(id = ${c.idcroq})}">×</a></td>
+                        </tr>
+                    </table>
+                    
+             <p th:if="${#lists.isEmpty(croquette)}">Aucune référence n'est enregistrée.</p>
+
+                    <!--/* On appelle l'URL 'add' du contôleur */-->
+                    <div class="ajout">
+                        <a th:href="@{./add}" href='formulaireCroquette.html'>
+                            <div class="plus">+</div>
+                            <div class="texteajout">Ajouter un aliment</div>
+                        </a>
+                    </div>
+                    <h4><a th:href="@{/}" href="../static/index.html">Retour au menu</a></h4>
+            </section>
         </div>
+                 <!--<form id="logoutForm" method="POST" th:action="@{/logout}" action="#">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            </form>-->
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script th:src="@{/js/bootstrap.min.js}" src="../static/js/bootstrap.min.js"></script>
+        
     </body>
+        <footer>
+            © Agathe, Alex, Léandre, Tina, Joffrey.
+        </footer>
 </html>

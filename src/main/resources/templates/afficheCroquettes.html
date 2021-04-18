@@ -8,10 +8,8 @@
         <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet" />
     </head>
     <body>
-        <!-- Pour les visiteurs non authentifiés -->
-        <div sec:authorize="isAnonymous()">
-            <h2>Bienvenue sur Yucroq | <a th:href="@{/login}">Connexion</a></h2>
-        </div>
+        
+       
         <div sec:authorize="isAuthenticated()">
 
             <header>
