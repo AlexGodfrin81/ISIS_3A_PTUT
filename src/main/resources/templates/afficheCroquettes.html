@@ -37,7 +37,7 @@
                         <div id="deconnexion"><a th:action="@{/logout}" th:href= "@{/login}" href="../static/index.html">Déconnexion</a></div>
                     </div>
                     <div><img class="icone" id="imageutilisateur" src="../static/images/Utilisateur_violet.svg" th:src="@{/images/Utilisateur_violet.svg}" alt="Icône utilisateur"></div>
-                </div>   
+                </div>
             </header>
 
             <div id="sous-menu">
@@ -45,7 +45,7 @@
                   <div id="iconeloupe"><img id="loupe" src="../static/images/Loupe.svg" th:src="@{/images/Loupe.svg}"></div>
                   <input id="inputrecherche" type="text" placeholder="Nom de la référence à chercher"/>
                 </div>
-
+                
                 <div id="choixcompagnon" th:unless="${#lists.isEmpty(listeanimaux)}">
                   <select id="animalchoisi" name="animalchoisi" onChange="window.location.href=this.value">
                       <option th:value=${animal.id_animal} th:text="${animal.nom}" selected="selected"></option>

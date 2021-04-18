@@ -64,6 +64,24 @@ public class CroquetteController {
         return "detailCroquettes";
     }
     
+    /**
+     * Redirige vers la liste des croquettes selon la recherche effectuée
+     *
+     * @param model pour transmettre les informations à la vue
+     * @param id l'id de l'animal
+     * @param recherche le contenu de la recherche
+     * @return le nom de la vue à afficher ('detailCroquettes.html')
+     */
+    @GetMapping(path = "searchCroquettes")
+    public String afficheUneCroquette(Model model, String recherche, Integer idanimal) {
+        model.addAttribute("recherche", dao.rechercheCroquettes(recherche));
+        model.addAttribute("animal", dao1.getOne(idanimal));
+        model.addAttribute("listeanimaux", dao.listeAnimaux(idanimal));
+        return "rechercheCroquettes";
+    }
+    
+    
+    
     
       /**
      * Montre le formulaire permettant d'ajouter une croquette
@@ -84,6 +102,7 @@ public class CroquetteController {
      * @param redirectInfo pour transmettre des paramètres lors de la redirection
      * @return une redirection vers l'affichage de la liste des croquettes
      */
+    
     @PostMapping(path = "save")
     public String ajouteLaGaleriePuisMontreLaListe(Croquette croquette, RedirectAttributes redirectInfo) {
         String message;
