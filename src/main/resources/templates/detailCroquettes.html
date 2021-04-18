@@ -45,14 +45,16 @@ and open the template in the editor.
                   <div id="iconeloupe"><img id="loupe" src="../static/images/Loupe.svg" th:src="@{/images/Loupe.svg}"></div>
                   <input id="inputrecherche" type="text" placeholder="Nom de la référence à chercher"/>
                 </div>
-
+                     
+            
                 <div id="choixcompagnon" th:unless="${#lists.isEmpty(listeanimaux)}">
                   <select id="animalchoisi" name="animalchoisi" onChange="window.location.href=this.value">
-                      <option th:value=${animal.id_animal} th:text="${animal.nom}" selected="selected"></option>
+                      <option th:if="${animal.id_animal} != 0" th:value=${animal.id_animal} th:text="${animal.nom}" selected="selected"></option>
                       <option th:each="a : ${listeanimaux}" th:value="@{../croquette/show(id=${a.idanimal})}" th:text="${a.nomanimal}" th:href="@{../croquette/show(id=${a.idanimal})}"></option>
                   </select>
                   <div id="boutonliste"><img id="Liste" src="../static/images/Liste.svg" th:src="@{/images/Liste.svg}"></div>
                 </div>
+            
         </div>
         
         <section>

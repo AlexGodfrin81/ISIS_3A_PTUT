@@ -11,11 +11,11 @@
     <body>
         <header>
             <div id="voletgauche">
-                <div id="compagnons"><a href="../animal/show">
+                <div id="compagnons">
                         <div><img class="icone" id="imagecompagnons" src="../static/images/Compagnons_violet.svg" th:src="@{/images/Compagnons_violet.svg}" alt="Icône compagnons"></div>
                         <div class="selectionne textevg">Compagnons</div>
                         <div class="rectangleselect"></div>
-                    </a></div>          
+                    </div>          
                 <div id="alimentation"><a th:if="${#lists.size(animaux)!=0}" th:href="@{../croquette/show(id=${animaux[0].id_animal})}">
                         <div><img class="icone" id="imagealimentation" src="../static/images/Alimentation_gris.svg" th:src="@{/images/Alimentation_gris.svg}" alt="Icône alimentation"></div>
                         <div class="textevg">Alimentation</div>
