@@ -20,11 +20,11 @@
                             <div><img class="icone" id="imagecompagnons" src="../static/images/Compagnons_gris.svg" th:src="@{/images/Compagnons_gris.svg}" alt="Icône compagnons"></div>
                             <div class="textevg">Compagnons</div>
                         </a></div>          
-                    <div id="alimentation"><a href="../croquette/show">
+                    <div id="alimentation">
                             <div><img class="icone" id="imagealimentation" src="../static/images/Alimentation_violet.svg" th:src="@{/images/Alimentation_violet.svg}" alt="Icône alimentation"></div>
                             <div class="selectionne textevg">Alimentation</div>
                             <div class="rectangleselect"></div>
-                        </a></div>
+                        </div>
                 </div>
 
                 <div id="voletcentral">
@@ -62,7 +62,7 @@
                 </div>
                     <table class="suppr">
                         <tr th:each="c : ${croquette}">
-                            <td><a th:href="@{getCroquette(idcroq=${c.idcroq})}" th:text="${c.marquecroq + ' ' + c.nomcroq}">Référence</a></td>
+                            <td><a th:href="@{getCroquette(idcroq=${c.idcroq}, idanimal=${animal.id_animal})}" th:text="${c.marquecroq + ' ' + c.nomcroq}">Référence</a></td>
                             <td><a class="close" th:href = "@{delete(id = ${c.idcroq})}">×</a></td>
                         </tr>
                     </table>

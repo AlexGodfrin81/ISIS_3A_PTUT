@@ -246,7 +246,7 @@ and open the template in the editor.
                     </tr>
                     <tr>
                         <td>Nom</td>
-                        <td><a th:href="@{/croquette/getCroquette(idcroq=${r.idcroq})}" th:text="${r.nomcroq}">Nom</a></td>
+                        <td><a th:href="@{/croquette/getCroquette(idcroq=${r.idcroq},idanimal=${animal.id_animal})}" th:text="${r.nomcroq}">Nom</a></td>
                     </tr>
                     <tr>
                         <td>Commencée le</td>
@@ -284,7 +284,7 @@ and open the template in the editor.
             <h2>Anciennes rations</h2>
             <table class="form">
                 <tr th:each="r: ${rations}" th:if="${r.datefin!=null}">
-                    <td><a th:href="@{/croquette/getCroquette(id=${r.idcroq})}" th:text="${r.marquecroq + ' ' + r.nomcroq}">Nom de la croquette</a></td>
+                    <td><a th:href="@{/croquette/getCroquette(idcroq=${r.idcroq}, idanimal=${animal.id_animal})}" th:text="${r.marquecroq + ' ' + r.nomcroq}">Nom de la croquette</a></td>
                     <td th:text="${#numbers.formatInteger(r.quantiteration,0,'NONE') + ' g/j du ' + r.datedebut + ' au ' + r.datefin}">Quantité</td>
                 </tr>
             </table>
