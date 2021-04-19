@@ -52,9 +52,9 @@
                         <tr>
                             <td><label for="animalPese">Compagnon</label></td>
                             <td>
-                            <label id="proprio" name="proprio" required="required">
-                                <span th:value="${animal.id_animal}" th:text="${animal.nom}" th:field="*{animalPese}"></span>
-                            </label>
+                             <select id="animalPese" name="animalPese">
+                                    <option th:value="${animal.id_animal}" th:text="${animal.nom}" th:field="*{animalPese}"></option>
+                                </select>
                                 </td>
                         </tr>
                     </table>
