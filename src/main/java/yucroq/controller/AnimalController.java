@@ -8,6 +8,7 @@ package yucroq.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import yucroq.entity.Animal;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,7 @@ import yucroq.dao.ProprietaireRepository;
 import yucroq.dao.RaceRepository;
 import yucroq.dao.RationRepository;
 import yucroq.dao.StadePhysiologiqueRepository;
+import yucroq.entity.Proprietaire;
 
 /**
  *
@@ -60,8 +62,8 @@ public class AnimalController {
      * @return le nom de la vue à afficher ('afficheGTableaux.html')
      */
     @GetMapping(path = "show")
-    public String afficheTousLesAnimaux(Model model) {
-        model.addAttribute("animaux", dao.findAll());
+    public String afficheTousLesAnimaux(Model model, @AuthenticationPrincipal Proprietaire user) {
+        model.addAttribute("animaux", dao2.getOne(user.getId_proprio()).getMesAnimaux());
         return "afficheAnimaux";
     }
 
