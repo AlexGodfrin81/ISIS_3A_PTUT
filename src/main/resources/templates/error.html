@@ -9,32 +9,31 @@
 
     </head>
 
-    <header>
-        <div id="voletgauche">
-            <div id="compagnons">
-                <div><img class="icone" id="imagecompagnons" src="images/Compagnons_gris.svg" alt="Icône compagnons"></div>
-                <div class="textevg">Compagnons</div>
-            </div>          
-            <div id="alimentation">
-                <div><img class="icone" id="imagealimentation" src="images/Alimentation_gris.svg" alt="Icône alimentation"></div>
-                <div class="textevg">Alimentation</div>
-            </div>
-        </div>
-
-        <div id="voletcentral">
-            <img id="logoyucroq" src="images/Logo.svg" alt="Logo Yucroq">
-        </div>
-
-        <div id="voletdroit">
-            <div id="seconnecter">
-                <a th:ref="@{/login}" href=".././login" >Se connecter</a>
-            </div>
-            <div><img class="icone" id="imageutilisateur" src="images/Utilisateur_gris.svg" alt="Icône utilisateur"></div>
-        </div>   
-
-    </header>
-
     <body>
+        <header>
+            <div id="voletgauche">
+                <div id="compagnons">
+                    <div><img class="icone" id="imagecompagnons" src="../static/images/Compagnons_gris.svg" alt="Icône compagnons"/></div>
+                    <div class="textevg">Compagnons</div>
+                </div>          
+                <div id="alimentation">
+                    <div><img class="icone" id="imagealimentation" src="../static/images/Alimentation_gris.svg" alt="Icône alimentation"/></div>
+                    <div class="textevg">Alimentation</div>
+                </div>
+            </div>
+
+            <div id="voletcentral">
+                <img id="logoyucroq" src="images/Logo.svg" alt="Logo Yucroq"/>
+            </div>
+
+            <div id="voletdroit">
+                <div id="seconnecter">
+                    <a th:ref="@{/login}" href=".././login" >Se connecter</a>
+                </div>
+                <div><img class="icone" id="imageutilisateur" src="images/Utilisateur_gris.svg" alt="Icône utilisateur"/></div>
+            </div>   
+
+        </header>
         <section>
             <h1>Erreur !</h1>
             <h3 th:text="${message}">My Thymeleaf Error Page</h3>
@@ -61,20 +60,22 @@
                     <td th:text="${message}" />
                 </tr>
             </table>
-            <section>
-                </body>
+        </section>
+    </body>
 
-                </html>
-                <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
-                    <head>
-                        <meta charset="UTF-8" />
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0" />        
-                        <title>Error page</title>
-                        <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrat.min.css}" />
-                    </head>
-                    <body th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}">
-                        <h1 th:text="|${httpStatus} - ${httpStatus.reasonPhrase}|">404</h1>
-                        <p th:utext="${errorMessage}">Error java.lang.NullPointerException</p>
-                        <a href="welcome.html" th:href="@{/}">Back to Home Page</a>
-                    </body>
-                </html>
+</html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />        
+        <title>Error page</title>
+        <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    </head>
+    <body th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}">
+        <section>
+        <h1 th:text="|${httpStatus} - ${httpStatus.reasonPhrase}|">404</h1>
+        <p th:utext="${errorMessage}">Error java.lang.NullPointerException</p>
+        <a href="welcome.html" th:href="@{/}">Back to Home Page</a>
+        </section>
+    </body>
+</html>
