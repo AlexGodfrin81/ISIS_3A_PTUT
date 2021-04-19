@@ -128,7 +128,7 @@ public class CroquetteController {
         return "redirect:/ration/add?id="+id; // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
     }
      @GetMapping(path = "delete")
-    public String supprimerCroquette(@RequestParam("id") Croquette croquette, RedirectAttributes redirectInfo) {
+    public String supprimerCroquette(@RequestParam("id") Croquette croquette, Integer id_anim, RedirectAttributes redirectInfo) {
         String message = croquette.getNom() + "' a été supprimé";
         try {
             dao.delete(croquette);
@@ -136,7 +136,7 @@ public class CroquetteController {
             message = "Erreur : impossible de supprimer " + croquette.getNom();
         }
         redirectInfo.addFlashAttribute("message", message);
-        return "redirect:show";
+        return "redirect:show?id="+id_anim;
     }
 
 }

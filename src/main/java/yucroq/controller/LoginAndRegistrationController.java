@@ -68,7 +68,7 @@ public class LoginAndRegistrationController {
         return "espaceUtilisateur";
     }
 
-    @GetMapping({"/", "/welcome"})
+    @GetMapping({"/"})
     public String welcome(Model model) {
         return "welcome";
     }
