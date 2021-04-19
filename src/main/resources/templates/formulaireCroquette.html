@@ -16,7 +16,7 @@
                         <div><img class="icone" id="imagecompagnons" src="../static/images/Compagnons_gris.svg" th:src="@{/images/Compagnons_gris.svg}" alt="Icône compagnons"></div>
                         <div class="textevg">Compagnons</div>
                     </a></div>          
-                <div id="alimentation"><a href="../croquette/show">
+                <div id="alimentation"><a th:if="${#lists.size(animaux)!=0}" th:href="@{../croquette/show(id=${animaux[0].id_animal})}">
                         <div><img class="icone" id="imagealimentation" src="../static/images/Alimentation_violet.svg" th:src="@{/images/Alimentation_violet.svg}" alt="Icône alimentation"></div>
                         <div class="selectionne textevg">Alimentation</div>
                         <div class="rectangleselect"></div>

@@ -95,9 +95,10 @@ public class CroquetteController {
      * @return le nom de la vue à afficher ('formulaireCroquette.html')
      */
     @GetMapping(path = "add")
-    public String montreLeFormulairePourAjout(Model model, Integer id) {     
+    public String montreLeFormulairePourAjout(Model model, Integer id, @AuthenticationPrincipal Proprietaire user) {     
         model.addAttribute("croquette", new Croquette());
         model.addAttribute("animal", dao1.findById(id));
+        model.addAttribute("animaux", dao2.getOne(user.getId_proprio()).getMesAnimaux());
         return "formulaireCroquette";
     }
     
