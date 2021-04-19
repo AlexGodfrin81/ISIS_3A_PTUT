@@ -59,6 +59,7 @@ public class AnimalController {
      * Affiche toutes les catégories dans la base
      *
      * @param model pour transmettre les informations à la vue
+     * @param user l'utilisateur connecté (un propriétaire)
      * @return le nom de la vue à afficher ('afficheGTableaux.html')
      */
     @GetMapping(path = "show")
