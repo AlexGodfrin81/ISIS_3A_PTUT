@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import yucroq.dao.AnimalRepository;
 import yucroq.dao.CroquetteRepository;
+import yucroq.dao.ProprietaireRepository;
 import yucroq.entity.Animal;
 import yucroq.entity.Croquette;
 import yucroq.entity.Proprietaire;
@@ -33,6 +34,8 @@ public class CroquetteController {
     private CroquetteRepository dao;
     @Autowired
     private AnimalRepository dao1;
+    @Autowired
+    private ProprietaireRepository dao2;
     
     /**
      * Affiche toutes les catégories dans la base
@@ -47,7 +50,7 @@ public class CroquetteController {
         model.addAttribute("croquettes", dao.findAll());   
         model.addAttribute("croquette", dao.listeCroquettesPour(id));
         model.addAttribute("animal", dao1.getOne(id));
-        model.addAttribute("listeanimaux", dao.listeAnimaux(id));
+        model.addAttribute("listeanimaux", dao.listeAnimaux(id, user.getId_proprio()));
         return "afficheCroquettes";
     }  
     
@@ -55,14 +58,16 @@ public class CroquetteController {
      * Redirige vers la page d'un animal selon son id
      *
      * @param model pour transmettre les informations à la vue
-     * @param id l'id de l'animal
+     * @param idcroq l'id de la croquette
+     * @param idanimal l'id de l'animal
+     * @param user l'utilisateur connecté
      * @return le nom de la vue à afficher ('detailCroquettes.html')
      */
     @GetMapping(path = "getCroquette")
-    public String afficheUneCroquette(Model model, Integer idcroq, Integer idanimal) {
+    public String afficheUneCroquette(Model model, Integer idcroq, Integer idanimal, @AuthenticationPrincipal Proprietaire user) {
         model.addAttribute("croquette", dao.getOne(idcroq));
         model.addAttribute("animal", dao1.getOne(idanimal));
-        model.addAttribute("listeanimaux", dao.listeAnimaux(idanimal));
+        model.addAttribute("listeanimaux", dao.listeAnimaux(idanimal, user.getId_proprio()));
         return "detailCroquettes";
     }
     
@@ -70,22 +75,23 @@ public class CroquetteController {
      * Redirige vers la liste des croquettes selon la recherche effectuée
      *
      * @param model pour transmettre les informations à la vue
-     * @param id l'id de l'animal
+     * @param idanimal l'id de l'animal
+     * @param user l'utilisateur connecté
      * @param recherche le contenu de la recherche
      * @return le nom de la vue à afficher ('detailCroquettes.html')
      */
     @GetMapping(path = "searchCroquettes")
-    public String afficheUneCroquette(Model model, String recherche, Integer idanimal) {
+    public String afficheUneCroquette(Model model, String recherche, Integer idanimal, @AuthenticationPrincipal Proprietaire user) {
         model.addAttribute("recherche", dao.rechercheCroquettes(recherche));
         model.addAttribute("animal", dao1.getOne(idanimal));
-        model.addAttribute("listeanimaux", dao.listeAnimaux(idanimal));
+        model.addAttribute("listeanimaux", dao.listeAnimaux(idanimal, user.getId_proprio()));
         return "rechercheCroquettes";
     }
 
       /**
      * Montre le formulaire permettant d'ajouter une croquette
      *
-     * @param croquette initialisé par Spring, valeurs par défaut à afficher dans le formulaire
+     * @param model initialisé par Spring, valeurs par défaut à afficher dans le formulaire
      * @return le nom de la vue à afficher ('formulaireCroquette.html')
      */
     @GetMapping(path = "add")
