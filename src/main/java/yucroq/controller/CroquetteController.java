@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import yucroq.dao.AnimalRepository;
 import yucroq.dao.CroquetteRepository;
@@ -35,11 +36,15 @@ public class CroquetteController {
      * Affiche toutes les catégories dans la base
      *
      * @param model pour transmettre les informations à la vue
+     * @param id l'id de l'animal concerné
      * @return le nom de la vue à afficher ('afficheGTableaux.html')
      */
     @GetMapping(path = "show")
-    public String afficheToutesLesCroquettes(Model model) {
-       model.addAttribute("croquettes", dao.findAll());    
+    public String afficheToutesLesCroquettes(Model model, Integer id) {
+        model.addAttribute("croquettes", dao.findAll());   
+        model.addAttribute("croquette", dao.listeCroquettesPour(id));
+        model.addAttribute("animal", dao1.getOne(id));
+        model.addAttribute("listeanimaux", dao.listeAnimaux(id));
         return "afficheCroquettes";
     }
     
@@ -52,10 +57,30 @@ public class CroquetteController {
      * @return le nom de la vue à afficher ('detailCroquettes.html')
      */
     @GetMapping(path = "getCroquette")
-    public String afficheUneCroquette(Model model, Integer id) {
-        model.addAttribute("croquette", dao.getOne(id));
+    public String afficheUneCroquette(Model model, Integer idcroq, Integer idanimal) {
+        model.addAttribute("croquette", dao.getOne(idcroq));
+        model.addAttribute("animal", dao1.getOne(idanimal));
+        model.addAttribute("listeanimaux", dao.listeAnimaux(idanimal));
         return "detailCroquettes";
     }
+    
+    /**
+     * Redirige vers la liste des croquettes selon la recherche effectuée
+     *
+     * @param model pour transmettre les informations à la vue
+     * @param id l'id de l'animal
+     * @param recherche le contenu de la recherche
+     * @return le nom de la vue à afficher ('detailCroquettes.html')
+     */
+    @GetMapping(path = "searchCroquettes")
+    public String afficheUneCroquette(Model model, String recherche, Integer idanimal) {
+        model.addAttribute("recherche", dao.rechercheCroquettes(recherche));
+        model.addAttribute("animal", dao1.getOne(idanimal));
+        model.addAttribute("listeanimaux", dao.listeAnimaux(idanimal));
+        return "rechercheCroquettes";
+    }
+    
+    
     
     
       /**
@@ -77,6 +102,7 @@ public class CroquetteController {
      * @param redirectInfo pour transmettre des paramètres lors de la redirection
      * @return une redirection vers l'affichage de la liste des croquettes
      */
+    
     @PostMapping(path = "save")
     public String ajouteLaGaleriePuisMontreLaListe(Croquette croquette, RedirectAttributes redirectInfo) {
         String message;
@@ -96,4 +122,16 @@ public class CroquetteController {
         redirectInfo.addFlashAttribute("message", message);
         return "redirect:show"; // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
     }
+     @GetMapping(path = "delete")
+    public String supprimerCroquette(@RequestParam("id") Croquette croquette, RedirectAttributes redirectInfo) {
+        String message = croquette.getNom() + "' a été supprimé";
+        try {
+            dao.delete(croquette);
+        } catch (DataIntegrityViolationException e) {
+            message = "Erreur : impossible de supprimer " + croquette.getNom();
+        }
+        redirectInfo.addFlashAttribute("message", message);
+        return "redirect:show";
+    }
+
 }

@@ -11,36 +11,171 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="../css/style.css"/>
         <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet" />
+        
+        <!-- Chargement de l'API -->
+        
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>
+        <script th:inline="javascript" type="text/javascript">           
+            // cf. https://developers.google.com/chart/interactive/docs/gallery/linechart
+            
+            // On fait l'appel AJAX dès le chargement de la page
+            // google.charts.setOnLoadCallback(doAjax());
+            // google.charts.load('current', {'packages':['corechart']});
+            
+            // Attendre que la page se charge
+            window.addEventListener('load', loadGoogle, false);
+
+            function loadGoogle() {
+              // define callback in load statement
+              google.charts.load('current', {'packages':['corechart'], 'callback': doAjax});
+            }
+            
+            var idanimal = [[${animal.id_animal}]];
+            var poidsideal = [[${animal.poids_ideal()}]];
+
+            // On fait l'appel AJAX
+            function doAjax() {
+                $.ajax({
+                    // On appelle le service qui renvoie le résultat comme un tableau de valeurs
+                    url: "/api/stats/listePeseesPourAnimal",
+                    // On passe comme paramètre les données saisies dans le formulaire
+                    data: { "id" : idanimal },
+                    // On demande du JSON comme résultat
+                    dataType: "json",
+                    success: drawChart, // La fonction qui traite les résultats
+                    error: showError
+                });
+            } 
+
+            // Affiche le résultat des statistiques
+            function drawChart(result) {
+                var tableresult = [];
+                for (var i in result) {
+                    tableresult.push([new Date(result[i].date), result[i].poids, poidsideal]);
+                }
+
+                // On met le résultat au format attendu par google
+                // En-têtes des colonnes
+                var data = new google.visualization.DataTable();
+                data.addColumn('date', 'Date');
+                data.addColumn('number', 'Poids de [[${animal.nom}]] (kg)');
+                data.addColumn('number', 'Objectif');
+                data.addRows(tableresult);                
+                            
+                var options = {
+                    title: 'Évolution du poids de [[${animal.nom}]]',
+                    fontName: 'Poppins',
+                    backgroundColor: 'none',
+                    chartArea: {width: '85%', height: '75%'},
+                    legend: 'none',
+                    pointSize: 10,
+                    colors: ['#8500FF', 'grey'],
+                    lineWidth: 3,
+                    series: {
+                        1 : { pointsVisible: false, lineDashStyle: [10, 10], lineWidth: 2 }
+                    },
+                    hAxis: {
+                        title: 'Date'
+                    },
+                    vAxis: {
+                        title: 'Poids (kg)'
+                    }
+                };
+            
+                var chart = new google.visualization.LineChart(document.getElementById('graphe'));
+                chart.draw(data, options);
+            }
+            
+            // Fonction qui traite les erreurs de la requête
+            function showError(xhr, status, message) {
+                alert("Erreur : " + status + " : " + message);
+            }
+            
+            
+        </script>
+        <script th:inline="javascript" type="text/javascript" th:unless="${#lists.isEmpty(rations)}">
+            // Ne fonctionne pas si l'on n'attend pas le chargement de Google…
+            window.addEventListener('load', recommandations, false);
+            function recommandations() {
+                var nomanimal = [[${animal.nom}]];
+                var energie_tot = Math.floor([[${#aggregates.sum(rations.?[datefin==null].![densiteenergetique*quantiteration/1000])}]]);
+                var besoin = Math.floor([[${animal.calcul_BE()}]]);
+                var rapport = energie_tot/besoin;
+                var qte_ideale = Math.floor([[${animal.calcul_BE()/rations[0].densiteenergetique*1000}]]);
+                var nom_aliment = [[${rations[0].marquecroq + ' ' + rations[0].nomcroq}]];
+                var recommandation;
+                
+                if (besoin == 0) {
+                    recommandation = "Aucun poids de " + nomanimal + " n'a été enregistré. Aucune recommandation ne peut donc être faite."; 
+                }
+                
+                else if (rapport > 1.05) {
+                    recommandation = "L'alimentation de " + nomanimal + " est trop riche, avec " + energie_tot + " kcal/j. ";
+                    recommandation += nomanimal + " devrait manger " + besoin + " kcal/j. ";
+                    recommandation += "Nous vous recommandons de réduire sa portion à " + qte_ideale + " g/j de " + nom_aliment;
+                    recommandation += " ou de basculer sur un aliment moins riche en énergie."
+                    
+                    document.getElementById("bilan1").setAttribute("style", "background-color: red;");
+                    document.getElementById("bilan2").setAttribute("style", "background-color: red;");
+                }
+                
+                else if (rapport < 0.95) {
+                    recommandation = "L'alimentation de " + nomanimal + " est trop pauvre en énergie, avec " + energie_tot + " kcal/j. ";
+                    recommandation += nomanimal + " devrait manger " + besoin + " kcal/j. ";
+                    recommandation += "Nous vous recommandons d'augmenter sa portion à " + qte_ideale + " g/j de " + nom_aliment;
+                    recommandation += " ou de basculer sur un aliment plus riche en énergie."
+
+                document.getElementById("bilan1").setAttribute("style", "background-color: red;");
+                document.getElementById("bilan2").setAttribute("style", "background-color: red;");
+                
+                }
+                
+                else {
+                    recommandation = "L'alimentation de " + nomanimal + " lui apporte la bonne quantité d'énergie. ";
+                    recommandation += nomanimal + " doit en effet manger environ " + besoin + " kcal/j. ";
+                    recommandation += "Nous vous recommandons de conserver cette ration quodidienne de " + nom_aliment;
+                    recommandation += " en évitant les à-côtés caloriques."
+                    
+                    document.getElementById("bilan1").setAttribute("style", "background-color: green;");
+                    document.getElementById("bilan2").setAttribute("style", "background-color: green;");
+                }
+                
+                document.getElementById("recommandation").textContent = recommandation;
+            }
+        </script>
     </head>
 
-    <body>    
-        <header>
-            <div id="voletgauche">
-                <div id="compagnons"><a href="../animal/show">
-                        <div><img class="icone" id="imagecompagnons" src="../static/images/Compagnons_violet.svg" th:src="@{/images/Compagnons_violet.svg}" alt="Icône compagnons"></div>
-                        <div class="selectionne textevg">Compagnons</div>
-                        <div class="rectangleselect"></div>
-                    </a></div>          
-                <div id="alimentation"><a href="../croquette/show">
-                        <div><img class="icone" id="imagealimentation" src="../static/images/Alimentation_gris.svg" th:src="@{/images/Alimentation_gris.svg}" alt="Icône alimentation"></div>
-                        <div class="textevg">Alimentation</div>
-                    </a></div>
-            </div>
+    <header>
+        <div id="voletgauche">
+          <div id="compagnons"><a href="../animal/show">
+            <div><img class="icone" id="imagecompagnons" src="../static/images/Compagnons_violet.svg" th:src="@{/images/Compagnons_violet.svg}" alt="Icône compagnons"></div>
+            <div class="selectionne textevg">Compagnons</div>
+            <div class="rectangleselect"></div>
+            </a></div>          
+          <div id="alimentation"><a th:href="@{../croquette/show(id=${animal.id_animal})}">
+            <div><img class="icone" id="imagealimentation" src="../static/images/Alimentation_gris.svg" th:src="@{/images/Alimentation_gris.svg}" alt="Icône alimentation"></div>
+            <div class="textevg">Alimentation</div>
+          </a></div>
+        </div>
 
-            <div id="voletcentral">
-                <img id="logoyucroq" src="../static/images/Logo.svg" th:src="@{/images/Logo.svg}" alt="Logo Yucroq">
-            </div>
+        <div id="voletcentral">
+          <img id="logoyucroq" src="../static/images/Logo.svg" th:src="@{/images/Logo.svg}" alt="Logo Yucroq">
+        </div>
 
-            <div id="voletdroit">
-                <div id="utilisateur">
-                    <div id="utilisateurco" th:text="${#authentication.name}">Anonyme</div>
-                    <div id="deconnexion"><a th:action="@{/logout}" th:href= "@{/login}" href="../static/index.html">Déconnexion</a></div>
-                </div>
-                <div><img class="icone" id="im ageutilisateur" src="../static/images/Utilisateur_violet.svg" th:src="@{/images/Utilisateur_violet.svg}" alt="Icône utilisateur"></div>
-            </div>   
-        </header>
-        <section> 
-            <h1>Informations de [[${animal.nom}]]</h1>
+        <div id="voletdroit">
+          <div id="utilisateur">
+            <div id="utilisateurco" th:text="${#authentication.name}">Anonyme</div>
+            <div id="deconnexion"><a th:href="@{/}" href="../static/index.html">Déconnexion</a></div>
+          </div>
+          <div><img class="icone" id="imageutilisateur" src="../static/images/Utilisateur_violet.svg" th:src="@{/images/Utilisateur_violet.svg}" alt="Icône utilisateur"></div>
+        </div>   
+    </header>
+
+    <body>
+        <section>  
+            <h1>Carte d'identité</h1>
             <table class="liste">
                 <tr>
                     <td>Nom</td>
@@ -58,7 +193,7 @@ and open the template in the editor.
                     <td>Date de naissance</td>
                     <td th:text="${#temporals.format(animal.date_naiss, 'dd/MM/yyyy')}">
                 </tr>
-                <tr>
+                <tr class="separateur">
                     <td>Taille</td>
                     <td>[[${animal.taille_cm + " cm"}]]</td>
                 </tr>
@@ -68,24 +203,38 @@ and open the template in the editor.
                 </tr>
                 <tr>
                     <td>Poids idéal</td>
-                    <td th:text="${animal.poids_ideal() + ' kg'}">Poids</td>
+                    <td th:text="${animal.poids_ideal()==0} ? ${'Non calculé'} : ${#numbers.formatInteger(animal.poids_ideal(), 0, 'NONE') + ' kg'}">Poids</td>
                 </tr>
-
+                <tr>
+                    <td>Besoin énergétique</td>
+                    <td th:text="${animal.poids_ideal()==0} ? ${'Non calculé'} : ${#numbers.formatInteger(animal.calcul_BE(), 0, 'NONE') + ' kcal/j'}">À calculer</td>
+                </tr>
+               
             </table>
-
-            <h1>Suivi de [[${animal.nom}]]</h1>
-            <h2>Courbe de poids</h2>
-            <p>À ajouter !</p>
-
-            <div class="ajout">
-                <a th:href="@{/ration/add(id=${animal.id_animal})}" href='formulaireRation.html'>
-                    <div class="plus">+</div>
-                    <div class="texteajout">Ajouter une pesée (mauvais lien)</div>
-                </a>
+            
+            <h1>Suivi du poids</h1>
+            <div id="conteneurgraphe" th:unless="${#lists.isEmpty(pesees)}">
+            <div id="graphe" style="height: 350px"></div>
             </div>
-
-
-            <h1>Rations de Hilda</h1>
+            <p th:if="${#lists.isEmpty(pesees)}">Aucune pesée n'a été enregistrée pour [[${animal.nom}]].</p>
+            
+            <!--
+            <h1>Suivi du poids</h1>
+            <table th:if="${#lists.size(pesees) > 0}" class="liste">
+                    <tr th:each="p:${pesees}">
+                        <td th:text="${p.date}">Date de la pesée</td>
+                        <td th:text="${#numbers.formatDecimal(p.poids, 0, 1) + ' kg'}">Poids</td>
+                    </tr>
+                </table>
+                <p th:if="${#lists.isEmpty(pesees)}">Aucune pesée n'a été enregistrée.</p>
+            -->
+            
+            <div class="ajout">
+            <div class="plus"><a th:href="@{/pesee/add(id=${animal.id_animal})}" href='formulaireRation.html'>+</a></div>
+            <div class="texteajout">Ajouter une pesée</div>
+           </div>
+            
+            <h1>Alimentation</h1>
 
             <h2>Ration actuelle</h2>
             <div th:each="r: ${rations}" th:if="${r.datefin==null}">
@@ -97,48 +246,62 @@ and open the template in the editor.
                     </tr>
                     <tr>
                         <td>Nom</td>
-                        <td th:text="${r.nomcroq}">Nom</td>
+                        <td><a th:href="@{/croquette/getCroquette(idcroq=${r.idcroq},idanimal=${animal.id_animal})}" th:text="${r.nomcroq}">Nom</a></td>
                     </tr>
                     <tr>
                         <td>Commencée le</td>
                         <td th:text="${r.datedebut}">Début</td>
                     </tr>
-                    <tr>
-                        <td>Quantité</td>
-                        <td th:text="${r.quantiteration + ' g/j'}">Quantité</td>
+                    <tr class="separateur">
+                        <td>Densité énergétique</td>
+                        <td th:text="${#numbers.formatInteger(r.densiteenergetique,0,'NONE') + ' kcal/kg'}">Esp</td>
                     </tr>
                     <tr>
-                        <td>Espèce des croquettes</td>
-                        <td th:text="${r.espece}">Esp</td>
+                        <td>Quantité reçue</td>
+                        <td th:text="${#numbers.formatInteger(r.quantiteration,0,'NONE') + ' g/j'}">Quantité</td>
                     </tr>
                     <tr>
-                        <td>Densité énergétique</td>
-                        <td>Densité énergétique</td>
+                        <td>Énergie reçue</td>
+                        <td th:text="${#numbers.formatInteger(r.densiteenergetique*r.quantiteration/1000,0,'NONE') + ' kcal/j'}">Esp</td>
                     </tr>
                 </table>
-            </div>
-
+                
+                <h3>Bilan énergétique</h3>             
+                
+                <table th:if="${#lists.size(rations.?[datefin==null])==1}" class="form">
+                    <tr class="emphase">
+                        <td id="bilan1">Énergie totale reçue</td>
+                        <td id="bilan2" th:text="${#numbers.formatInteger(#aggregates.sum(rations.?[datefin==null].![densiteenergetique*quantiteration/1000]),0,'NONE') + ' kcal/j'}"></td>
+                    </tr>
+                </table>
+                
+                <h2>Recommandations</h2>
+                <p id="recommandation">Ici s'affichent les recommandations.</p>
+                
+                </div>
+            <p th:if="${#lists.size(rations.?[datefin==null])==0}">Aucune ration n'est actuellement enregistrée.</p>
+            
             <h2>Anciennes rations</h2>
             <table class="form">
                 <tr th:each="r: ${rations}" th:if="${r.datefin!=null}">
-                    <td th:text="${r.marquecroq + ' ' + r.nomcroq}">Marque</td>
-                    <td th:text="${r.quantiteration + ' g/j du ' + r.datedebut + ' au ' + r.datefin}">Quantité</td>
+                    <td><a th:href="@{/croquette/getCroquette(idcroq=${r.idcroq}, idanimal=${animal.id_animal})}" th:text="${r.marquecroq + ' ' + r.nomcroq}">Nom de la croquette</a></td>
+                    <td th:text="${#numbers.formatInteger(r.quantiteration,0,'NONE') + ' g/j du ' + r.datedebut + ' au ' + r.datefin}">Quantité</td>
                 </tr>
             </table>
-
-
-            <div class="ajout">
-                <a th:href="@{/ration/add(id=${animal.id_animal})}" href='formulaireRation.html'>
-                    <div class="plus">+</div>
-                    <div class="texteajout">Ajouter une ration</div>
-                </a>
+            <p th:if="${#lists.size(rations.?[datefin!=null])==0}">Aucune ancienne ration n'a été enregistrée.</p>
+            
+                 
+        <div class="ajout">
+            <div class="plus"><a th:href="@{/ration/add(id=${animal.id_animal})}" href='formulaireRation.html'>+</a>
             </div>
-
-
-            <h4><a th:href="@{/animal/show}" href="afficheAnimaux.html">Retour aux compagnons</a></h4>
+            <div class="texteajout">Ajouter une ration</div>
+        </div>
+        
+        
+        <h4><a th:href="@{/animal/show}" href="afficheAnimaux.html">Retour aux compagnons</a></h4>
         </section>
     </body>
-
+    
     <footer>
         <a>Mentions légales</a>
         <a>Contacts</a>

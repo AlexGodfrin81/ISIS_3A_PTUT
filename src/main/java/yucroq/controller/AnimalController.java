@@ -76,6 +76,7 @@ public class AnimalController {
     public String afficheUnAnimal(Model model, Integer id) {
         model.addAttribute("animal", dao.getOne(id));
         model.addAttribute("rations", dao.listeRationsPour(id));
+        model.addAttribute("pesees", dao.listePeseesPour(id));
         return "detailAnimaux";
     }
 
@@ -87,10 +88,10 @@ public class AnimalController {
      * @return le nom de la vue à afficher ('formulaireAnimal.html')
      */
     @GetMapping(path = "add")
-    public String montreLeFormulairePourAjout(Model model) {
+    public String montreLeFormulairePourAjout(Model model, String name) {
         model.addAttribute("animal", new Animal());
         model.addAttribute("croquettes", dao1.findAll());
-        model.addAttribute("proprietaires", dao2.findAll());
+        model.addAttribute("proprio", dao2.findByUsername(name));
         model.addAttribute("races", dao3.findAll());
         model.addAttribute("activites", dao4.findAll());
         model.addAttribute("stadephysios", dao5.findAll());

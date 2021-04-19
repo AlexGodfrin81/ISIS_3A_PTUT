@@ -18,6 +18,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -33,6 +34,7 @@ public class SuiviPoids {
     
     @Column
     @NonNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date_suivi;
     
     @Column

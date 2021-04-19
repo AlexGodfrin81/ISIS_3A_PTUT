@@ -5,9 +5,30 @@
  */
 package yucroq.dao;
 
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import yucroq.dto.CroquettesPourAnimal;
+import yucroq.dto.Animaux;
 import yucroq.entity.Croquette;
 
 public interface CroquetteRepository extends JpaRepository<Croquette, Integer> {
     
+    @Query("SELECT DISTINCT c.id_croq as idcroq, c.nom as nomcroq, c.marque as marquecroq "
+            + "FROM Ration r " 
+            + "JOIN r.mesCroqs c "
+            + "JOIN r.consommateur a "
+            + "WHERE a.id_animal = :idanimal ")
+    public List<CroquettesPourAnimal> listeCroquettesPour(Integer idanimal);
+    
+    @Query("SELECT a.id_animal as idanimal, a.nom as nomanimal "
+            + "FROM Animal a "
+            + "WHERE a.id_animal <> :idanimal ")
+    public List<Animaux> listeAnimaux(Integer idanimal);
+    
+    @Query("SELECT c.marque as marque, c.nom as nom "
+            + "FROM Croquette c "
+            + "WHERE c.marque LIKE CONCAT('%',:recherche,'%') "
+            + "OR c.nom LIKE CONCAT('%',:recherche,'%')")
+    public List<Animaux> rechercheCroquettes(String recherche);
 }

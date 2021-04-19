@@ -60,8 +60,13 @@ public class LoginAndRegistrationController {
         return "login";
     }
 
-    @GetMapping({"/"})
+ @GetMapping("/esapceUtilisateur")
+    public String conecte(Model model) {
+        return "espaceUtilisateur";
+    }
+    
+   @GetMapping({"/","/welcome"})
     public String welcome(Model model) {
-        return "afficheCroquettes";
+        return "welcome";
     }
 }

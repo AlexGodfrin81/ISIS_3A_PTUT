@@ -20,7 +20,7 @@ and open the template in the editor.
                         <div><img class="icone" id="imagecompagnons" src="../static/images/Compagnons_gris.svg" th:src="@{/images/Compagnons_gris.svg}" alt="Icône compagnons"></div>
                         <div class="textevg">Compagnons</div>
                     </a></div>          
-                <div id="alimentation"><a href="../croquette/show">
+                <div id="alimentation"><a th:href="@{../croquette/show(id=${animal.id_animal})}">
                         <div><img class="icone" id="imagealimentation" src="../static/images/Alimentation_violet.svg" th:src="@{/images/Alimentation_violet.svg}" alt="Icône alimentation"></div>
                         <div class="selectionne textevg">Alimentation</div>
                         <div class="rectangleselect"></div>
@@ -40,6 +40,23 @@ and open the template in the editor.
             </div>   
         </header>
 
+        <div id="sous-menu">
+                <div id="recherche">
+                  <div id="iconeloupe"><img id="loupe" src="../static/images/Loupe.svg" th:src="@{/images/Loupe.svg}"></div>
+                  <input id="inputrecherche" type="text" placeholder="Nom de la référence à chercher"/>
+                </div>
+                     
+            
+                <div id="choixcompagnon" th:unless="${#lists.isEmpty(listeanimaux)}">
+                  <select id="animalchoisi" name="animalchoisi" onChange="window.location.href=this.value">
+                      <option th:if="${animal.id_animal} != 0" th:value=${animal.id_animal} th:text="${animal.nom}" selected="selected"></option>
+                      <option th:each="a : ${listeanimaux}" th:value="@{../croquette/show(id=${a.idanimal})}" th:text="${a.nomanimal}" th:href="@{../croquette/show(id=${a.idanimal})}"></option>
+                  </select>
+                  <div id="boutonliste"><img id="Liste" src="../static/images/Liste.svg" th:src="@{/images/Liste.svg}"></div>
+                </div>
+            
+        </div>
+        
         <section>
             <h1>Informations sur [[${croquette.marque + " " + croquette.nom}]]</h1>
             <table class="liste">
@@ -57,20 +74,16 @@ and open the template in the editor.
                 </tr>
             </table>
 
-            <h2>Densité énergétique</h2>
+            <h2>Bilan énergétique</h2>
             <table class="form">
                 <tr class="emphase">
                     <td>Énergie</td>
-                    <td>À calculer</td>
+                    <td th:text="${#numbers.formatInteger(croquette.densite_Energetique(),0,'NONE') + ' kcal/kg'}"></td>
                 </tr>
             </table>
 
             <h2>Composition</h2>
             <table class="form">
-                <tr>
-                    <td>Humidité</td>
-                    <td>[[${croquette.humidite + " %"}]]</td>
-                </tr>
                 <tr>
                     <td>Protéines brutes</td>
                     <td>[[${croquette.proteines_brutes + " %"}]]</td>
@@ -86,6 +99,10 @@ and open the template in the editor.
                 <tr>
                     <td>Minéraux</td>
                     <td>[[${croquette.matieres_minerales + " %"}]]</td>
+                </tr>
+                <tr>
+                    <td>Humidité</td>
+                    <td>[[${croquette.humidite + " %"}]]</td>
                 </tr>
                 <tr>
                     <td>Calcium</td>

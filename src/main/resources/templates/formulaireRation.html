@@ -49,7 +49,7 @@ and open the template in the editor.
                         <td><label for="mesCroqs">Aliment</label></td>
                         <td>
                             <select id="mesCroqs" name="mesCroqs">
-                                <option th:each="c : ${croquettes}" th:value="${c.id_croq}" th:text="${c.marque + ' ' + c.nom}" th:field="*{mesCroqs}"></option>
+                                <option th:each="c : ${croquettes}" th:data-esp="${c.espece}" th:value="${c.id_croq}" th:text="${c.marque + ' ' + c.nom}" th:field="*{mesCroqs}"></option>
                             </select>
                         </td>
                     </tr>
@@ -69,7 +69,7 @@ and open the template in the editor.
                         <td><label for="consommateur">Compagnon</label></td>
                         <td>
                             <select id="consommateur" name="consommateur">
-                                <option th:value="${animal.id_animal}" th:text="${animal.nom}" th:field="*{consommateur}"></option>
+                                <option id="cons" th:value="${animal.id_animal}" th:data-esp="${animal.espece}" th:text="${animal.nom}" th:field="*{consommateur}"></option>
                             </select>
                         </td>
                     </tr>
@@ -83,6 +83,7 @@ and open the template in the editor.
             <h4><a th:href="@{/animal/show}" href="afficheAnimaux.html">Retour aux compagnons</a></h4>
 
         </section>
+        <script th:src="@{/js/scriptRation.js}" src="../static/js/scriptRation.js"/></script>
     </body>
 
     <footer>

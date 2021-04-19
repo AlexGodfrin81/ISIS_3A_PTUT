@@ -8,6 +8,31 @@
         <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet" />
     </head>
 
+           <header>
+        <div id="voletgauche">
+          <div id="compagnons">
+            <div><img class="icone" id="imagecompagnons" src="images/Compagnons_gris.svg" alt="Icône compagnons"></div>
+            <div class="textevg">Compagnons</div>
+          </div>          
+          <div id="alimentation">
+            <div><img class="icone" id="imagealimentation" src="images/Alimentation_gris.svg" alt="Icône alimentation"></div>
+            <div class="textevg">Alimentation</div>
+          </div>
+        </div>
+
+        <div id="voletcentral">
+          <img id="logoyucroq" src="images/Logo.svg" alt="Logo Yucroq">
+        </div>
+
+        <div id="voletdroit">
+          <div id="seconnecter">
+            Se connecter
+          </div>
+          <div><img class="icone" id="imageutilisateur" src="images/Utilisateur_gris.svg" alt="Icône utilisateur"></div>
+        </div>   
+
+    </header>
+    
     <body>
 
         <section>
@@ -21,7 +46,12 @@
                         <td><ul><li th:errors="*{username}">Erreur sur le pseudo</li></ul></td>
                         <!--                        </div>-->
                     </tr>
-                                      <tr>
+                    <tr>
+                        <td><label for="nom">Nom :</label></td>
+                        <td><input id="nom" type="text" th:field="*{nom}" placeholder="Nom" required="required"/></td>
+                        <td><ul><li th:errors="*{nom}">Erreur sur le Nom</li></ul></td>
+                    </tr>                  
+                    <tr>
                         <td><label for="prenom">Prénom :</label></td>
                         <td><input id="prenom" type="text" th:field="*{prenom}" placeholder="Prénom" required="required"/></td>
                         <td><ul><li th:errors="*{prenom}">Erreur sur le prénom</li></ul></td>

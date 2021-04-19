@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Ajouter une pesée</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet" />
+    </head>
+
+    <body>
+        <header>
+            <div id="voletgauche">
+                <div id="compagnons"><a href="../animal/show">
+                        <div><img class="icone" id="imagecompagnons" src="../static/images/Compagnons_violet.svg" th:src="@{/images/Compagnons_violet.svg}" alt="Icône compagnons"></div>
+                        <div class="selectionne textevg">Compagnons</div>
+                        <div class="rectangleselect"></div>
+                    </a></div>          
+                <div id="alimentation"><a href="../croquette/show">
+                        <div><img class="icone" id="imagealimentation" src="../static/images/Alimentation_gris.svg" th:src="@{/images/Alimentation_gris.svg}" alt="Icône alimentation"></div>
+                        <div class="textevg">Alimentation</div>
+                    </a></div>
+            </div>
+
+            <div id="voletcentral">
+                <img id="logoyucroq" src="../static/images/Logo.svg" th:src="@{/images/Logo.svg}" alt="Logo Yucroq">
+            </div>
+
+            <div id="voletdroit">
+                <div id="utilisateur">
+                    <div id="utilisateurco" th:text="${#authentication.name}">Anonyme</div>
+                    <div id="deconnexion"><a th:action="@{/logout}" th:href= "@{/login}" href="../static/index.html">Déconnexion</a></div>
+                </div>
+                <div><img class="icone" id="imageutilisateur" src="../static/images/Utilisateur_violet.svg" th:src="@{/images/Utilisateur_violet.svg}" alt="Icône utilisateur"></div>
+            </div>   
+        </header>
+        <section>
+            <h1>Ajouter une pesée</h1>
+		<!--/* Au revient au contrôleur, avec la méthode POST */-->
+		<!--/* th:object définit quel est l'objet édité par ce formulaire */-->
+		<form th:object="${pesee}" method="POST" th:action="@{/pesee/save}">
+                    <table class="form">
+                        <tr>
+                            <td><label for="date_pesee">Date</label></td>
+                            <td><input id="date_pesee" type="date" th:field="*{date_suivi}" th:value="*{date_suivi}" placeholder="2012-03-02" /></td>
+                        </tr>
+                        <tr>
+                            <td><label for="poids">Poids</label></td>
+                            <td><input id="poids" type="text" th:field="*{poids_kg}" placeholder="Poids mesuré" required style="margin-left:-40px;"/><span class="unite"> kg</span></td>
+                        </tr>
+                        <tr>
+                            <td><label for="animalPese">Compagnon</label></td>
+                            <td>
+                                <select id="animalPese" name="animalPese">
+                                    <option th:value="${animal.id_animal}" th:text="${animal.nom}" th:field="*{animalPese}"></option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    	<input type="submit" value="Enregistrer" />
+                        <input type="reset" value="Réinitialiser" />
+		</form>		
+                <h4><a th:href="@{/}" href="../static/index.html">Retour au menu</a></h4>
+	</section>
+        <script th:src="@{/js/script.js}" src="../static/js/script.js"/></script>
+    </body>
+
+
+
+    <footer>
+        <a>Mentions légales</a>
+        <a>Contacts</a>
+    </footer> 
+</html>
