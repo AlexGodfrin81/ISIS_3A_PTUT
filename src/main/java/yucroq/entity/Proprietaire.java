@@ -51,6 +51,7 @@ public class Proprietaire implements UserDetails {
     @Transient // Non enregistré dans la BD
     private String passwordConfirm;
 
+    @NonNull
     private String nom;
 
   
@@ -61,11 +62,12 @@ public class Proprietaire implements UserDetails {
     @Setter(AccessLevel.NONE)
     private List<Role> roles = new LinkedList<>();
 
-    public Proprietaire(String adminUsername, String adminPassword, String adminEmail, String adminPrenom) {
+    public Proprietaire(String adminUsername, String adminPassword, String adminEmail, String adminPrenom, String adminNom) {
         this.username=adminUsername;
         this.password=adminPassword;
         this.email=adminEmail;
         this.prenom=adminPrenom;
+        this.nom=adminNom;
     }
 
     @Override
