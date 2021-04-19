@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import yucroq.dto.CroquettesPourAnimal;
 import yucroq.dto.Animaux;
+import yucroq.dto.RechercheCroquettes;
 import yucroq.entity.Croquette;
 
 public interface CroquetteRepository extends JpaRepository<Croquette, Integer> {
@@ -30,5 +31,5 @@ public interface CroquetteRepository extends JpaRepository<Croquette, Integer> {
             + "FROM Croquette c "
             + "WHERE c.marque LIKE CONCAT('%',:recherche,'%') "
             + "OR c.nom LIKE CONCAT('%',:recherche,'%')")
-    public List<Animaux> rechercheCroquettes(String recherche);
+    public List<RechercheCroquettes> rechercheCroquettes(String recherche);
 }

@@ -41,7 +41,7 @@
             <div id="sous-menu">
                 <div id="recherche">
                   <div id="iconeloupe"><img id="loupe" src="../static/images/Loupe.svg" th:src="@{/images/Loupe.svg}"></div>
-                  <input id="inputrecherche" type="text" placeholder="Nom de la référence à chercher"/>
+                  <input id="inputrecherche" type="text"/>
                 </div>
                 
                 <div id="choixcompagnon" th:unless="${#lists.isEmpty(listeanimaux)}">
@@ -53,7 +53,12 @@
                 </div>
             </div>
             
-            <section>
+            <section id="resultatrecherche">
+                <h1>Recherche de <span id="contenurech"></span></h1>
+            </section>
+            
+            
+            <section id="listecroq">
                 <div th:switch="${#lists.isEmpty(animal)}">
                     <h1 th:case="true">Liste des croquettes</h1>
                     <h1 th:case="false">Liste des croquettes de [[${animal.nom}]]</h1>
@@ -77,12 +82,26 @@
                     <h4><a th:href="@{/}" href="../static/index.html">Retour au menu</a></h4>
             </section>
         </div>
-
     </body>
 
     <footer>
         <a>Mentions légales</a>
         <a>Contacts</a>
     </footer>
+        <script th:inline="javascript" type="text/javascript">
+            document.getElementById("inputrecherche").addEventListener('input', rechercher);
+            function rechercher() {
+                if (document.getElementById("inputrecherche").value == "") {
+                    document.getElementById("listecroq").removeAttribute("style");
+                    document.getElementById("resultatrecherche").setAttribute("style","display:none");
+                }
+                else {
+                    document.getElementById("listecroq").setAttribute("style","display:none");
+                    document.getElementById("resultatrecherche").removeAttribute("style");
+                    document.getElementById("contenurech").textContent = document.getElementById("inputrecherche").value;
+                }
+            }
+            rechercher();
+        </script>
 </html>
 
