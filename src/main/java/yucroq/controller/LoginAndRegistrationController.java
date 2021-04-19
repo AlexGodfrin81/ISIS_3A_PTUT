@@ -68,7 +68,7 @@ public class LoginAndRegistrationController {
         return "redirect:/animal/show";
     }
 
-    @GetMapping({"/", "/welcome"})
+    @GetMapping({"/"})
     public String welcome(Model model) {
         return "welcome";
     }

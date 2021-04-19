@@ -95,9 +95,10 @@ public class CroquetteController {
      * @return le nom de la vue à afficher ('formulaireCroquette.html')
      */
     @GetMapping(path = "add")
-    public String montreLeFormulairePourAjout(Model model, Integer id) {     
+    public String montreLeFormulairePourAjout(Model model, Integer id, @AuthenticationPrincipal Proprietaire user) {     
         model.addAttribute("croquette", new Croquette());
         model.addAttribute("animal", dao1.findById(id));
+        model.addAttribute("animaux", dao2.getOne(user.getId_proprio()).getMesAnimaux());
         return "formulaireCroquette";
     }
     
@@ -128,7 +129,7 @@ public class CroquetteController {
         return "redirect:/ration/add?id="+id; // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
     }
      @GetMapping(path = "delete")
-    public String supprimerCroquette(@RequestParam("id") Croquette croquette, RedirectAttributes redirectInfo) {
+    public String supprimerCroquette(@RequestParam("id") Croquette croquette, Integer id_anim, RedirectAttributes redirectInfo) {
         String message = croquette.getNom() + "' a été supprimé";
         try {
             dao.delete(croquette);
@@ -136,7 +137,7 @@ public class CroquetteController {
             message = "Erreur : impossible de supprimer " + croquette.getNom();
         }
         redirectInfo.addFlashAttribute("message", message);
-        return "redirect:show";
+        return "redirect:show?id="+id_anim;
     }
 
 }

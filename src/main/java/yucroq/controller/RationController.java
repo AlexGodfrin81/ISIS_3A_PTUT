@@ -7,6 +7,7 @@ package yucroq.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import yucroq.dao.AnimalRepository;
 import yucroq.dao.CroquetteRepository;
+import yucroq.dao.ProprietaireRepository;
 import yucroq.dao.RationRepository;
 import yucroq.entity.Croquette;
+import yucroq.entity.Proprietaire;
 import yucroq.entity.Ration;
 
 /**
@@ -33,12 +36,15 @@ public class RationController {
     private AnimalRepository dao2;
     @Autowired
     private CroquetteRepository dao3;
+    @Autowired
+    private ProprietaireRepository dao4;
     
     @GetMapping(path = "add")
-    public String montreLeFormulairePourAjout(Model model, Integer id) {   
+    public String montreLeFormulairePourAjout(Model model, Integer id, @AuthenticationPrincipal Proprietaire user) {   
         model.addAttribute("ration", new Ration());
         model.addAttribute("animal", dao2.getOne(id));
         model.addAttribute("croquettes", dao3.findAll());
+        model.addAttribute("animaux", dao4.getOne(user.getId_proprio()).getMesAnimaux());
         return "formulaireRation";
     }
     
