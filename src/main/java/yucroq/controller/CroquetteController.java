@@ -73,15 +73,10 @@ public class CroquetteController {
      * @return le nom de la vue à afficher ('detailCroquettes.html')
      */
     @GetMapping(path = "searchCroquettes")
-    public String afficheUneCroquette(Model model, String recherche, Integer idanimal) {
+    public String afficheUneCroquette(Model model, String recherche) {
         model.addAttribute("recherche", dao.rechercheCroquettes(recherche));
-        model.addAttribute("animal", dao1.getOne(idanimal));
-        model.addAttribute("listeanimaux", dao.listeAnimaux(idanimal));
         return "rechercheCroquettes";
-    }
-    
-    
-    
+    }    
     
       /**
      * Montre le formulaire permettant d'ajouter une croquette

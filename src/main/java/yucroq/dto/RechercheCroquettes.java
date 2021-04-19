@@ -1,8 +1,7 @@
-
 package yucroq.dto;
 
 public interface RechercheCroquettes {
     Integer getIdcroq();
-    String getMarquecroq();
-    String getNomcroq();
+    String getMarque();
+    String getNom();
 }
