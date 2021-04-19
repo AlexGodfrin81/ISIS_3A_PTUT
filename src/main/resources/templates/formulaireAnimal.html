@@ -100,9 +100,9 @@
                     </tr>
                     <tr>
                         <td><label for="proprio">Propriétaire</label></td>
-                        <td><select id="proprio" name="proprio" required="required">
-                                <option th:value="${proprio.id_proprio}" th:text="${proprio.prenom} +' '+ ${proprio.nom}" th:field="*{proprio}"></option>
-                            </select>
+                        <td><label id="proprio" name="proprio" required="required">
+                                <span th:value="${proprio.id_proprio}" th:text="${proprio.prenom} +' '+ ${proprio.nom}" th:field="*{proprio}"></span>
+                            </label>
                         </td>
                     </tr>
                 </table>
