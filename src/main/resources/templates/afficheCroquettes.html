@@ -69,7 +69,7 @@
 
                     <!--/* On appelle l'URL 'add' du contôleur */-->
                     <div class="ajout">
-                        <a th:href="@{./add}" href='formulaireCroquette.html'>
+                        <a th:href="@{./add(id=${animal.id_animal})}" href='formulaireCroquette.html'>
                             <div class="plus">+</div>
                             <div class="texteajout">Ajouter un aliment</div>
                         </a>

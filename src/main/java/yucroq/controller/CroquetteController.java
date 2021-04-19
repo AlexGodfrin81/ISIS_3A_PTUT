@@ -90,9 +90,9 @@ public class CroquetteController {
      * @return le nom de la vue à afficher ('formulaireCroquette.html')
      */
     @GetMapping(path = "add")
-    public String montreLeFormulairePourAjout(Model model) {     
+    public String montreLeFormulairePourAjout(Model model, Integer id) {     
         model.addAttribute("croquette", new Croquette());
-        model.addAttribute("animal", dao1.findAll());
+        model.addAttribute("animal", dao1.findById(id));
         return "formulaireCroquette";
     }
     /**
@@ -120,7 +120,7 @@ public class CroquetteController {
         // Ici on transmet un message de succès ou d'erreur
         // Ce message est accessible et affiché dans la vue 'afficheCroquette.html'
         redirectInfo.addFlashAttribute("message", message);
-        return "redirect:show"; // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
+        return "redirect:/animal/show"; // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
     }
      @GetMapping(path = "delete")
     public String supprimerCroquette(@RequestParam("id") Croquette croquette, RedirectAttributes redirectInfo) {
