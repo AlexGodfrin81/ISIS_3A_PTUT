@@ -15,6 +15,7 @@ import javax.validation.Valid;
 
 @Controller
 public class LoginAndRegistrationController {
+
     private final UserService userService;
 
     private final SecurityService securityService;
@@ -51,21 +52,23 @@ public class LoginAndRegistrationController {
 
     @GetMapping("/login")
     public String login(Model model, String error, String logout) {
-        if (error != null)
+        if (error != null) {
             model.addAttribute("error", "Nom d'utilisateur ou mot de passe incorrect.");
+        }
 
-        if (logout != null)
+        if (logout != null) {
             model.addAttribute("message", "Vous avez été déconnecté.");
+        }
 
         return "login";
     }
 
- @GetMapping("/esapceUtilisateur")
-    public String conecte(Model model) {
+    @GetMapping("/espaceUtilisateur")
+    public String connecte(Model model) {
         return "espaceUtilisateur";
     }
-    
-   @GetMapping({"/","/welcome"})
+
+    @GetMapping({"/", "/welcome"})
     public String welcome(Model model) {
         return "welcome";
     }

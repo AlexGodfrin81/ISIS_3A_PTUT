@@ -59,6 +59,7 @@ public class AnimalController {
      * Affiche toutes les catégories dans la base
      *
      * @param model pour transmettre les informations à la vue
+     * @param user l'utilisateur connecté (un propriétaire)
      * @return le nom de la vue à afficher ('afficheGTableaux.html')
      */
     @GetMapping(path = "show")
@@ -85,8 +86,8 @@ public class AnimalController {
     /**
      * Montre le formulaire permettant d'ajouter un animal
      *
-     * @param animal initialisé par Spring, valeurs par défaut à afficher dans
-     * le formulaire
+     * @param model pour transmettre les informations à la vue
+     * @param name Le nom de l'animal
      * @return le nom de la vue à afficher ('formulaireAnimal.html')
      */
     @GetMapping(path = "add")
