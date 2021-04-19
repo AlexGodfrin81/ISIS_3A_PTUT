@@ -68,7 +68,7 @@
                     </tr>
                     <tr>
                         <td><label for="taille">Taille</label></td>
-                        <td><input id="taille" type="number" th:field="*{taille_cm}" placeholder="20" style="margin-left:-40px;" required="required"/><span class="unite" required="required">cm</span></td>
+                        <td><input id="taille" type="number" min="0" th:field="*{taille_cm}" placeholder="20" style="margin-left:-40px;" required="required"/><span class="unite" required="required">cm</span></td>
                     </tr>                        
                     <tr>
                         <td><label for="nec">Note d'état corporel</label></td>

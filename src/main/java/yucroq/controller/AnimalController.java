@@ -126,7 +126,7 @@ public class AnimalController {
         // Ici on transmet un message de succès ou d'erreur
         // Ce message est accessible et affiché dans la vue 'afficheAnimal.html'
         redirectInfo.addFlashAttribute("message", message);
-        return "redirect:show"; // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
+        return "redirect:/pesee/add?id="+animal.getId_animal(); // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
     }
 
     @GetMapping(path = "delete")

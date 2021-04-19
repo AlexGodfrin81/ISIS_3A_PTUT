@@ -43,7 +43,7 @@ public class RationController {
     }
     
     @PostMapping(path = "save")
-    public String ajouteLaGaleriePuisMontreLaListe(Ration ration, RedirectAttributes redirectInfo) {
+    public String ajouteLaRationPuisMontreLaListe(Ration ration, RedirectAttributes redirectInfo) {
         String message;
         try {
             // cf. https://www.baeldung.com/spring-data-crud-repository-save

@@ -39,7 +39,7 @@
             <h1>Ajouter une pesée</h1>
 		<!--/* Au revient au contrôleur, avec la méthode POST */-->
 		<!--/* th:object définit quel est l'objet édité par ce formulaire */-->
-		<form th:object="${pesee}" method="POST" th:action="@{/pesee/save}">
+		<form th:object="${pesee}" method="POST" th:action="@{/pesee/save(id=${animal.id_animal})}">
                     <table class="form">
                         <tr>
                             <td><label for="date_pesee">Date</label></td>
@@ -61,7 +61,7 @@
                     	<input type="submit" value="Enregistrer" />
                         <input type="reset" value="Réinitialiser" />
 		</form>		
-                <h4><a th:href="@{/}" href="../static/index.html">Retour au menu</a></h4>
+                <h4><a th:href="@{/animal/getAnimal(id=${animal.id_animal})}" href="../static/index.html">Retour au menu</a></h4>
 	</section>
         <script th:src="@{/js/script.js}" src="../static/js/script.js"/></script>
     </body>

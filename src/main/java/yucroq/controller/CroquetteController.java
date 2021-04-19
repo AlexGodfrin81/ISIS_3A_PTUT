@@ -103,7 +103,7 @@ public class CroquetteController {
      * @return une redirection vers l'affichage de la liste des croquettes
      */
     @PostMapping(path = "save")
-    public String ajouteLaGaleriePuisMontreLaListe(Croquette croquette, RedirectAttributes redirectInfo) {
+    public String ajouteLaCroquettePuisFormulaireRation(Croquette croquette, Integer id, RedirectAttributes redirectInfo) {
         String message;
         try {
             // cf. https://www.baeldung.com/spring-data-crud-repository-save
@@ -119,7 +119,7 @@ public class CroquetteController {
         // Ici on transmet un message de succès ou d'erreur
         // Ce message est accessible et affiché dans la vue 'afficheCroquette.html'
         redirectInfo.addFlashAttribute("message", message);
-        return "redirect:/animal/show"; // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
+        return "redirect:/ration/add?id="+id; // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
     }
      @GetMapping(path = "delete")
     public String supprimerCroquette(@RequestParam("id") Croquette croquette, RedirectAttributes redirectInfo) {
