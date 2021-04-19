@@ -29,7 +29,6 @@ public interface CroquetteRepository extends JpaRepository<Croquette, Integer> {
     
     @Query("SELECT c.id_croq as idcroq, c.marque as marque, c.nom as nom "
             + "FROM Croquette c "
-            + "WHERE c.marque LIKE CONCAT('%',:recherche,'%') "
-            + "OR c.nom LIKE CONCAT('%',:recherche,'%')")
+            + "WHERE CONCAT(c.marque,' ',c.nom) LIKE CONCAT('%',:recherche,'%')")
     public List<RechercheCroquettes> rechercheCroquettes(String recherche);
 }
