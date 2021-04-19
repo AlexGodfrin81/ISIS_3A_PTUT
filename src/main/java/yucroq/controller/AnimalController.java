@@ -12,7 +12,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -91,8 +90,9 @@ public class AnimalController {
      * @return le nom de la vue à afficher ('formulaireAnimal.html')
      */
     @GetMapping(path = "add")
-    public String montreLeFormulairePourAjout(Model model, String name) {
+    public String montreLeFormulairePourAjout(Model model, String name, @AuthenticationPrincipal Proprietaire user) {
         model.addAttribute("animal", new Animal());
+        model.addAttribute("animaux", dao2.getOne(user.getId_proprio()).getMesAnimaux());
         model.addAttribute("croquettes", dao1.findAll());
         model.addAttribute("proprio", dao2.findByUsername(name));
         model.addAttribute("races", dao3.findAll());

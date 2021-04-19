@@ -38,13 +38,14 @@
     <body>
         <!-- Pour les visiteurs non authentifiés -->
        
-            <h2>Welcome to our application | please <a th:href="@{/login}">Login</a></h2>
+        <h2>Bienvenue sur Yucroq | <a th:href="@{/login}">Connexion</a></h2>
     </body>
          
         </div>
     
         <!-- Pour les utilisateurs authentifiés -->
         <div sec:authorize="isAuthenticated()">
+           
         <head>
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -77,7 +78,7 @@
                     <div><img class="icone" id="imageutilisateur" src="../static/images/Utilisateur_violet.svg" th:src="@{/images/Utilisateur_violet.svg}" alt="Icône utilisateur"></div>
                 </div>
             </header>
-        <body>
+        <body> <span th:redirect="@{/redirect}"></span>
             <div id="sous-menu">
                 <div id="recherche">
                   <div id="iconeloupe"><img id="loupe" src="../static/images/Loupe.svg" th:src="@{/images/Loupe.svg}"></div>
