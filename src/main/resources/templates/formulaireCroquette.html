@@ -39,7 +39,7 @@
             <h1>Ajouter un aliment</h1>
             <!--/* on revient au contrôleur, avec la méthode POST */-->
             <!--/* th:object définit quel est l'objet édité par ce formulaire */-->
-            <form th:object="${croquette}" method="POST" th:action="@{/croquette/save}">
+            <form th:object="${croquette}" method="POST" th:action="@{/croquette/save(id=${animal.get().id_animal})}">
                 <table class="form">
                     <tr>
                         <td><label for="marque">Marque</label></td>
@@ -52,8 +52,7 @@
                     <tr>
                         <td><label for="espece">Espèce cible</label></td>
                         <td><select id="espece" th:field="*{espece}">
-                                <option th:value="CHIEN" th:text="Chien"></option>
-                                <option th:value="CHAT" th:text="Chat"></option>
+                                <option th:value="${animal.get().espece}" th:text="${animal.get().espece}"></option>
                             </select></td>
                     </tr>
                     <tr>

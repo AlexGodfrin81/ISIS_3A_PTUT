@@ -23,13 +23,31 @@ import org.springframework.context.annotation.Profile;
 public class AnimalRepositoryTest {
     @Autowired
     private AnimalRepository animalDAO;
-    /*
+
     @Test
     public void testPoidsIdeal(){
         Animal a1 = animalDAO.findById(1).orElseThrow();
-        log.info("On calcule la densite énergetique de la croquette {} en java", a1.getNom());
-        assertEquals(4196.733f, a1.poids_ideal(), 0.001f, 
-                "La densite energetique de ces croquettes est de 4196.733f" );
+        log.info("On calcule le poids ideal de{} en java", a1.getNom());
+        assertEquals(42.8571f, a1.poids_ideal(), 0.001f, 
+                "Le poids ideal doit etre de 42,8571f" );
         
-    }*/
+    }
+    
+    @Test
+    public void testCalculK(){
+        Animal a1 = animalDAO.findById(1).orElseThrow();
+        log.info("On calcule le K de{} en java", a1.getNom());
+        assertEquals(0.8f, a1.calcul_K(), 0.001f, 
+                "Le K doit etre de 0.8f" );
+        
+    }
+    
+    @Test
+    public void testCalculBE(){
+        Animal a1 = animalDAO.findById(1).orElseThrow();
+        log.info("On calcule le BE de{} en java", a1.getNom());
+        assertEquals(1742.0104f, a1.calcul_BE(), 0.001f, 
+                "Le BE doit etre de 1 715,8143f" );
+        
+    }
 }

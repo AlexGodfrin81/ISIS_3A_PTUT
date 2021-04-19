@@ -75,12 +75,12 @@
 
                     <!--/* On appelle l'URL 'add' du contôleur */-->
                     <div class="ajout">
-                        <a th:href="@{./add}" href='formulaireCroquette.html'>
+                        <a th:href="@{./add(id=${animal.id_animal})}" href='formulaireCroquette.html'>
                             <div class="plus">+</div>
                             <div class="texteajout">Ajouter un aliment</div>
                         </a>
                     </div>
-                    <h4><a th:href="@{/}" href="../static/index.html">Retour au menu</a></h4>
+                    <h4><a th:href="@{/animal/show}" href="afficheAnimaux.html">Retour aux compagnons</a></h4>
             </section>
         </div>
     </body>

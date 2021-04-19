@@ -10,7 +10,7 @@ INSERT INTO Croquette(id_croq, nom, marque, espece, humidite, proteines_brutes, 
 
 
 INSERT INTO Proprietaire(id_proprio, username, password, nom, prenom, tel, email) VALUES 
-    (4, 'Atsuhiko', 'helloworld', 'Garriga',  'Léandre', '0600000000', 'leandre.garriga@etud.univ-jfc.fr'),
+    (4, 'xXDarkSasuke34Xx', 'helloworld', 'Garriga',  'Léandre', '0600000000', 'leandre.garriga@etud.univ-jfc.fr'),
     (2, 'Kachoul', 'helloworld', 'Sutarik', 'Agathe', '0660606060', 'agathe.sutarik@etud.univ-jfc.fr'),
     (3, 'Joffrey', 'helloworld', 'Viémon-Desplanque', 'Joffrey', '0667930794', 'joffrey.viemon-desplanque@etud.univ-jfc.fr');
 
@@ -26,7 +26,7 @@ INSERT INTO Stade_Physiologique(id_stade, nom, k3) VALUES
 
 INSERT INTO Animal(id_animal, nom, espece, est_Male, date_naiss, taille_cm, nec, id_proprio, id_race, id_activite, id_stade) VALUES
     (1, 'Hilda', 'CHIEN', false, '2012-03-01', 100, 6, 3, 1, 1, 2),
-    (2, 'Papouille', 'CHIEN', true, '2005-06-05', 45, 7, 1, 2, 2, 1),
+    (2, 'Papouille', 'CHIEN', true, '2005-06-05', 45, 7, 4, 2, 2, 1),
     (3, 'Fidji', 'CHAT', true, '2010-02-28', 20, 3, 3, 4, 2, 2);
 
 INSERT INTO Suivi_Poids(id_suivi, date_suivi, poids_kg, id_animal) VALUES
