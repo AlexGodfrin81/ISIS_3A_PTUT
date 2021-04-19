@@ -114,7 +114,7 @@ and open the template in the editor.
                 </tr> 
             </table>
 
-            <h4><a href="../croquette/show">Retour à la liste</a></h4>
+            <h4><a th:href="@{/croquette/show(id=${animal.id_animal})}" href="afficheCroquettes.html">Retour à la liste</a></h4>
         </section>
     </body>
 
