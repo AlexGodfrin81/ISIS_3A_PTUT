@@ -7,6 +7,7 @@ package yucroq.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import yucroq.dao.AnimalRepository;
 import yucroq.dao.CroquetteRepository;
 import yucroq.entity.Animal;
 import yucroq.entity.Croquette;
+import yucroq.entity.Proprietaire;
 
 /**
  *
@@ -37,17 +39,17 @@ public class CroquetteController {
      *
      * @param model pour transmettre les informations à la vue
      * @param id l'id de l'animal concerné
+     * @param user l'utilisateur connecté (un propriétaire)
      * @return le nom de la vue à afficher ('afficheGTableaux.html')
      */
     @GetMapping(path = "show")
-    public String afficheToutesLesCroquettes(Model model, Integer id) {
+    public String afficheToutesLesCroquettes(Model model, Integer id,  @AuthenticationPrincipal Proprietaire user) {
         model.addAttribute("croquettes", dao.findAll());   
         model.addAttribute("croquette", dao.listeCroquettesPour(id));
         model.addAttribute("animal", dao1.getOne(id));
         model.addAttribute("listeanimaux", dao.listeAnimaux(id));
         return "afficheCroquettes";
-    }
-    
+    }  
     
     /**
      * Redirige vers la page d'un animal selon son id
@@ -79,10 +81,7 @@ public class CroquetteController {
         model.addAttribute("listeanimaux", dao.listeAnimaux(idanimal));
         return "rechercheCroquettes";
     }
-    
-    
-    
-    
+
       /**
      * Montre le formulaire permettant d'ajouter une croquette
      *
@@ -95,6 +94,7 @@ public class CroquetteController {
         model.addAttribute("animal", dao1.findAll());
         return "formulaireCroquette";
     }
+    
     /**
      * Appelé par 'formulaireCroquette.html', méthode POST
      *
@@ -102,7 +102,6 @@ public class CroquetteController {
      * @param redirectInfo pour transmettre des paramètres lors de la redirection
      * @return une redirection vers l'affichage de la liste des croquettes
      */
-    
     @PostMapping(path = "save")
     public String ajouteLaGaleriePuisMontreLaListe(Croquette croquette, RedirectAttributes redirectInfo) {
         String message;
