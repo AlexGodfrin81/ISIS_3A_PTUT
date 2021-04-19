@@ -126,7 +126,7 @@
             function rech(result) {
                 let textetransmis = "<ul>";
                 for (var i in result) {
-                    textetransmis += "<li>" + result[i].marque + " " + result[i].nom + "</li>";
+                    textetransmis += "<li><a href='getCroquette?idcroq=" + result[i].idcroq + "&idanimal=0'>" + result[i].marque + " " + result[i].nom + "</a></li>";
                 }
                 textetransmis += "</ul>";
                 
