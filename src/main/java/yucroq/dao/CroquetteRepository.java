@@ -23,7 +23,7 @@ public interface CroquetteRepository extends JpaRepository<Croquette, Integer> {
     
     @Query("SELECT a.id_animal as idanimal, a.nom as nomanimal "
             + "FROM Animal a "
-            + "WHERE a.id_animal <> :idanimal AND :idproprio=a.proprio")
+            + "WHERE a.id_animal <> :idanimal AND a.proprio.id_proprio = :idproprio")
     public List<Animaux> listeAnimaux(Integer idanimal, Integer idproprio);
     
     @Query("SELECT c.marque as marque, c.nom as nom "

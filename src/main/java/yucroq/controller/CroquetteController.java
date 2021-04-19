@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import yucroq.dao.AnimalRepository;
 import yucroq.dao.CroquetteRepository;
+import yucroq.dao.ProprietaireRepository;
 import yucroq.entity.Animal;
 import yucroq.entity.Croquette;
 import yucroq.entity.Proprietaire;
@@ -33,6 +34,8 @@ public class CroquetteController {
     private CroquetteRepository dao;
     @Autowired
     private AnimalRepository dao1;
+    @Autowired
+    private ProprietaireRepository dao2;
     
     /**
      * Affiche toutes les catégories dans la base
