@@ -63,9 +63,9 @@ public class LoginAndRegistrationController {
         return "login";
     }
 
-    @GetMapping("/espaceUtilisateur")
+    @GetMapping("/redirect")
     public String connecte(Model model) {
-        return "espaceUtilisateur";
+        return "redirect:/animal/show";
     }
 
     @GetMapping({"/", "/welcome"})
