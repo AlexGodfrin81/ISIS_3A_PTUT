@@ -31,7 +31,7 @@ public class AnimalRepositoryTest {
         Optional<Animal> a1 = animalDAO.findById(100);
         log.info("On calcule le poids ideal de{} en java", a1.get().getNom());
         assertEquals(46.666668f, a1.get().poids_ideal(), 0.001f, 
-                "Le poids ideal doit etre de 42,8571f" );
+                "Le poids ideal doit etre de 46.666668f" );
         
     }
     
@@ -41,7 +41,7 @@ public class AnimalRepositoryTest {
         Optional<Animal> a1 = animalDAO.findById(100);
         log.info("On calcule le K de{} en java", a1.get().getNom());
         assertEquals(0.64f, a1.get().calcul_K(), 0.001f, 
-                "Le K doit etre de 0.8f" );
+                "Le K doit etre de 0.64f" );
         
     }
     
@@ -51,7 +51,7 @@ public class AnimalRepositoryTest {
         Optional<Animal> a1 = animalDAO.findById(100);
         log.info("On calcule le BE de{} en java", a1.get().getNom());
         assertEquals(1485.5198f, a1.get().calcul_BE(), 0.001f, 
-                "Le BE doit etre de 1 715,8143f" );
+                "Le BE doit etre de 1485.5198f" );
         
     }
 }
