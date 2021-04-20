@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     public void save(Proprietaire user) {
         // Par défaut on attribue le rôle 'ROLE_USER' aux nouveaux utilisateurs
         // Ce rôle est créé automatiquement au lancement de l'application
-        Role normal = roleRepository.findByName("ROLE_USER").orElseThrow();
+        Role normal = roleRepository.findByName("ROLE_USER");
         // On crypte le mot de passe avant de l'enregistrer
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.getRoles().add(normal);
@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void initializeRolesAndAdmin() {
-        if (roleRepository.findByName("ROLE_ADMIN").isEmpty()) {
+        if (roleRepository.findByName("ROLE_ADMIN") == null) {
             log.info("Création des deux rôles et de l'administrateur");
             Role roleAdmin = new Role("ROLE_ADMIN");
             Role roleUser = new Role("ROLE_USER");
