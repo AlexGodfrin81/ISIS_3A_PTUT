@@ -265,7 +265,8 @@ and open the template in the editor.
                         <td th:text="${#numbers.formatInteger(r.densiteenergetique*r.quantiteration/1000,0,'NONE') + ' kcal/j'}">Esp</td>
                     </tr>
                 </table>
-                <h4><a a th:href="@{/ration/update(idration=${r.idration})}" href='animal/show'>Modifier</a></h4>
+                
+                <!--<h4><a a th:href="@{/ration/update(idration=${r.idration})}" href='animal/show'>Modifier</a></h4>-->
 
                 
                 <h3>Bilan énergétique</h3>             
