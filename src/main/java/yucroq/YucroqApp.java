@@ -13,7 +13,7 @@ import yucroq.service.UserService;
 @EnableGlobalMethodSecurity(securedEnabled = true)
 @Slf4j
 public class YucroqApp {
-
+    
     final
     UserService userService;
 
@@ -24,10 +24,10 @@ public class YucroqApp {
 	public static void main(String[] args) {
 		SpringApplication.run(YucroqApp.class, args);
 	}
-    @PostConstruct
+   /* @PostConstruct
     // Quand on lance l'application, on crée un administrateur (cf. application.properties)
     private void initialize() {
         userService.initializeRolesAndAdmin();
     }
-    
+    */
 }
