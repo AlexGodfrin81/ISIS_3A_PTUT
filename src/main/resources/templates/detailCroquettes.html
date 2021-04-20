@@ -57,7 +57,12 @@ and open the template in the editor.
             
         </div>
         
-        <section>
+        <section id="resultatrecherche">
+            <h1>Recherche de <span id="contenurech"></span></h1>
+            <div id="listeresultatrecherche"></div>
+        </section>
+        
+        <section id="listecroq">
             <h1>Informations sur [[${croquette.marque + " " + croquette.nom}]]</h1>
             <table class="liste">
                 <tr>
@@ -116,6 +121,8 @@ and open the template in the editor.
 
             <h4><a th:href="@{/croquette/show(id=${animal.id_animal})}" href="afficheCroquettes.html">Retour à la liste</a></h4>
         </section>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>
+        <script th:src="@{/js/scriptRecherche.js}" src="../static/js/scriptRecherche.js"/></script>
     </body>
 
     <footer>
