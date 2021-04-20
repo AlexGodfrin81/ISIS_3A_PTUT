@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import yucroq.dao.AnimalRepository;
 import yucroq.dao.CroquetteRepository;
 import yucroq.dao.ProprietaireRepository;
-import yucroq.entity.Animal;
+import yucroq.dao.RationRepository;
 import yucroq.entity.Croquette;
 import yucroq.entity.Proprietaire;
 
@@ -29,14 +29,16 @@ import yucroq.entity.Proprietaire;
 @Controller
 @RequestMapping(path = "/croquette")
 public class CroquetteController {
-    
+
     @Autowired
     private CroquetteRepository dao;
     @Autowired
     private AnimalRepository dao1;
     @Autowired
     private ProprietaireRepository dao2;
-    
+    @Autowired
+    private RationRepository dao3;
+
     /**
      * Affiche toutes les catégories dans la base
      *
@@ -46,14 +48,14 @@ public class CroquetteController {
      * @return le nom de la vue à afficher ('afficheGTableaux.html')
      */
     @GetMapping(path = "show")
-    public String afficheToutesLesCroquettes(Model model, Integer id,  @AuthenticationPrincipal Proprietaire user) {
-        model.addAttribute("croquettes", dao.findAll());   
+    public String afficheToutesLesCroquettes(Model model, Integer id, @AuthenticationPrincipal Proprietaire user) {
+        model.addAttribute("croquettes", dao.findAll());
         model.addAttribute("croquette", dao.listeCroquettesPour(id));
         model.addAttribute("animal", dao1.getOne(id));
         model.addAttribute("listeanimaux", dao.listeAnimaux(id, user.getId_proprio()));
         return "afficheCroquettes";
-    }  
-    
+    }
+
     /**
      * Redirige vers la page d'un animal selon son id
      *
@@ -70,26 +72,29 @@ public class CroquetteController {
         model.addAttribute("listeanimaux", dao.listeAnimaux(idanimal, user.getId_proprio()));
         return "detailCroquettes";
     }
-   
-      /**
+
+    /**
      * Montre le formulaire permettant d'ajouter une croquette
      *
-     * @param model initialisé par Spring, valeurs par défaut à afficher dans le formulaire
+     * @param model initialisé par Spring, valeurs par défaut à afficher dans le
+     * formulaire
      * @return le nom de la vue à afficher ('formulaireCroquette.html')
      */
     @GetMapping(path = "add")
-    public String montreLeFormulairePourAjout(Model model, Integer id, @AuthenticationPrincipal Proprietaire user) {     
+    public String montreLeFormulairePourAjout(Model model, Integer id, @AuthenticationPrincipal Proprietaire user) {
         model.addAttribute("croquette", new Croquette());
         model.addAttribute("animal", dao1.findById(id));
         model.addAttribute("animaux", dao2.getOne(user.getId_proprio()).getMesAnimaux());
         return "formulaireCroquette";
     }
-    
+
     /**
      * Appelé par 'formulaireCroquette.html', méthode POST
      *
-     * @param croquette Une croquette initialisée avec les valeurs saisies dans le formulaire
-     * @param redirectInfo pour transmettre des paramètres lors de la redirection
+     * @param croquette Une croquette initialisée avec les valeurs saisies dans
+     * le formulaire
+     * @param redirectInfo pour transmettre des paramètres lors de la
+     * redirection
      * @return une redirection vers l'affichage de la liste des croquettes
      */
     @PostMapping(path = "save")
@@ -109,18 +114,22 @@ public class CroquetteController {
         // Ici on transmet un message de succès ou d'erreur
         // Ce message est accessible et affiché dans la vue 'afficheCroquette.html'
         redirectInfo.addFlashAttribute("message", message);
-        return "redirect:/ration/add?id="+id; // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
+        return "redirect:/ration/add?id=" + id; // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
     }
-     @GetMapping(path = "delete")
+
+    @GetMapping(path = "delete")
     public String supprimerCroquette(@RequestParam("id") Croquette croquette, Integer id_anim, RedirectAttributes redirectInfo) {
         String message = croquette.getNom() + "' a été supprimé";
         try {
+            dao.getOne(croquette.getId_croq()).getRationCroq().forEach(r -> {
+                dao3.delete(r);
+            });
             dao.delete(croquette);
         } catch (DataIntegrityViolationException e) {
             message = "Erreur : impossible de supprimer " + croquette.getNom();
         }
         redirectInfo.addFlashAttribute("message", message);
-        return "redirect:show?id="+id_anim;
+        return "redirect:show?id=" + id_anim;
     }
 
 }

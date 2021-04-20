@@ -80,13 +80,8 @@ public class RationController {
     @PostMapping(path = "saveupdate")
     public String modifieLaRationPuisMontreLaListe(Ration ration, RedirectAttributes redirectInfo) {
         String message;
-        System.out.println("HEREEEEEEEE "+ration.getDate_fin());
-        System.out.println("HEREEEEEEEE "+ration.getId_ration());
-        LocalDate test= LocalDate.of(2020, Month.MARCH, 5);
-        dao1.updateRationFin(ration.getDate_fin(), ration.getId_ration());//, ration.getDate_fin());
-
-        /*try {
-            dao1.updateRationFin(ration.getId_ration(), ration.getDate_fin());
+        try {
+            dao1.updateRationFin(ration.getDate_fin(), ration.getId_ration());//, ration.getDate_fin());
             message = "La ration '" + ration.getId_ration() + "' a été correctement modifiée";
         } catch (Exception e) {
             // Les noms sont définis comme 'UNIQUE' 
@@ -95,7 +90,7 @@ public class RationController {
         }
         // RedirectAttributes permet de transmettre des informations lors d'une redirection,
         // Ici on transmet un message de succès ou d'erreur
-        redirectInfo.addFlashAttribute("message", message);*/
+        redirectInfo.addFlashAttribute("message", message); 
         return "redirect:/animal/show"; // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
     }
 }
