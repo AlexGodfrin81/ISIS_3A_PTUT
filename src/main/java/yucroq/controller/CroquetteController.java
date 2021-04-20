@@ -70,24 +70,7 @@ public class CroquetteController {
         model.addAttribute("listeanimaux", dao.listeAnimaux(idanimal, user.getId_proprio()));
         return "detailCroquettes";
     }
-    
-    /**
-     * Redirige vers la liste des croquettes selon la recherche effectuée
-     *
-     * @param model pour transmettre les informations à la vue
-     * @param idanimal l'id de l'animal
-     * @param user l'utilisateur connecté
-     * @param recherche le contenu de la recherche
-     * @return le nom de la vue à afficher ('detailCroquettes.html')
-     */
-    @GetMapping(path = "searchCroquettes")
-    public String afficheUneCroquette(Model model, String recherche, Integer idanimal, @AuthenticationPrincipal Proprietaire user) {
-        model.addAttribute("recherche", dao.rechercheCroquettes(recherche));
-        model.addAttribute("animal", dao1.getOne(idanimal));
-        model.addAttribute("listeanimaux", dao.listeAnimaux(idanimal, user.getId_proprio()));
-        return "rechercheCroquettes";
-    }
-
+   
       /**
      * Montre le formulaire permettant d'ajouter une croquette
      *
