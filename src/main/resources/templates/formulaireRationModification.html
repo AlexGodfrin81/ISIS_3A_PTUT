@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Liste des croquettes</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="../css/style.css" />
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet" />
+    </head>
+
+    <body>
+        <header>
+            <div id="voletgauche">
+                <div id="compagnons"><a href="../animal/show">
+                        <div><img class="icone" id="imagecompagnons" src="../static/images/Compagnons_gris.svg" th:src="@{/images/Compagnons_gris.svg}" alt="Icône compagnons"></div>
+                        <div class="textevg">Compagnons</div>
+                    </a></div>          
+                <div id="alimentation"><a th:if="${#lists.size(animaux)!=0}" th:href="@{/ration/update(idration=${ration.id_ration})}" href='animal/show'>
+                        <div><img class="icone" id="imagealimentation" src="../static/images/Alimentation_violet.svg" th:src="@{/images/Alimentation_violet.svg}" alt="Icône alimentation"></div>
+                        <div class="selectionne textevg">Alimentation</div>
+                        <div class="rectangleselect"></div>
+                    </a></div>
+            </div>
+
+            <div id="voletcentral">
+                <img id="logoyucroq" src="../static/images/Logo.svg" th:src="@{/images/Logo.svg}" alt="Logo Yucroq">
+            </div>
+
+            <div id="voletdroit">
+                <div id="utilisateur">
+                    <div id="utilisateurco" th:text="${#authentication.name}">Anonyme</div>
+                    <div id="deconnexion"><a th:action="@{/logout}" th:href= "@{/login}" href="../static/index.html">Déconnexion</a></div>
+                </div>
+                <div><img class="icone" id="imageutilisateur" src="../static/images/Utilisateur_violet.svg" th:src="@{/images/Utilisateur_violet.svg}" alt="Icône utilisateur"></div>
+            </div>   
+        </header>
+        <section>
+            <h1>Ajouter une date de fin sur une ration</h1>
+
+            <form th:object="${ration}" method="POST" th:action="@{/ration/saveupdate}">
+                <h2>Détails de la ration</h2>
+                <table class="form">
+                    <tr>
+                        <td><label for="date_debut">Date de début</label></td>
+                        <td><input  disabled="disabled" id="date_debut" type="date" th:field="*{date_debut}" th:value="*{date_debut}"/></td>
+                    </tr>
+                    <tr>
+                        <td><label for="date_fin">Date de fin</label></td>
+                        <td><input id="date_fin" type="date" th:field="*{date_fin}" th:value="*{date_fin}" required="required"/></td>
+                    </tr>
+                </table>
+                <input style="display: none" name="id_ration" id="id_ration" th:field="*{id_ration}"  th:value="*{id_ration}" type="text"/>
+                <input type="submit" value="Enregistrer" />
+                <input type="reset" value="Réinitialiser" />
+
+
+            </form>
+            <h4><a th:href="@{/animal/show}" href="afficheAnimaux.html">Retour aux compagnons</a></h4>
+
+        </section>
+        <script th:src="@{/js/scriptRation.js}" src="../static/js/scriptRation.js"/></script>
+    </body>
+
+    <footer>
+        <a>Mentions légales</a>
+        <a>Contacts</a>
+    </footer> 
+</html>

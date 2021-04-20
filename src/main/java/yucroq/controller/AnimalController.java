@@ -87,6 +87,7 @@ public class AnimalController {
      *
      * @param model pour transmettre les informations à la vue
      * @param name Le nom de l'animal
+     * @param user L'utilisateur connecté
      * @return le nom de la vue à afficher ('formulaireAnimal.html')
      */
     @GetMapping(path = "add")

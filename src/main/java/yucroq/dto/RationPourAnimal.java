@@ -10,4 +10,5 @@ public interface RationPourAnimal {
     LocalDate getDatedebut();
     LocalDate getDatefin();
     float getDensiteenergetique();
+    Integer getIdration();
 }
