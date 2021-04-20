@@ -61,9 +61,6 @@ public class PeseeController {
         // Ici on transmet un message de succès ou d'erreur
         // Ce message est accessible et affiché dans la vue 'afficheCroquette.html'
         redirectInfo.addFlashAttribute("message", message);
-        if (!dao2.getOne(id).getMesRations().isEmpty()){
-            return "redirect:/animal/getAnimal?id="+id;
-        }
-        return "redirect:/croquette/add?id="+id; // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
+        return "redirect:/animal/getAnimal?id="+id; // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
     }
 }
