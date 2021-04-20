@@ -48,7 +48,7 @@ and open the template in the editor.
                         <td><label for="mesCroqs">Aliment</label></td>
                         <td>
                             <select id="mesCroqs" name="mesCroqs" th:field="*{mesCroqs}">
-                                <option th:each="c : ${croquettes}" th:if="${c.espece == animal.espece}" th:data-esp="${c.espece}" th:value="${c.id_croq}" th:text="${c.marque + ' ' + c.nom}"></option>     
+                                <option th:each="c : ${croquettes}" th:if="${c.espece == animal.espece}" th:data-esp="${c.espece}" th:value="${c.id_croq}" th:text="${c.marque + ' ' + c.nom}"></option> 
                             </select>
                         </td>
                     </tr>
