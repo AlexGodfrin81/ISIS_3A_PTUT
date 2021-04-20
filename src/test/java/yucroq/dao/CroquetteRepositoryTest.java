@@ -7,6 +7,7 @@ package yucroq.dao;
  */
 
 
+import java.util.Optional;
 import lombok.extern.log4j.Log4j2;
 import static org.junit.jupiter.api.Assertions.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +29,9 @@ public class CroquetteRepositoryTest {
     @Test
     @Sql("test-data.sql") // On peut charger des donnnées spécifiques pour un test
     public void testMethodeDensiteEnergetique(){
-        Croquette croq = croquetteDAO.findById(1).orElseThrow();
-        log.info("On calcule la densite énergetique de la croquette {} en java", croq.getNom());
-        assertEquals(3550.7178f, croq.densite_Energetique(), 0.001f, 
+        Optional<Croquette> croq = croquetteDAO.findById(1);
+        log.info("On calcule la densite énergetique de la croquette {} en java", croq.get().getNom());
+        assertEquals(3550.7178f, croq.get().densite_Energetique(), 0.001f, 
                 "La densite energetique de ces croquettes est de 4196.733" ); // 3603.7556 résultat de la base de donnée data.sql
         
     }
