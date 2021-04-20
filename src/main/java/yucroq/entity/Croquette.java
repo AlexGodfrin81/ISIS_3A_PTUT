@@ -72,7 +72,7 @@ public class Croquette {
     private List<Ration> rationCroq = new LinkedList<>();
     
     //-=============-
-    
+    //calcul de la densité energetique pour le calcul des rations
     public float densite_Energetique(){
         
         if(matieres_minerales == 0.0f){

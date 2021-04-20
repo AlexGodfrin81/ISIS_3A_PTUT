@@ -25,14 +25,14 @@ public class CroquetteRepositoryTest {
     @Autowired
     private CroquetteRepository croquetteDAO;
     
-    /*@Test
-    //@Sql("test-data.sql") // On peut charger des donnnées spécifiques pour un test
+    @Test
+    @Sql("test-data.sql") // On peut charger des donnnées spécifiques pour un test
     public void testMethodeDensiteEnergetique(){
         Croquette croq = croquetteDAO.findById(1).orElseThrow();
         log.info("On calcule la densite énergetique de la croquette {} en java", croq.getNom());
-        assertEquals(3603.7556f, croq.densite_Energetique(), 0.001f, 
+        assertEquals(3550.7178f, croq.densite_Energetique(), 0.001f, 
                 "La densite energetique de ces croquettes est de 4196.733" ); // 3603.7556 résultat de la base de donnée data.sql
         
-    }*/
+    }
     
 }

@@ -25,28 +25,31 @@ public class AnimalRepositoryTest {
     private AnimalRepository animalDAO;
 
     @Test
+    @Sql("test-data.sql")
     public void testPoidsIdeal(){
-        Animal a1 = animalDAO.findById(1).orElseThrow();
+        Animal a1 = animalDAO.findById(100).orElseThrow();
         log.info("On calcule le poids ideal de{} en java", a1.getNom());
-        assertEquals(42.8571f, a1.poids_ideal(), 0.001f, 
+        assertEquals(46.666668f, a1.poids_ideal(), 0.001f, 
                 "Le poids ideal doit etre de 42,8571f" );
         
     }
     
     @Test
+    @Sql("test-data.sql")
     public void testCalculK(){
-        Animal a1 = animalDAO.findById(1).orElseThrow();
+        Animal a1 = animalDAO.findById(100).orElseThrow();
         log.info("On calcule le K de{} en java", a1.getNom());
-        assertEquals(0.8f, a1.calcul_K(), 0.001f, 
+        assertEquals(0.64f, a1.calcul_K(), 0.001f, 
                 "Le K doit etre de 0.8f" );
         
     }
     
     @Test
+    @Sql("test-data.sql")
     public void testCalculBE(){
-        Animal a1 = animalDAO.findById(1).orElseThrow();
+        Animal a1 = animalDAO.findById(100).orElseThrow();
         log.info("On calcule le BE de{} en java", a1.getNom());
-        assertEquals(1742.0104f, a1.calcul_BE(), 0.001f, 
+        assertEquals(1485.5198f, a1.calcul_BE(), 0.001f, 
                 "Le BE doit etre de 1 715,8143f" );
         
     }

@@ -28,11 +28,11 @@ public class RationRepositoryTest {
     private RationRepository rationDAO;
     
     @Test
-    //@Sql("test-data.sql") // On peut charger des donnnées spécifiques pour un test
+    @Sql("test-data.sql") // On peut charger des donnnées spécifiques pour un test (Non-fontionnel)
     public void testMethodeDensiteEnergetique(){
-        Ration r1 = rationDAO.findById(1).orElseThrow();
+        Ration r1 = rationDAO.findById(100).orElseThrow();
         log.info("On calcule la ration de la croquette {} en java", r1.getId_ration());
-        assertEquals(0.4833f, r1.qte_aliment(), 0.001f, 
+        assertEquals(0.41837168f, r1.qte_aliment(), 0.001f, 
                 "La ration de ces croquettes est de 0,4761" ); 
         
     }

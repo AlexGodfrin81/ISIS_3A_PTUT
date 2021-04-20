@@ -13,7 +13,7 @@ import yucroq.service.UserService;
 @EnableGlobalMethodSecurity(securedEnabled = true)
 @Slf4j
 public class YucroqApp {
-    
+
     final
     UserService userService;
 
@@ -29,5 +29,5 @@ public class YucroqApp {
     private void initialize() {
         userService.initializeRolesAndAdmin();
     }
-
+    
 }
