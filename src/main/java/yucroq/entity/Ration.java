@@ -41,11 +41,11 @@ public class Ration {
     private float quantite;
     
     @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate date_debut;
     
     @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate date_fin;
     
      //-== Mapping ==-
