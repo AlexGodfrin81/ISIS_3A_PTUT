@@ -54,6 +54,7 @@ public class RationController {
         try {
             // cf. https://www.baeldung.com/spring-data-crud-repository-save
             dao1.save(ration);
+            final Integer idration = ration.getId_ration();
             // Le code de la catégorie a été initialisé par la BD au moment de l'insertion
             message = "La ration '" + ration.getId_ration()+ "' a été correctement enregistrée";
         } catch (DataIntegrityViolationException e) {
