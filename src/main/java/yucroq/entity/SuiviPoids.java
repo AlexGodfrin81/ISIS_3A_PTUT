@@ -34,7 +34,7 @@ public class SuiviPoids {
     
     @Column
     @NonNull
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date_suivi;
     
     @Column

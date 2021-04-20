@@ -46,7 +46,7 @@ public class Animal {
     private boolean est_Male;
     
     @NonNull
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date_naiss;
     
     @NonNull
