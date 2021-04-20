@@ -76,7 +76,9 @@ public class RationController {
         // Ici on transmet un message de succès ou d'erreur
         // Ce message est accessible et affiché dans la vue 'afficheCroquette.html'
         redirectInfo.addFlashAttribute("message", message);
-        return "redirect:/animal/show"; // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
+        final Integer idanimal = ration.getConsommateur().getId_animal();
+        final String lien = "redirect:/animal/getAnimal?id=" + idanimal;
+        return lien; // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
     }
 
     /**
