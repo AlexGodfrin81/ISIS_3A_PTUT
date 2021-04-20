@@ -54,7 +54,7 @@ and open the template in the editor.
                         <td><input id="date_fin" type="date" th:field="*{date_fin}" th:value="*{date_fin}" required="required"/></td>
                     </tr>
                 </table>
-                <input disabled="disabled" id="idration" th:field="*{id_ration}"  th:value="*{id_ration}" type="hidden" visibility="none"/>
+                <input style="display: none" name="id_ration" id="id_ration" th:field="*{id_ration}"  th:value="*{id_ration}" type="text"/>
                 <input type="submit" value="Enregistrer" />
                 <input type="reset" value="Réinitialiser" />
 
