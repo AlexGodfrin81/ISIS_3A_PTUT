@@ -17,7 +17,7 @@ import yucroq.dto.PoidsPourAnimal;
 public interface AnimalRepository extends JpaRepository<Animal, Integer> {
     
     // Une requête qui renvoie une liste de DTO (Data Transfer Object)
-    @Query("SELECT c.id_croq as idcroq, c.marque as marquecroq, c.nom as nomcroq, r.date_debut as datedebut, r.date_fin as datefin, r.quantite as quantiteration, "
+    @Query("SELECT c.id_croq as idcroq, c.marque as marquecroq, c.nom as nomcroq, r.date_debut as datedebut, r.date_fin as datefin, r.quantite as quantiteration, r.id_ration as idration, "
             + "CASE WHEN c.espece = 'CHIEN' THEN ((57*c.proteines_brutes + 94*c.matieres_grasses + 41*(100 - c.humidite - c.matieres_minerales - c.proteines_brutes - c.matieres_grasses)) * (91.2-((1.43*c.cellulose)/(1 - c.humidite/100)))/100 - 10.4*c.proteines_brutes) "
             + "WHEN c.espece = 'CHAT' THEN ((57*c.proteines_brutes + 94*c.matieres_grasses + 41*(100 - c.humidite - c.matieres_minerales - c.proteines_brutes - c.matieres_grasses)) * (87.9-((0.88*c.cellulose)/(1 - c.humidite/100)))/100 - 7.7*c.proteines_brutes) END AS densiteenergetique "
             + "FROM Ration r " 

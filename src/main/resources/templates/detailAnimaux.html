@@ -237,7 +237,7 @@ and open the template in the editor.
             <h1>Alimentation</h1>
 
             <h2>Ration actuelle</h2>
-            <div th:each="r: ${rations}" th:if="${r.datefin==null}">
+            <div th:each="r: ${rations}" th:if="${r.datefin==null}"> 
                 <h3 th:text="${r.marquecroq + ' ' + r.nomcroq}">Marque nom</h3>
                 <table class="liste">
                     <tr>
@@ -265,6 +265,8 @@ and open the template in the editor.
                         <td th:text="${#numbers.formatInteger(r.densiteenergetique*r.quantiteration/1000,0,'NONE') + ' kcal/j'}">Esp</td>
                     </tr>
                 </table>
+                <h4><a a th:href="@{/ration/update(idration=${r.idration})}" href='animal/show'>Modifier</a></h4>
+
                 
                 <h3>Bilan énergétique</h3>             
                 
