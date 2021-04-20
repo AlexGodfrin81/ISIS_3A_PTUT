@@ -1,4 +1,4 @@
-//Pour rechercher les croquette
+//Pour rechercher les croquettes
 document.getElementById("inputrecherche").addEventListener('input', afficheRecherche);
             function afficheRecherche() {
                 if (document.getElementById("inputrecherche").value == "") {
