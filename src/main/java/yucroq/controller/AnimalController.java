@@ -23,6 +23,7 @@ import yucroq.dao.ProprietaireRepository;
 import yucroq.dao.RaceRepository;
 import yucroq.dao.RationRepository;
 import yucroq.dao.StadePhysiologiqueRepository;
+import yucroq.dao.SuiviPoidsRepository;
 import yucroq.entity.Proprietaire;
 
 /**
@@ -53,6 +54,9 @@ public class AnimalController {
 
     @Autowired
     private RationRepository dao6;
+    
+    @Autowired
+    private SuiviPoidsRepository dao7;
 
     /**
      * Affiche toutes les catégories dans la base
@@ -127,16 +131,22 @@ public class AnimalController {
         // Ici on transmet un message de succès ou d'erreur
         // Ce message est accessible et affiché dans la vue 'afficheAnimal.html'
         redirectInfo.addFlashAttribute("message", message);
-        return "redirect:/pesee/add?id="+animal.getId_animal(); // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
+        return "redirect:/pesee/add?id=" + animal.getId_animal(); // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
     }
 
     @GetMapping(path = "delete")
-    public String supprimerAnimal(@RequestParam("id") Animal animal, RedirectAttributes redirectInfo) {
-        String message = animal.getNom() + "' a été supprimé";
+    public String supprimerAnimal(@RequestParam("id") Integer id, RedirectAttributes redirectInfo) {
+        String message = dao.getOne(id).getNom() + "' a été supprimé";
         try {
-            dao.delete(animal);
+            dao.getOne(id).getMesRations().forEach(r -> {
+                dao6.delete(r);
+            });
+            dao.getOne(id).getMesPoids().forEach(sp -> {
+                dao7.delete(sp);
+            });
+            dao.deleteById(id);
         } catch (DataIntegrityViolationException e) {
-            message = "Erreur : impossible de supprimer " + animal.getNom();
+            message = "Erreur : impossible de supprimer " + dao.getOne(id).getNom();
         }
         redirectInfo.addFlashAttribute("message", message);
         return "redirect:show";

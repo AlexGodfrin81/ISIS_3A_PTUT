@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -92,12 +91,7 @@ public class Animal {
         if (this.mesPoids.isEmpty()) {
             rep = 0;
         } else {
-//<<<<<<< HEAD
             rep = this.mesPoids.get(0).getPoids_kg()*((float)100/(100+(this.getNec()-5)));
-//=======
-            div = 100 + 10*(this.getNec()-5);
-            rep = this.mesPoids.get(0).getPoids_kg() * 100 / div;
-//>>>>>>> origin/master
         }
         return rep;
     }
