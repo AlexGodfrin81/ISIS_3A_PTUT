@@ -1,4 +1,5 @@
 package yucroq.webservice;
+import yucroq.entity.Espece;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class SearchWebService {
                 produces = { MediaType.APPLICATION_JSON_VALUE}
         )
 	public @ResponseBody List<RechercheCroquettes> rechercheCroquettes(
-			@RequestParam(required = true) final String recherche) {
-		return dao.rechercheCroquettes(recherche);
+			@RequestParam(required = true) final String recherche, final Integer idanimal) {
+		return dao.rechercheCroquettes(recherche, idanimal);
 	}
 }

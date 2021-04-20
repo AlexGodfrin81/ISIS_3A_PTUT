@@ -59,13 +59,13 @@ and open the template in the editor.
                     </tr>
                     <tr>
                         <td><label for="date_debut">Date de début</label></td>
-                        <td><input id="date_debut" type="date" th:field="*{date_debut}" th:value="*{date_debut}" placeholder="yyyy-MM-dd" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"/></td>
+                        <td><input id="date_debut" class="datedujour" type="date" th:field="*{date_debut}" th:value="*{date_debut}" placeholder="yyyy-MM-dd" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"/></td>
                     </tr>
                     <tr>
                         <td><label for="date_fin">Date de fin</label></td>
                         <td><input id="date_fin" type="date" th:field="*{date_fin}" th:value="*{date_fin}" placeholder="Laisser vide si ration en cours"/></td>
                     </tr>
-                    <tr>
+                    <tr style="display: none">
                         <td><label for="consommateur">Compagnon</label></td>
                         <td>
                             <select id="consommateur" name="consommateur">
@@ -84,6 +84,7 @@ and open the template in the editor.
 
         </section>
         <script th:src="@{/js/scriptRation.js}" src="../static/js/scriptRation.js"/></script>
+        <script th:src="@{/js/dateDuJour.js}" src="../static/js/dateDuJour.js"/></script>
     </body>
 
     <footer>

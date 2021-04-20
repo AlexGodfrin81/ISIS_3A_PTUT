@@ -43,13 +43,13 @@
                     <table class="form">
                         <tr>
                             <td><label for="date_pesee">Date</label></td>
-                            <td><input id="date_pesee" type="date" th:field="*{date_suivi}" th:value="*{date_suivi}" required="required" placeholder="yyyy-MM-dd" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" /></td>
+                            <td><input id="date_pesee" class="datedujour" type="date" th:field="*{date_suivi}" th:value="*{date_suivi}" required="required" placeholder="yyyy-MM-dd" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" /></td>
                         </tr>
                         <tr>
                             <td><label for="poids">Poids</label></td>
                             <td><input id="poids" type="text" th:field="*{poids_kg}" placeholder="20" required="required" style="margin-left:-40px;"/><span class="unite"> kg</span></td>
                         </tr>
-                        <tr>
+                        <tr style="display: none">
                             <td><label for="animalPese">Compagnon</label></td>
                             <td>
                              <select id="animalPese" name="animalPese">
@@ -64,11 +64,7 @@
                 <h4><a th:href="@{/animal/getAnimal(id=${animal.id_animal})}" href="../static/index.html">Retour au menu</a></h4>
 	</section>
         <script th:src="@{/js/script.js}" src="../static/js/script.js"/></script>
-    <script>
-        var aujourdhui = new Date();
-        var date = aujourdhui.getFullYear()+'-'+(aujourdhui.getMonth()+1)+'-'+aujourdhui.getDate();
-        document.getElementById("date_pesee").value = date;
-    </script>
+    <script th:src="@{/js/dateDuJour.js}" src="../static/js/dateDuJour.js"/></script>
     </body>
 
 
