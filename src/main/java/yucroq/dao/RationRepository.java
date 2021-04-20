@@ -35,4 +35,18 @@ public interface RationRepository extends JpaRepository<Ration, Integer> {
     public void updateRationFin( LocalDate datefin, Integer id);//, LocalDate datefin);
     // Version SQL natif: exprimée en terme du modèle logique de données
     // @Query(value="UPDATE Ration SET date_fin=:datefin WHERE id_ration=:id", nativeQuery = true)  
+    
+    /**
+     * Ajoute une date de fin aux rations en cours lors de l'ajout d'une nouvelle ration
+     * @param idration l'id de la ration ajoutée
+     * @param idanimal l'id de l'animal concerné
+     * @param datedebut la date de fin de la ration, à changer
+     */
+
+    @Transactional
+    @Query("update Ration r set date_fin=TO_CHAR(:datedebut, 'YYYY-MM-DD') where r.id_ration <> :idration "
+           + "AND r.date_fin IS NULL "
+           + "AND r.consommateur IN (SELECT r.consommateur FROM Ration r WHERE r.id_ration = :idration)")
+    @Modifying
+    public void updateRationDebut ( LocalDate datedebut, Integer idration );
 }
