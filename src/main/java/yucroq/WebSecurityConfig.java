@@ -29,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // Configuration de la page de login
-        http.formLogin().loginPage("/login").permitAll().and().logout().permitAll();
+        http.formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/animal/show").and().logout().permitAll();
         // La console h2 est réservée Ã  l'administrateur
         http.authorizeRequests().antMatchers("/h2-console/**").hasRole("ADMIN").and().csrf()
             .ignoringAntMatchers("/h2-console/**").and().headers().frameOptions().sameOrigin();
