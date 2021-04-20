@@ -29,10 +29,9 @@ public interface CroquetteRepository extends JpaRepository<Croquette, Integer> {
     public List<Animaux> listeAnimaux(Integer idanimal, Integer idproprio);
     
     @Query("SELECT DISTINCT c.id_croq as idcroq, c.marque as marque, c.nom as nom, c.espece as espece "
-            + "FROM Ration r " 
-            + "JOIN r.mesCroqs c "
-            + "JOIN r.consommateur a "
+            + "FROM Croquette c " 
             + "WHERE LOWER(CONCAT(c.marque,' ',c.nom)) LIKE LOWER(CONCAT('%',:recherche,'%')) "
             + "AND c.espece IN (SELECT a.espece as espece FROM Animal a WHERE a.id_animal = :idanimal)")
     public List<RechercheCroquettes> rechercheCroquettes(String recherche, Integer idanimal);
+    
 }
