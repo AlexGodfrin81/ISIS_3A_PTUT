@@ -47,9 +47,10 @@ and open the template in the editor.
                     <tr>
                         <td><label for="mesCroqs">Aliment</label></td>
                         <td>
-                            <select id="mesCroqs" name="mesCroqs" th:field="*{mesCroqs}">
+                            <select id="mesCroqs" name="mesCroqs" th:field="*{mesCroqs}" th:unless="${#lists.isEmpty(rations)}">
                                 <option th:each="c : ${croquettes}" th:if="${c.espece == animal.espece}" th:data-esp="${c.espece}" th:value="${c.id_croq}" th:text="${c.marque + ' ' + c.nom}"></option> 
                             </select>
+                            <span th:if="${#lists.isEmpty(rations)}"><a th:href="@{../croquette/add(id=${animal.id_animal})}" href='formulaireCroquette.html'>Ajouter un aliment</a></span> 
                         </td>
                     </tr>
                     <tr>
