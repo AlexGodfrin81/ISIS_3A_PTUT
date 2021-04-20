@@ -54,7 +54,7 @@ public class AnimalController {
 
     @Autowired
     private RationRepository dao6;
-    
+
     @Autowired
     private SuiviPoidsRepository dao7;
 
@@ -134,6 +134,13 @@ public class AnimalController {
         return "redirect:/pesee/add?id=" + animal.getId_animal(); // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
     }
 
+    /**
+     * Supprime l'animal ainsi que les rations et pesées associées
+     *
+     * @param id l'id de l'animal à supprimer
+     * @param redirectInfo
+     * @return la redirection vers la page des animaux
+     */
     @GetMapping(path = "delete")
     public String supprimerAnimal(@RequestParam("id") Integer id, RedirectAttributes redirectInfo) {
         String message = dao.getOne(id).getNom() + "' a été supprimé";

@@ -117,6 +117,14 @@ public class CroquetteController {
         return "redirect:/ration/add?id=" + id; // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
     }
 
+    /**
+     * Supprime une croquette croquette et ses rations correspondantes
+     *
+     * @param croquette la croquette à supprimer
+     * @param id_anim l'id de l'animal à qui appartient les croquettes
+     * @param redirectInfo
+     * @return la redirection vers la page de l'animal à qui appartient les croquettes
+     */
     @GetMapping(path = "delete")
     public String supprimerCroquette(@RequestParam("id") Croquette croquette, Integer id_anim, RedirectAttributes redirectInfo) {
         String message = croquette.getNom() + "' a été supprimé";
