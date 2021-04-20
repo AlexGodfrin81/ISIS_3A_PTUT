@@ -77,6 +77,12 @@ public class RationController {
         return "redirect:/animal/show"; // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
     }
 
+    /**
+     * Fonction qui modifie la date de fin d'une ration ration puis qui redirige sur la liste des animaux
+     * @param ration la ration modifé
+     * @param redirectInfo permet de transmettre des informations lors d'une redirection
+     * @return la redirection
+     */
     @PostMapping(path = "saveupdate")
     public String modifieLaRationPuisMontreLaListe(Ration ration, RedirectAttributes redirectInfo) {
         String message;
