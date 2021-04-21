@@ -18,9 +18,9 @@
                         <div class="rectangleselect"></div>
                     </a></div>          
                 <div id="alimentation"><a th:if="${#lists.size(animaux)!=0}" th:href="@{../croquette/show(id=${animaux[0].id_animal})}">
-                            <div><img class="icone" id="imagealimentation" src="../static/images/Alimentation_gris.svg" th:src="@{/images/Alimentation_gris.svg}" alt="Icône alimentation"/></div>
-                            <div class="textevg">Alimentation</div>
-                        </a>
+                        <div><img class="icone" id="imagealimentation" src="../static/images/Alimentation_gris.svg" th:src="@{/images/Alimentation_gris.svg}" alt="Icône alimentation"/></div>
+                        <div class="textevg">Alimentation</div>
+                    </a>
                 </div>
             </div>
 
@@ -101,8 +101,8 @@
                     <tr style="display: none">
                         <td><label for="proprio">Propriétaire</label></td>
                         <td> <select name="proprio">
-                                    <option th:value="${proprio.id_proprio}" th:text="${proprio.prenom} +' '+ ${proprio.nom}" th:field="*{proprio}"></option>
-                                </select>
+                                <option th:value="${proprio.id_proprio}" th:text="${proprio.prenom} +' '+ ${proprio.nom}" th:field="*{proprio}"></option>
+                            </select>
                         </td>
                     </tr>
                 </table>
@@ -112,15 +112,15 @@
             <h4><a th:href="@{/}" href="../static/index.html">Retour au menu</a></h4>
         </section>
         <script th:src="@{/js/script.js}" src="../static/js/script.js"/></script>
-    <script>
-        
-    </script>
+        <script>
+
+        </script>
     </body>
 
 
 
     <footer>
-        <a>Mentions légales</a>
-        <a>Contacts</a>
+        <a href="https://github.com/AlexGodfrin81/ISIS_3A_PTUT">Yucroq</a>
+        <a href="mailto:joffrey.viemon-desplanque@etud.univ-jfc.fr,leandre.garriga@etud.univ-jfc.fr,alex.godfrin@etud.univ-jfc.fr,tina.nantenaina@etud.univ-jfc.fr,agathe.sutarik@etud.univ-jfc.fr?subject=Application%20Yucroq">| Contacts</a>
     </footer> 
 </html>
