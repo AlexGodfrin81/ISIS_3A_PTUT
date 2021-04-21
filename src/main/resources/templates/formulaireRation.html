@@ -65,7 +65,7 @@ and open the template in the editor.
             </div>
             
             <h1>Ajouter une ration</h1>
-            <form th:object="${ration}" method="POST" th:action="@{/ration/save}">
+            <form th:object="${ration}" method="POST" th:action="@{/ration/save/(id=${mesCroqs})}">
                 <h2>Détails de la ration</h2>
                 <table class="form">
                     <tr>
@@ -79,7 +79,7 @@ and open the template in the editor.
                     </tr>
                     <tr>
                         <td><label for="mesCroqs">ID croquettes</label></td>
-                        <td><span id="mesCroqs" th:field="*{mesCroqs}" th:value="*{mesCroqs}"></span></td>
+                        <td><input name="mesCroqs" id="mesCroqs" th:field="*{mesCroqs}" th:value="*{mesCroqs}" th:text="${mesCroqs}"></input></td>
                     </tr>
                     <tr>
                         <td><label for="quantite">Quantité</label></td>
