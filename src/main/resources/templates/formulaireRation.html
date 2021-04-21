@@ -188,6 +188,17 @@ and open the template in the editor.
                 document.getElementById("alimentchoisi").innerHTML = event.target.innerHTML;
                 document.getElementById("lignealimentchoisi").removeAttribute("style");
             }
+            
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const product = urlParams.get('idcroq');
+            if (product != null) {
+                 document.getElementById("anciennesCroqs").disabled=true;
+                 document.getElementById("inputrecherche").disabled=true;
+                 document.getElementById("mesCroqs").innerHTML = product;
+                 document.getElementById("mesCroqs").value = product;
+             }
+             console.log(product);
     </script>
     </body>
 
