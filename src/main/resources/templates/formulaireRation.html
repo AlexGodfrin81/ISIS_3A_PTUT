@@ -61,6 +61,7 @@ and open the template in the editor.
             <section>
             <div id="resultatrecherche">
                 <h1>Recherche de <span id="contenurech"></span></h1>
+                <p class='explication'>Cliquez sur une des références pour l'ajouter à la ration</p>
                 <div id="listeresultatrecherche"></div>
             </div>
             
@@ -77,6 +78,9 @@ and open the template in the editor.
                             <span th:if="${#lists.isEmpty(croquettes)}"><a th:href="@{../croquette/add(id=${animal.id_animal})}" href='formulaireCroquette.html'>Ajouter un aliment</a></span> 
                         </td>
                     </tr>
+                    <tr id="lignealimentchoisi">
+                        <td>Aliment choisi</td>
+                        <td id="alimentchoisi"></td>
                     <tr>
                         <td><label for="mesCroqs">ID croquettes</label></td>
                         <td><input name="mesCroqs" id="mesCroqs" th:field="*{mesCroqs}" th:value="*{mesCroqs}" th:text="${mesCroqs}"></input></td>
@@ -122,6 +126,7 @@ and open the template in the editor.
                 if (document.getElementById("inputrecherche").value == "") {
                     document.getElementById("resultatrecherche").setAttribute("style","display:none");
                     document.getElementById("anciennesCroqs").disabled=false;
+                    document.getElementById("lignealimentchoisi").setAttribute("style","display:none");
                     majselect();
                 }
                 else {
@@ -152,14 +157,19 @@ and open the template in the editor.
             //  Fonction recherche
             function rech(result) {
                 let textetransmis = "<ul>";
-                for (var i in result) {
+                let tailleliste = Object.keys(result).length;
+                let mini = Math.min(3, tailleliste);
+                for (var i = 0; i < mini; i++) {
                     textetransmis += "<li id='croq" + result[i].idcroq + "' value='" + result[i].idcroq + "'>" + result[i].marque + " " + result[i].nom + "</li>";
                 }
                 textetransmis += "</ul>";
+                if (tailleliste > 3) {
+                    textetransmis += "<p class='explication'>Il reste des éléments dans la liste : veuillez préciser votre requête.</p>";
+                }
                 document.getElementById("listeresultatrecherche").innerHTML = textetransmis;
                 
                 for (var i in result) {
-                    document.getElementById("croq" + result[i].idcroq).addEventListener("click",maj);
+                    document.getElementById("croq" + result[i].idcroq).addEventListener("click",majclic);
                 }
             }
             
@@ -173,9 +183,11 @@ and open the template in the editor.
                 document.getElementById("mesCroqs").value = document.getElementById("anciennesCroqs").value;
             }
             
-            function maj(event) {
+            function majclic(event) {
                 document.getElementById("mesCroqs").innerHTML = event.target.value;
                 document.getElementById("mesCroqs").value = event.target.value;
+                document.getElementById("alimentchoisi").innerHTML = event.target.innerHTML;
+                document.getElementById("lignealimentchoisi").removeAttribute("style");
             }
     </script>
     </body>
