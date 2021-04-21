@@ -121,6 +121,9 @@ and open the template in the editor.
                     <td>[[${croquette.phosphore + " %"}]]</td>
                 </tr> 
             </table>
+            
+            <h1>Recommandations pour [[${animal.nom}]]</h1>
+            <p id="recom"></p>
 
             <div class="ajout">
                 <a th:href="@{/ration/add(id=${animal.id_animal},idcroq=${croquette.id_croq})}" href='formulaireRation.html'>
@@ -181,6 +184,13 @@ and open the template in the editor.
                     function showError(xhr, status, message) {
                         alert("Erreur : " + status + " : " + message);
                     }
+                    
+                    function recommandation() {
+                        var qte_ideale = Math.floor([[${animal.calcul_BE() / croquette.densite_Energetique() * 1000}]]);
+                        document.getElementById("recom").innerHTML = qte_ideale + " g/j";
+                    }
+                    
+                    recommandation();
         </script>
     </body>
 

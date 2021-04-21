@@ -279,6 +279,15 @@ p.explication {
     font-size: 1em;
 }
 
+p#recom {
+    background-color: #8500FF;
+    font-size: 1.7em;
+    text-align: center;
+    color: white;
+    font-weight: 800;
+    margin-bottom: 25px;
+}
+
 li {
     list-style-type:none;
     list-style-position:outside;
