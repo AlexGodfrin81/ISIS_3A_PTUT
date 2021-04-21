@@ -44,7 +44,7 @@ public class RationController {
     public String montreLeFormulairePourAjout(Model model, Integer id, @AuthenticationPrincipal Proprietaire user) {
         model.addAttribute("ration", new Ration());
         model.addAttribute("animal", dao2.getOne(id));
-        // model.addAttribute("croquette", dao3.listeCroquettesPour(id));
+        model.addAttribute("croquetteanimal", dao3.listeCroquettesPour(id));
         model.addAttribute("croquettes", dao3.findAll());
         model.addAttribute("animaux", dao4.getOne(user.getId_proprio()).getMesAnimaux());
         return "formulaireRation";

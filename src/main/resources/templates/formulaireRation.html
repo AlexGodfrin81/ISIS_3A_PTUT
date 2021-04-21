@@ -69,13 +69,13 @@ and open the template in the editor.
             <form th:object="${ration}" method="POST" th:action="@{/ration/save/(id=${mesCroqs})}">
                 <h2>Détails de la ration</h2>
                 <table class="form">
-                    <tr>
+                    <tr style="display: none">
                         <td><label for="anciennesCroqs">Aliments connus</label></td>
                         <td>
-                            <select id="anciennesCroqs" name="anciennesCroqs" th:unless="${#lists.isEmpty(croquettes)}">
-                                <option th:each="c : ${croquettes}" th:value="${c.id_croq}" th:text="${c.marque + ' ' + c.nom}"></option> 
+                            <select id="anciennesCroqs" name="anciennesCroqs" th:unless="${#lists.isEmpty(croquetteanimal)}">
+                                <option th:each="c : ${croquetteanimal}" th:value="${c.idcroq}" th:text="${c.marquecroq + ' ' + c.nomcroq}"></option> 
                             </select>
-                            <span th:if="${#lists.isEmpty(croquettes)}"><a th:href="@{../croquette/add(id=${animal.id_animal})}" href='formulaireCroquette.html'>Ajouter un aliment</a></span> 
+                            <span th:if="${#lists.isEmpty(croquetteanimal)}"><a th:href="@{../croquette/add(id=${animal.id_animal})}" href='formulaireCroquette.html'>Ajouter un aliment</a></span> 
                         </td>
                     </tr>
                     <tr id="lignealimentchoisi">
@@ -120,17 +120,24 @@ and open the template in the editor.
         <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>
        <script th:inline="javascript" type="text/javascript" />
         let IDanimal = [[${animal.id_animal}]];
-        document.getElementById("anciennesCroqs").addEventListener('input', majselect);
+        if (document.getElementById("anciennesCroqs") != null) { 
+            document.getElementById("anciennesCroqs").addEventListener('input', majselect);
+        }
+        
         document.getElementById("inputrecherche").addEventListener('input', afficheRecherche);
             function afficheRecherche() {
                 if (document.getElementById("inputrecherche").value == "") {
                     document.getElementById("resultatrecherche").setAttribute("style","display:none");
-                    document.getElementById("anciennesCroqs").disabled=false;
+                    if (document.getElementById("anciennesCroqs") != null) { 
+                        document.getElementById("anciennesCroqs").disabled=false;
+                    }
                     document.getElementById("lignealimentchoisi").setAttribute("style","display:none");
                     majselect();
                 }
                 else {
-                    document.getElementById("anciennesCroqs").disabled=true;
+                    if (document.getElementById("anciennesCroqs") != null) { 
+                        document.getElementById("anciennesCroqs").disabled=true;
+                    }
                     document.getElementById("resultatrecherche").removeAttribute("style");
                     document.getElementById("contenurech").textContent = document.getElementById("inputrecherche").value;
                 }
@@ -193,7 +200,9 @@ and open the template in the editor.
             const urlParams = new URLSearchParams(queryString);
             const product = urlParams.get('idcroq');
             if (product != null) {
-                 document.getElementById("anciennesCroqs").disabled=true;
+                 if (document.getElementById("anciennesCroqs") != null) { 
+                        document.getElementById("anciennesCroqs").disabled=true;
+                    } 
                  document.getElementById("inputrecherche").disabled=true;
                  document.getElementById("mesCroqs").innerHTML = product;
                  document.getElementById("mesCroqs").value = product;
