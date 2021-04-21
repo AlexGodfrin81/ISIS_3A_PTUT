@@ -72,10 +72,10 @@ and open the template in the editor.
                     <tr>
                         <td><label for="anciennesCroqs">Aliments connus</label></td>
                         <td>
-                            <select id="anciennesCroqs" name="anciennesCroqs" th:unless="${#lists.isEmpty(croquette)}">
-                                <option th:each="c : ${croquette}" th:value="${c.idcroq}" th:text="${c.marquecroq + ' ' + c.nomcroq}"></option> 
+                            <select id="anciennesCroqs" name="anciennesCroqs" th:unless="${#lists.isEmpty(croquettes)}">
+                                <option th:each="c : ${croquettes}" th:value="${c.id_croq}" th:text="${c.marque + ' ' + c.nom}"></option> 
                             </select>
-                            <span th:if="${#lists.isEmpty(croquette)}"><a th:href="@{../croquette/add(id=${animal.id_animal})}" href='formulaireCroquette.html'>Ajouter un aliment</a></span> 
+                            <span th:if="${#lists.isEmpty(croquettes)}"><a th:href="@{../croquette/add(id=${animal.id_animal})}" href='formulaireCroquette.html'>Ajouter un aliment</a></span> 
                         </td>
                     </tr>
                     <tr id="lignealimentchoisi">
