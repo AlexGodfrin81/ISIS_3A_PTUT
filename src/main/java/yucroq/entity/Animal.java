@@ -99,7 +99,8 @@ public class Animal {
         if (this.mesPoids.isEmpty()) {
             rep = 0;
         } else {
-            rep = this.mesPoids.get(0).getPoids_kg() * ((float) 100 / (100 + (this.getNec() - 5)));
+            div = 100 + 10*(this.getNec()-5);
+            rep = this.mesPoids.get(0).getPoids_kg() * 100 / div;
         }
         return rep;
     }
