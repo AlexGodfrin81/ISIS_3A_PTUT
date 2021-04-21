@@ -43,7 +43,7 @@ and open the template in the editor.
                     <div id="sous-menu">
                 <div id="recherche">
                   <div id="iconeloupe"><img id="loupe" src="../static/images/Loupe.svg" th:src="@{/images/Loupe.svg}"></div>
-                  <input id="inputrecherche" type="text" placeholder="Recherche"/>
+                  <input id="inputrecherche" type="text" placeholder="Nom de la référence"/>
                 </div>
                 
                 <div id="choixcompagnon" th:switch="${#lists.isEmpty(listeanimaux)}">
@@ -107,7 +107,7 @@ and open the template in the editor.
                     </tr>
                 </table>
 
-                <input type="submit" value="Enregistrer" />
+                <input type="submit" value="Enregistrer" id="enregistrement" />
                 <input type="reset" value="Réinitialiser" />
 
 
@@ -131,7 +131,9 @@ and open the template in the editor.
                     if (document.getElementById("anciennesCroqs") != null) { 
                         document.getElementById("anciennesCroqs").disabled=false;
                     }
-                    document.getElementById("lignealimentchoisi").setAttribute("style","display:none");
+                    if (document.getElementById("alimentchoisi").innerHTML == "") {
+                        document.getElementById("lignealimentchoisi").setAttribute("style","display:none");
+                    }
                     majselect();
                 }
                 else {
@@ -208,6 +210,19 @@ and open the template in the editor.
                  document.getElementById("mesCroqs").value = product;
              }
              console.log(product);
+             
+              document.getElementById("enregistrement").disabled=true;
+                    
+                    window.addEventListener("click", deblocagevalidation);
+                    
+                    function deblocagevalidation() {
+                        if (document.getElementById("alimentchoisi").innerHTML != "" && document.getElementById("inputrecherche").value != "" ) {
+                            document.getElementById("enregistrement").disabled=false;
+                        }
+                        else {
+                            document.getElementById("enregistrement").disabled=true;
+                        }
+                    }
     </script>
     </body>
 
