@@ -77,8 +77,8 @@ and open the template in the editor.
                             <span th:if="${#lists.isEmpty(croquettes)}"><a th:href="@{../croquette/add(id=${animal.id_animal})}" href='formulaireCroquette.html'>Ajouter un aliment</a></span> 
                         </td>
                     </tr>
-                    <tr>
-                        <td><label for="mesCroqs">ID croquettes</label></td>
+                    <tr style="display: none">
+                        <td ><label for="mesCroqs">ID croquettes</label></td>
                         <td><input name="mesCroqs" id="mesCroqs" th:field="*{mesCroqs}" th:value="*{mesCroqs}" th:text="${mesCroqs}"></input></td>
                     </tr>
                     <tr>
