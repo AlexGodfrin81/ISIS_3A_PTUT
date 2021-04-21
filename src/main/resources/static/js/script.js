@@ -32,10 +32,18 @@ function adapt_race(){
  
  
  // Pour Gerer le choix de NEC
-                 majnec();
+                majnec();
                             document.getElementById("nec").addEventListener("input", majnec);
+                            document.getElementById("espece").addEventListener("input", majnec);
                                 function majnec() {
                                     let valeurNEC = document.getElementById("nec").value;
+                                    let espece;
+                                    if (document.getElementById("espece").value === "CHIEN") {
+                                        espece = "chien";
+                                    } else if (document.getElementById("espece").value === "CHAT") {
+                                        espece = "chat";
+                                    }
+                                    
                                     let commentaireNEC = "";
                                     switch (valeurNEC) {
                                         case "1":
@@ -66,5 +74,5 @@ function adapt_race(){
                                             commentaireNEC = "Obèse";
                                             break;
                                         }   
-                                    document.getElementById("valeur_nec").innerHTML = valeurNEC + "/9 - " + commentaireNEC + "</br><img src='../images/Hilda.png' />";
+                                    document.getElementById("valeur_nec").innerHTML = valeurNEC + "/9 - " + commentaireNEC + "</br><img style='max-width:200px' src='../images/" + espece + valeurNEC + ".png' />";
                                     }

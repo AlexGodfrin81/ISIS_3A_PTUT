@@ -52,7 +52,7 @@
                     </tr>
                     <tr>
                         <td><label for="espece">Espèce</label></td>
-                        <td><select onchange="adapt_race()" id="espece" th:field="*{espece}" required="required">
+                        <td><select id="espece" onchange="adapt_race()" id="espece" th:field="*{espece}" required="required">
                                 <option th:value="CHIEN" th:text="Chien"></option>
                                 <option th:value="CHAT" th:text="Chat"></option>
                             </select>
