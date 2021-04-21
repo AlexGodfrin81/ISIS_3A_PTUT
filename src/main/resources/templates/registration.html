@@ -41,41 +41,41 @@
                 <table class="form">
                     <tr>
                         <!--                        <div th:classappend="${#fields.hasErrors('username') ? 'has-error' : ''}">-->
-                        <td><label for="nom">Nom d'utilisateur :</label></td>
-                        <td><input id="nom" type="text" th:field="*{username}" placeholder="Nom d'utilisateur" autofocus="autofocus" required="required" autocomplete="username"/></td>
+                        <td><label for="nom">Nom d'utilisateur</label></td>
                         <td><ul><li th:errors="*{username}">Erreur sur le pseudo</li></ul></td>
+                        <td><input id="nom" type="text" th:field="*{username}" placeholder="Nom d'utilisateur" autofocus="autofocus" required="required" autocomplete="username"/></td>
                         <!--                        </div>-->
                     </tr>
                     <tr>
-                        <td><label for="nom">Nom :</label></td>
+                        <td><label for="nom">Nom</label></td>
+                        <td><ul><li th:errors="*{nom}">Erreur sur le nom</li></ul></td>
                         <td><input id="nom" type="text" th:field="*{nom}" placeholder="Nom" required="required"/></td>
-                        <td><ul><li th:errors="*{nom}">Erreur sur le Nom</li></ul></td>
                     </tr>                  
                     <tr>
-                        <td><label for="prenom">Prénom :</label></td>
-                        <td><input id="prenom" type="text" th:field="*{prenom}" placeholder="Prénom" required="required"/></td>
+                        <td><label for="prenom">Prénom</label></td>
                         <td><ul><li th:errors="*{prenom}">Erreur sur le prénom</li></ul></td>
+                        <td><input id="prenom" type="text" th:field="*{prenom}" placeholder="Prénom" required="required"/></td>
                     </tr>
                     <tr>
                         <!--                        <div th:classappend="${#fields.hasErrors('email') ? 'has-error' : ''}">-->
-                        <td><label for="mail1">Adresse mail :</label></td>
-                        <td><input id="mail1" type="email" th:field="*{email}" placeholder="Adresse mail" required="required" autocomplete="email"/></td>
+                        <td><label for="mail1">Adresse mail</label></td>
                         <td><ul><li th:errors="*{email}">Erreur sur le mail</li></ul></td>
+                        <td><input id="mail1" type="email" th:field="*{email}" placeholder="Adresse mail" required="required" autocomplete="email"/></td>
                         <!--                        </div>-->
                     </tr>
 
                     <tr>
                         <!--                        <div th:classappend="${#fields.hasErrors('password') ? 'has-error' : ''}">-->
-                        <td><label for="mdp1">Mot de passe :</label></td>
-                        <td><input id="mdp1" type="password"  th:field="*{password}"  placeholder="••••••" required="required" autocomplete="new-password"/></td>
+                        <td><label for="mdp1">Mot de passe</label></td>
                         <td>  <ul><li th:errors="*{password}">Erreur sur le password</li></ul></td>
+                        <td><input id="mdp1" type="password"  th:field="*{password}"  placeholder="••••••" required="required" autocomplete="new-password"/></td>
                         <!--                        </div>-->
                     </tr>
                     <tr>
                         <!--                        <div th:classappend="${#fields.hasErrors('passwordConfirm') ? 'has-error' : ''}">-->
-                        <td><label for="confirm_mdp">Confirmation du mot de passe :</label></td>
+                        <td><label for="confirm_mdp">Confirmation MDP</label></td>
+                        <td> <ul><li th:errors="*{passwordConfirm}">Erreur dans la confirmation du mot de passe</li></ul></td>
                         <td>  <input id="confirm_mdp" type="password"  th:field="*{passwordConfirm}" placeholder="••••••" required="required" autocomplete="new-password"/></td>
-                        <td> <ul><li th:errors="*{passwordConfirm}">Erreur dans la confirmation du mot de passe.</li></ul></td>
                         <!--                        </div>-->
                     </tr>
                 </table>

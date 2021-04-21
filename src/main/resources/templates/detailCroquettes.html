@@ -123,9 +123,9 @@ and open the template in the editor.
             </table>
 
             <div class="ajout">
-                <a th:href="@{add(name=${#authentication.name})}" href='formulaireAnimal.html'>
+                <a th:href="@{/ration/add(id=${animal.id_animal},idcroq=${croquette.id_croq})}" href='formulaireRation.html'>
                     <div class="plus">+</div>
-                    <div class="texteajout">Ajouter à une ration (mauvais lien à l'heure actuelle)</div>
+                    <div class="texteajout">Ajouter à une ration</div>
                 </a>
             </div>
 

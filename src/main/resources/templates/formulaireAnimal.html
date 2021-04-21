@@ -37,7 +37,11 @@
             </div>   
         </header>
         <section>
-            <h1>Ajouter un Animal</h1>
+            <h1>Ajouter un animal</h1>
+            <p class="explication">Veuillez ajouter des informations de base sur votre animal. 
+                La note d'état corporel est un indice, sur 9 traduisant l'embonpoint de votre animal.
+                Une silhouette idéale correspond à une note de 4 ou 5.
+            </p>
             <!--/* Au revient au contrôleur, avec la méthode POST */-->
             <!--/* th:object définit quel est l'objet édité par ce formulaire */-->
             <form th:object="${animal}" method="POST" th:action="@{/animal/save}">
@@ -76,7 +80,6 @@
                             <input id="nec" type="range" th:field="*{nec}" step="1" min="1" max="9" required="required"><span id="valeur_nec">Valeur NEC</span>
                         </td>
                     </tr>
-
                     <tr>
                         <td><label for="maRace">Race</label></td>
                         <td><select id="maRace" onchange="adapt_espece()" name="maRace" required="required">
@@ -113,7 +116,6 @@
         </section>
         <script th:src="@{/js/script.js}" src="../static/js/script.js"/></script>
         <script>
-
         </script>
     </body>
 

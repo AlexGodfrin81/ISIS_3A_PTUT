@@ -72,16 +72,16 @@ and open the template in the editor.
                     <tr>
                         <td><label for="anciennesCroqs">Aliments connus</label></td>
                         <td>
-                            <select id="anciennesCroqs" name="anciennesCroqs" th:unless="${#lists.isEmpty(croquettes)}">
-                                <option th:each="c : ${croquettes}" th:if="${c.espece == animal.espece}" th:data-esp="${c.espece}" th:value="${c.id_croq}" th:text="${c.marque + ' ' + c.nom}"></option> 
+                            <select id="anciennesCroqs" name="anciennesCroqs" th:unless="${#lists.isEmpty(croquette)}">
+                                <option th:each="c : ${croquette}" th:value="${c.idcroq}" th:text="${c.marquecroq + ' ' + c.nomcroq}"></option> 
                             </select>
-                            <span th:if="${#lists.isEmpty(croquettes)}"><a th:href="@{../croquette/add(id=${animal.id_animal})}" href='formulaireCroquette.html'>Ajouter un aliment</a></span> 
+                            <span th:if="${#lists.isEmpty(croquette)}"><a th:href="@{../croquette/add(id=${animal.id_animal})}" href='formulaireCroquette.html'>Ajouter un aliment</a></span> 
                         </td>
                     </tr>
                     <tr id="lignealimentchoisi">
                         <td>Aliment choisi</td>
                         <td id="alimentchoisi"></td>
-                    <tr>
+                    <tr style="display:none">
                         <td><label for="mesCroqs">ID croquettes</label></td>
                         <td><input name="mesCroqs" id="mesCroqs" th:field="*{mesCroqs}" th:value="*{mesCroqs}" th:text="${mesCroqs}"></input></td>
                     </tr>
@@ -113,12 +113,13 @@ and open the template in the editor.
 
             </form>
             <h4><a th:href="@{/animal/show}" href="afficheAnimaux.html">Retour aux compagnons</a></h4>
+            <h4 id="retourcroq"></h4>
 
         </section>
         <script th:src="@{/js/scriptRation.js}" src="../static/js/scriptRation.js"/></script>
         <script th:src="@{/js/dateDuJour.js}" src="../static/js/dateDuJour.js"/></script>
         <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>
-       <script th:inline="javascript" type="text/javascript" />
+       <script th:inline="javascript" type="text/javascript" />      
         let IDanimal = [[${animal.id_animal}]];
         document.getElementById("anciennesCroqs").addEventListener('input', majselect);
         document.getElementById("inputrecherche").addEventListener('input', afficheRecherche);
@@ -189,6 +190,17 @@ and open the template in the editor.
                 document.getElementById("alimentchoisi").innerHTML = event.target.innerHTML;
                 document.getElementById("lignealimentchoisi").removeAttribute("style");
             }
+            
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const product = urlParams.get('idcroq');
+            if (product != null) {
+                document.getElementById("anciennesCroqs").disabled=true;
+                document.getElementById("inputrecherche").disabled=true;
+                document.getElementById("mesCroqs").innerHTML = product;
+                document.getElementById("mesCroqs").value = product;
+            }
+            console.log(product);
     </script>
     </body>
 

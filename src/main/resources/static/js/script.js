@@ -66,5 +66,5 @@ function adapt_race(){
                                             commentaireNEC = "Obèse";
                                             break;
                                         }   
-                                    document.getElementById("valeur_nec").textContent = valeurNEC + "/9 - " + commentaireNEC;
+                                    document.getElementById("valeur_nec").innerHTML = valeurNEC + "/9 - " + commentaireNEC + "</br><img src='../images/Hilda.png' />";
                                     }
