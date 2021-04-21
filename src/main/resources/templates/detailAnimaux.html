@@ -203,7 +203,7 @@ and open the template in the editor.
                 </tr>
                 <tr>
                     <td>Poids idéal</td>
-                    <td th:text="${animal.poids_ideal()==0} ? ${'Non calculé'} : ${#numbers.formatInteger(animal.poids_ideal(), 0, 'NONE') + ' kg'}">Poids</td>
+                    <td th:text="${animal.poids_ideal()==0} ? ${'Non calculé'} : ${#numbers.formatDecimal(animal.poids_ideal(), 0, 1, 'COMMA') + ' kg'}">Poids</td>
                 </tr>
                 <tr>
                     <td>Besoin énergétique</td>

@@ -39,19 +39,47 @@ and open the template in the editor.
                 <div><img class="icone" id="imageutilisateur" src="../static/images/Utilisateur_violet.svg" th:src="@{/images/Utilisateur_violet.svg}" alt="Icône utilisateur"></div>
             </div>   
         </header>
-        <section>
+        
+                    <div id="sous-menu">
+                <div id="recherche">
+                  <div id="iconeloupe"><img id="loupe" src="../static/images/Loupe.svg" th:src="@{/images/Loupe.svg}"></div>
+                  <input id="inputrecherche" type="text" placeholder="Nom de la référence à chercher"/>
+                </div>
+                
+                <div id="choixcompagnon" th:switch="${#lists.isEmpty(listeanimaux)}">
+                  <select th:case="true" id="animalchoisi" name="animalchoisi" onChange="window.location.href=this.value" disabled>
+                      <option th:value=${animal.id_animal} th:text="${animal.nom}" selected="selected"></option>
+                  </select>
+                  <select th:case="false" id="animalchoisi" name="animalchoisi" onChange="window.location.href=this.value">
+                      <option th:value=${animal.id_animal} th:text="${animal.nom}" selected="selected"></option>
+                      <option th:each="a : ${listeanimaux}" th:value="@{../croquette/show(id=${a.idanimal})}" th:text="${a.nomanimal}" th:href="@{../croquette/show(id=${a.idanimal})}"></option>
+                  </select>
+                  <div id="boutonliste"><img id="Liste" src="../static/images/Liste.svg" th:src="@{/images/Liste.svg}"></div>
+                </div>
+            </div>
+        
+            <section>
+            <div id="resultatrecherche">
+                <h1>Recherche de <span id="contenurech"></span></h1>
+                <div id="listeresultatrecherche"></div>
+            </div>
+            
             <h1>Ajouter une ration</h1>
             <form th:object="${ration}" method="POST" th:action="@{/ration/save}">
                 <h2>Détails de la ration</h2>
                 <table class="form">
                     <tr>
-                        <td><label for="mesCroqs">Aliment</label></td>
+                        <td><label for="anciennesCroqs">Aliments connus</label></td>
                         <td>
-                            <select id="mesCroqs" name="mesCroqs" th:field="*{mesCroqs}" th:unless="${#lists.isEmpty(rations)}">
+                            <select id="anciennesCroqs" name="anciennesCroqs" th:unless="${#lists.isEmpty(croquettes)}">
                                 <option th:each="c : ${croquettes}" th:if="${c.espece == animal.espece}" th:data-esp="${c.espece}" th:value="${c.id_croq}" th:text="${c.marque + ' ' + c.nom}"></option> 
                             </select>
-                            <span th:if="${#lists.isEmpty(rations)}"><a th:href="@{../croquette/add(id=${animal.id_animal})}" href='formulaireCroquette.html'>Ajouter un aliment</a></span> 
+                            <span th:if="${#lists.isEmpty(croquettes)}"><a th:href="@{../croquette/add(id=${animal.id_animal})}" href='formulaireCroquette.html'>Ajouter un aliment</a></span> 
                         </td>
+                    </tr>
+                    <tr>
+                        <td><label for="mesCroqs">ID croquettes</label></td>
+                        <td><span id="mesCroqs" th:field="*{mesCroqs}" th:value="*{mesCroqs}"></span></td>
                     </tr>
                     <tr>
                         <td><label for="quantite">Quantité</label></td>
@@ -85,6 +113,71 @@ and open the template in the editor.
         </section>
         <script th:src="@{/js/scriptRation.js}" src="../static/js/scriptRation.js"/></script>
         <script th:src="@{/js/dateDuJour.js}" src="../static/js/dateDuJour.js"/></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>
+       <script th:inline="javascript" type="text/javascript" />
+        let IDanimal = [[${animal.id_animal}]];
+        document.getElementById("anciennesCroqs").addEventListener('input', majselect);
+        document.getElementById("inputrecherche").addEventListener('input', afficheRecherche);
+            function afficheRecherche() {
+                if (document.getElementById("inputrecherche").value == "") {
+                    document.getElementById("resultatrecherche").setAttribute("style","display:none");
+                    document.getElementById("anciennesCroqs").disabled=false;
+                    majselect();
+                }
+                else {
+                    document.getElementById("anciennesCroqs").disabled=true;
+                    document.getElementById("resultatrecherche").removeAttribute("style");
+                    document.getElementById("contenurech").textContent = document.getElementById("inputrecherche").value;
+                    document.getElementById("alim").innerHTML = document.getElementById("inputrecherche").value;
+                }
+                doAjax();
+            }
+            afficheRecherche();
+            
+             // Appel AJAX : recherche
+            function doAjax() {
+                let texterech = document.getElementById("inputrecherche").value;
+                $.ajax({
+                    // On appelle le service qui renvoie le résultat comme un tableau de valeurs
+                    url: "/api/search/rechercheCroquettes",
+                    // On passe comme paramètre les données saisies dans le formulaire
+                    data: { "recherche" : texterech, "idanimal" : IDanimal },
+                    // On demande du JSON comme résultat
+                    dataType: "json",
+                    success: rech, // La fonction qui traite les résultats
+                    error: showError
+                });
+            } 
+
+            //  Fonction recherche
+            function rech(result) {
+                let textetransmis = "<ul>";
+                for (var i in result) {
+                    textetransmis += "<li id='croq" + result[i].idcroq + "' value='" + result[i].idcroq + "'>" + result[i].marque + " " + result[i].nom + "</li>";
+                }
+                textetransmis += "</ul>";
+                document.getElementById("listeresultatrecherche").innerHTML = textetransmis;
+                
+                for (var i in result) {
+                    document.getElementById("croq" + result[i].idcroq).addEventListener("click",maj);
+                }
+            }
+            
+            // Fonction qui traite les erreurs de la requête
+            function showError(xhr, status, message) {
+                alert("Erreur : " + status + " : " + message);
+            }
+            
+            function majselect() {
+                document.getElementById("mesCroqs").innerHTML = document.getElementById("anciennesCroqs").value;
+                document.getElementById("mesCroqs").value = document.getElementById("anciennesCroqs").value;
+            }
+            
+            function maj(event) {
+                document.getElementById("mesCroqs").innerHTML = event.target.value;
+                document.getElementById("mesCroqs").value = event.target.value;
+            }
+    </script>
     </body>
 
     <footer>
