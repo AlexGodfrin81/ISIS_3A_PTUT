@@ -12,10 +12,10 @@
         <header>
             <div id="voletgauche">
                 <div id="compagnons">
-                        <div><img class="icone" id="imagecompagnons" src="../static/images/Compagnons_violet.svg" th:src="@{/images/Compagnons_violet.svg}" alt="Icône compagnons"/></div>
-                        <div class="selectionne textevg">Compagnons</div>
-                        <div class="rectangleselect"></div>
-                    </div>          
+                    <div><img class="icone" id="imagecompagnons" src="../static/images/Compagnons_violet.svg" th:src="@{/images/Compagnons_violet.svg}" alt="Icône compagnons"/></div>
+                    <div class="selectionne textevg">Compagnons</div>
+                    <div class="rectangleselect"></div>
+                </div>          
                 <div id="alimentation"><a th:if="${#lists.size(animaux)!=0}" th:href="@{../croquette/show(id=${animaux[0].id_animal})}">
                         <div><img class="icone" id="imagealimentation" src="../static/images/Alimentation_gris.svg" th:src="@{/images/Alimentation_gris.svg}" alt="Icône alimentation"/></div>
                         <div class="textevg">Alimentation</div>
@@ -38,37 +38,37 @@
         <section>
             <h1>Mes compagnons</h1>
             <div th:if="${#lists.size(animaux.?[espece.name() == 'CHIEN'])!=0}">
-            <h3>Chiens</h3>
-            <table class="suppr">
-                <tr th:each="a : ${animaux}" th:if="${a.espece.name() == 'CHIEN'}">
-                    <td><a th:href="@{getAnimal(id=${a.id_animal})}" th:text="${a.nom}">Nom de l'animal</a></td>
-                    <td><a class="close" th:href = "@{delete(id = ${a.id_animal})}">×</a></td>
-                </tr>     
-            </table>
+                <h3>Chiens</h3>
+                <table class="suppr">
+                    <tr th:each="a : ${animaux}" th:if="${a.espece.name() == 'CHIEN'}">
+                        <td><a th:href="@{getAnimal(id=${a.id_animal})}" th:text="${a.nom}">Nom de l'animal</a></td>
+                        <td><a class="close" th:href = "@{delete(id = ${a.id_animal})}">×</a></td>
+                    </tr>     
+                </table>
             </div>
-            
+
             <div th:if="${#lists.size(animaux.?[espece.name() == 'CHAT'])!=0}">
-            <h3>Chats</h3>
-            <table class="suppr">
-                <tr th:each="a : ${animaux}" th:if="${a.espece.name() == 'CHAT'}">
-                    <td><a th:href="@{getAnimal(id=${a.id_animal})}" th:text="${a.nom}">Nom de l'animal</a></td>
-                    <td><a class="close" th:href = "@{delete(id = ${a.id_animal})}">×</a></td>
-                </tr>     
-            </table>
+                <h3>Chats</h3>
+                <table class="suppr">
+                    <tr th:each="a : ${animaux}" th:if="${a.espece.name() == 'CHAT'}">
+                        <td><a th:href="@{getAnimal(id=${a.id_animal})}" th:text="${a.nom}">Nom de l'animal</a></td>
+                        <td><a class="close" th:href = "@{delete(id = ${a.id_animal})}">×</a></td>
+                    </tr>     
+                </table>
             </div>
-            
-                <!--/* On appelle l'URL 'add' du contôleur */-->
-                <div class="ajout">
-                    <a th:href="@{add(name=${#authentication.name})}" href='formulaireAnimal.html'>
-                        <div class="plus">+</div>
-                        <div class="texteajout">Ajouter un compagnon</div>
-                    </a>
-                </div>
+
+            <!--/* On appelle l'URL 'add' du contôleur */-->
+            <div class="ajout">
+                <a th:href="@{add(name=${#authentication.name})}" href='formulaireAnimal.html'>
+                    <div class="plus">+</div>
+                    <div class="texteajout">Ajouter un compagnon</div>
+                </a>
+            </div>
         </section>
+        <footer>
+            <a>Mentions légales</a>
+            <a href="mailto:joffrey.viemon-desplanque@etud.univ-jfc.fr,leandre.garriga@etud.univ-jfc.fr,alex.godfrin@etud.univ-jfc.fr,tina.nantenaina@etud.univ-jfc.fr,agathe.sutarik@etud.univ-jfc.fr?subject=Application%20Yucroq">Contacts</a>
+        </footer> 
     </body>
 
-    <footer>
-        <a>Mentions légales</a>
-        <a>Contacts</a>
-    </footer> 
 </html>
