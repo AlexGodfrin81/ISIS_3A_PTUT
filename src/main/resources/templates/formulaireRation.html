@@ -107,7 +107,7 @@ and open the template in the editor.
                     </tr>
                 </table>
 
-                <input type="submit" value="Enregistrer" id="enregistrement" />
+                <input type="submit" value="Enregistrer" id="enregistrement" disabled/>
                 <input type="reset" value="Réinitialiser" />
 
 
@@ -196,6 +196,7 @@ and open the template in the editor.
                 document.getElementById("mesCroqs").value = event.target.value;
                 document.getElementById("alimentchoisi").innerHTML = event.target.innerHTML;
                 document.getElementById("lignealimentchoisi").removeAttribute("style");
+                document.getElementById("enregistrement").disabled = false;
             }
             
             const queryString = window.location.search;
@@ -204,25 +205,14 @@ and open the template in the editor.
             if (product != null) {
                  if (document.getElementById("anciennesCroqs") != null) { 
                         document.getElementById("anciennesCroqs").disabled=true;
+                        document.getElementById("enregistrement").disabled = false;
                     } 
                  document.getElementById("inputrecherche").disabled=true;
                  document.getElementById("mesCroqs").innerHTML = product;
                  document.getElementById("mesCroqs").value = product;
              }
              console.log(product);
-             
-              document.getElementById("enregistrement").disabled=true;
-                    
-                    window.addEventListener("click", deblocagevalidation);
-                    
-                    function deblocagevalidation() {
-                        if (document.getElementById("alimentchoisi").innerHTML != "" && document.getElementById("inputrecherche").value != "" ) {
-                            document.getElementById("enregistrement").disabled=false;
-                        }
-                        else {
-                            document.getElementById("enregistrement").disabled=true;
-                        }
-                    }
+            
     </script>
     </body>
 
