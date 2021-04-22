@@ -100,21 +100,24 @@ public class CroquetteController {
     @PostMapping(path = "save")
     public String ajouteLaCroquettePuisFormulaireRation(Croquette croquette, Integer id, RedirectAttributes redirectInfo) {
         String message;
+        Integer nouvelid;
         try {
             // cf. https://www.baeldung.com/spring-data-crud-repository-save
             dao.save(croquette);
             // Le code de la catégorie a été initialisé par la BD au moment de l'insertion
+            nouvelid = croquette.getId_croq();
             message = "La croquette '" + croquette.getNom() + "' a été correctement enregistrée";
         } catch (DataIntegrityViolationException e) {
             // Les noms sont définis comme 'UNIQUE' 
             // En cas de doublon, JPA lève une exception de violation de contrainte d'intégrité
             message = "Erreur : La croquette '" + croquette.getNom() + "' existe déjà";
+            nouvelid = null;
         }
         // RedirectAttributes permet de transmettre des informations lors d'une redirection,
         // Ici on transmet un message de succès ou d'erreur
         // Ce message est accessible et affiché dans la vue 'afficheCroquette.html'
         redirectInfo.addFlashAttribute("message", message);
-        return "redirect:/ration/add?id=" + id; // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
+        return "redirect:/ration/add?id=" + id + "&idcroq=" + nouvelid; // POST-Redirect-GET : on se redirige vers l'affichage de la liste		
     }
 
     /**

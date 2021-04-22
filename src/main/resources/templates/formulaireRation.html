@@ -80,7 +80,7 @@ and open the template in the editor.
                     </tr>
                     <tr id="lignealimentchoisi">
                         <td>Aliment choisi</td>
-                        <td id="alimentchoisi"></td>
+                        <td id="alimentchoisi">Veuillez rechercher un aliment</td>
                     <tr style="display: none">
                         <td><label for="mesCroqs">ID croquettes</label></td>
                         <td><input name="mesCroqs" id="mesCroqs" th:field="*{mesCroqs}" th:value="*{mesCroqs}" th:text="${mesCroqs}"></input></td>
@@ -132,7 +132,7 @@ and open the template in the editor.
                         document.getElementById("anciennesCroqs").disabled=false;
                     }
                     if (document.getElementById("alimentchoisi").innerHTML == "") {
-                        document.getElementById("lignealimentchoisi").setAttribute("style","display:none");
+                        // document.getElementById("lignealimentchoisi").setAttribute("style","display:none");
                     }
                     majselect();
                 }
@@ -199,21 +199,25 @@ and open the template in the editor.
                 document.getElementById("enregistrement").disabled = false;
             }
             
+   </script>
+        <script th:inline="javascript" type="text/javascript">
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
-            const product = urlParams.get('idcroq');
-            if (product != null) {
-                 if (document.getElementById("anciennesCroqs") != null) { 
-                        document.getElementById("anciennesCroqs").disabled=true;
+            let product = urlParams.get('idcroq');
+                if (product != null) {
+                if (document.getElementById("anciennesCroqs") != null) { 
+                        document.getElementById("anciennesCroqs").disabled = true;
                         document.getElementById("enregistrement").disabled = false;
                     } 
-                 document.getElementById("inputrecherche").disabled=true;
+                 document.getElementById("lignealimentchoisi").removeAttribute("style");
+                 document.getElementById("alimentchoisi").innerHTML = [[${croquette.marque}]] + " " + [[${croquette.nom}]];
+                 document.getElementById("inputrecherche").disabled = true;
+                 document.getElementById("inputrecherche").value = [[${croquette.marque}]] + " " + [[${croquette.nom}]];
                  document.getElementById("mesCroqs").innerHTML = product;
                  document.getElementById("mesCroqs").value = product;
              }
              console.log(product);
-            
-    </script>
+        </script>
     </body>
 
     <footer>

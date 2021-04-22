@@ -7,6 +7,7 @@ package yucroq.controller;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -41,9 +42,12 @@ public class RationController {
     private ProprietaireRepository dao4;
 
     @GetMapping(path = "add")
-    public String montreLeFormulairePourAjout(Model model, Integer id, @AuthenticationPrincipal Proprietaire user) {
+    public String montreLeFormulairePourAjout(Model model, Integer id, Optional<Integer> idcroq, @AuthenticationPrincipal Proprietaire user) {
         model.addAttribute("ration", new Ration());
         model.addAttribute("animal", dao2.getOne(id));
+        if (idcroq.isPresent()) {
+            model.addAttribute("croquette", dao3.getOne(idcroq.get()));
+        }
         model.addAttribute("croquetteanimal", dao3.listeCroquettesPour(id));
         model.addAttribute("croquettes", dao3.findAll());
         model.addAttribute("animaux", dao4.getOne(user.getId_proprio()).getMesAnimaux());
